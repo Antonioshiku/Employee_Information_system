@@ -2,7 +2,6 @@ package Admin;
 
 import Admin.Admin_Dashboard;
 import javax.swing.BorderFactory;
-import Dept_Head.Dept_Head_Dashboard;
 import Employee.Employee_Dashboard;
 import Main.Choose_User;
 import java.awt.BorderLayout;
@@ -10,6 +9,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -29,14 +29,17 @@ import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.regex.Pattern;
 import javax.swing.border.Border;
 
 public class Admin_Login extends JFrame {
 	private JTextField txt_Email;
-	private JTextField txt_Password;
-	private final String Admin_acc = "adminE@gmail.com";
-	private final String Admin_pass = "Admin1234!!";
+	private   JPasswordField  txt_Password;
 
 	/**
 	 * Launch the application.
@@ -114,19 +117,33 @@ public class Admin_Login extends JFrame {
 		JButton btnLogIn = new JButton("Login");
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				inputCheck();
+				// inputCheck();
 
-				if (txt_Email.getText().equalsIgnoreCase(Admin_acc)
-						&& txt_Password.getText().equalsIgnoreCase(Admin_pass)) {
-					setVisible(false);
-					new Admin_Dashboard().setVisible(true);
+				try {
+					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_inforamtion_system",
+							"root", "123456");
+					PreparedStatement pst = con
+							.prepareStatement("select user_name,password,Type from  login where emp_id= ?");
+					pst.setString(1, txt_Email.getText());
+					ResultSet rs = pst.executeQuery();
 
-				} else {
-					JOptionPane.showMessageDialog(null, "Incorrect User && password", "error",
-							JOptionPane.ERROR_MESSAGE);
+					while (rs.next()) {
+						if (rs.getString(3).equalsIgnoreCase("Admin")
+								&& txt_Password.getText().equalsIgnoreCase(rs.getString(2))) {
+							setVisible(false);
+							new Admin_Dashboard().setVisible(true);
+						} else {
+							JOptionPane.showMessageDialog(null, "User not found", "user not found error",
+									JOptionPane.ERROR_MESSAGE);
+						}
+
+					}
+
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 
-			
 			}
 		});
 		btnLogIn.setBounds(84, 278, 145, 28);
@@ -155,7 +172,7 @@ public class Admin_Login extends JFrame {
 		btnBack.setFont(new Font("Modern No. 20", Font.BOLD, 20));
 		btnBack.setBackground(Color.WHITE);
 
-		JLabel lblEmailOrUsername = new JLabel("Email or Username");
+		JLabel lblEmailOrUsername = new JLabel("Employee Id");
 		lblEmailOrUsername.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
 		lblEmailOrUsername.setBounds(38, 132, 145, 14);
 		panel_2.add(lblEmailOrUsername);
@@ -170,20 +187,14 @@ public class Admin_Login extends JFrame {
 		txt_Email.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				
-				try {
-					inputEmail();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+
 			}
 		});
 		txt_Email.setBounds(38, 157, 245, 28);
 		panel_2.add(txt_Email);
 		txt_Email.setColumns(10);
 
-		txt_Password = new JTextField();
+		txt_Password = new JPasswordField();
 		txt_Password.setColumns(10);
 		txt_Password.setBounds(38, 221, 245, 28);
 		panel_2.add(txt_Password);
@@ -213,19 +224,6 @@ public class Admin_Login extends JFrame {
 				txt_Password.requestFocus();
 			}
 		}
-	}
-
-	public void inputEmail() throws IOException {
-		String reg = "^[a-zA-Z0-9]+[  @]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$";
-		if (Pattern.matches(reg, txt_Email.getText())) {
-			Border border = BorderFactory.createLineBorder(Color.GREEN ,2);
-			txt_Email.setBorder(border);
-		} else {
-		//	JOptionPane.showMessageDialog(null, "Valid Email","Valid Error",JOptionPane.ERROR_MESSAGE);
-			Border border = BorderFactory.createLineBorder(Color.RED, 2);
-			txt_Email.setBorder(border);
-		}
-
 	}
 
 }

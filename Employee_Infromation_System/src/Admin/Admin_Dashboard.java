@@ -3,7 +3,7 @@ package Admin;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
+import Admin.Admin_Login;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,6 +18,8 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import Main.Choose_User;
+
 
 public class Admin_Dashboard extends JFrame {
 
@@ -41,7 +43,7 @@ public class Admin_Dashboard extends JFrame {
 	 * Create the frame.
 	 */
 	public Admin_Dashboard() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\HR Info Sys Pto\\icons8-old-vmware-logo-50 (3) (1).png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\Java Project\\Employee_Infromation_System\\photo\\icons8-old-vmware-logo-50 (3) (1).png"));
 		setTitle("Employee Information Management System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100,850,500);
@@ -56,7 +58,7 @@ public class Admin_Dashboard extends JFrame {
 		
 		JButton button = new JButton("Dept ");
 		button.setBounds(391, 211, 201, 99);
-		button.setIcon(new ImageIcon("D:\\HR Info Sys Pto\\icons8-organization-chart-people-96.png"));
+		button.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\icons8-department-64.png"));
 		button.setForeground(new Color(0, 102, 102));
 		button.setFont(new Font("Monospaced", Font.BOLD, 20));
 		button.setBackground(Color.WHITE);
@@ -64,7 +66,7 @@ public class Admin_Dashboard extends JFrame {
 		
 		JButton btnProjects = new JButton("PJs");
 		btnProjects.setBounds(623, 250, 201, 99);
-		btnProjects.setIcon(new ImageIcon("D:\\HR Info Sys Pto\\icons8-project-management-96 (1).png"));
+		btnProjects.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\icons8-project-management-96 (1).png"));
 		btnProjects.setForeground(new Color(128, 128, 128));
 		btnProjects.setFont(new Font("Monospaced", Font.BOLD, 20));
 		btnProjects.setBackground(Color.WHITE);
@@ -76,7 +78,7 @@ public class Admin_Dashboard extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		button_2.setIcon(new ImageIcon("D:\\HR Info Sys Pto\\icons8-profile-96.png"));
+		button_2.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\icons8-employee-96.png"));
 		button_2.setForeground(new Color(0, 0, 102));
 		button_2.setFont(new Font("Monospaced", Font.BOLD, 20));
 		button_2.setBackground(Color.WHITE);
@@ -101,20 +103,29 @@ public class Admin_Dashboard extends JFrame {
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1.setBounds(0, 0, 102, 92);
 		panel_3.add(lblNewLabel_1);
-		lblNewLabel_1.setIcon(new ImageIcon("D:\\HR Info Sys Pto\\photo_2023-06-09_16-04-48.png"));
+		lblNewLabel_1.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\photo_2023-06-15_10-33-47.jpg"));
 		
-		JLabel lblAdmin = new JLabel(" Aung Phone Naing");
+		JLabel lblAdmin = new JLabel(" Admin ");
+		lblAdmin.setForeground(new Color(255, 255, 255));
 		lblAdmin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAdmin.setBounds(0, 103, 145, 28);
 		panel_1.add(lblAdmin);
-		lblAdmin.setFont(new Font("Modern No. 20", Font.BOLD, 14));
+		lblAdmin.setFont(new Font("Modern No. 20", Font.BOLD, 17));
 		
-		JLabel lblaphonen = new JLabel("@aphone_n2004");
+		JLabel lblaphonen = new JLabel("@adminE");
+		lblaphonen.setForeground(new Color(255, 255, 255));
+		lblaphonen.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblaphonen.setHorizontalAlignment(SwingConstants.CENTER);
-		lblaphonen.setBounds(21, 118, 113, 23);
+		lblaphonen.setBounds(21, 126, 113, 23);
 		panel_1.add(lblaphonen);
 		
 		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				new Choose_User().setVisible(true);
+			}
+		});
 		btnLogout.setIcon(new ImageIcon("D:\\HR Info Sys Pto\\icons8-logout-rounded-30.png"));
 		btnLogout.setBackground(Color.LIGHT_GRAY);
 		btnLogout.setFont(new Font("Modern No. 20", Font.BOLD, 20));

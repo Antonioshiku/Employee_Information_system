@@ -1,7 +1,8 @@
-package Dept_Head;
+package Application;
 
 
 import java.awt.BorderLayout;
+import Dept_Head.Dept_login;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -16,10 +17,13 @@ import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class Dept_Head_Dashboard extends JFrame {
+public class Application_dept extends JFrame {
 
 	/**
 	 * Launch the application.
@@ -28,7 +32,7 @@ public class Dept_Head_Dashboard extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Dept_Head_Dashboard frame = new Dept_Head_Dashboard();
+					Application_dept frame = new Application_dept();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +44,7 @@ public class Dept_Head_Dashboard extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Dept_Head_Dashboard() {
+	public Application_dept() throws SQLException{
 		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\HR Info Sys Pto\\icons8-old-vmware-logo-50 (3) (1).png"));
 		setTitle("Employee Information Management System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,21 +58,39 @@ public class Dept_Head_Dashboard extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JButton btnProjects = new JButton("PJs");
+		JButton btnProjects = new JButton("");
 		btnProjects.setBounds(524, 208, 201, 99);
-		btnProjects.setIcon(new ImageIcon("D:\\HR Info Sys Pto\\icons8-project-management-96 (1).png"));
+		btnProjects.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\icons8-department-96.png"));
 		btnProjects.setForeground(new Color(128, 128, 128));
 		btnProjects.setFont(new Font("Monospaced", Font.BOLD, 20));
 		btnProjects.setBackground(Color.WHITE);
 		panel.add(btnProjects);
 		
-		JButton button_2 = new JButton("Emp");
+		JButton button_2 = new JButton("");
+//		button_2.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseEntered(MouseEvent e) {
+//				button_2.setBounds(259, 163, 221, 129);
+//			}
+//			@Override
+//			public void mouseExited(MouseEvent e) {
+//				button_2.setBounds(259, 163, 201, 99);
+//			}
+//		});
 		button_2.setBounds(259, 163, 201, 99);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+					try {
+						new View_Table().setVisible(true);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			
 			}
 		});
-		button_2.setIcon(new ImageIcon("D:\\HR Info Sys Pto\\icons8-employee-96.png"));
+		button_2.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\icons8-employee-96.png"));
 		button_2.setForeground(new Color(0, 0, 102));
 		button_2.setFont(new Font("Monospaced", Font.BOLD, 20));
 		button_2.setBackground(Color.WHITE);
@@ -93,20 +115,26 @@ public class Dept_Head_Dashboard extends JFrame {
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(0, 0, 102, 92);
 		panel_3.add(lblNewLabel_1);
-		lblNewLabel_1.setIcon(new ImageIcon("D:\\HR Info Sys Pto\\photo_2022-12-17_23-11-17 (1).png"));
+		lblNewLabel_1.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\photo_2023-06-15_10-33-47.jpg"));
 		
-		JLabel lblAdmin = new JLabel("Aye Win");
+		JLabel lblAdmin = new JLabel("Application Dept");
 		lblAdmin.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAdmin.setBounds(41, 102, 71, 28);
+		lblAdmin.setBounds(11, 101, 112, 28);
 		panel_1.add(lblAdmin);
 		lblAdmin.setFont(new Font("Modern No. 20", Font.BOLD, 14));
 		
-		JLabel lblaphonen = new JLabel("@aye200win");
+		JLabel lblaphonen = new JLabel("@deptManager");
 		lblaphonen.setHorizontalAlignment(SwingConstants.CENTER);
 		lblaphonen.setBounds(31, 118, 84, 23);
 		panel_1.add(lblaphonen);
 		
 		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				 new Dept_login().setVisible(true);
+			}
+		});
 		btnLogout.setIcon(new ImageIcon("D:\\HR Info Sys Pto\\icons8-logout-rounded-30.png"));
 		btnLogout.setBackground(Color.LIGHT_GRAY);
 		btnLogout.setFont(new Font("Modern No. 20", Font.BOLD, 20));
