@@ -202,7 +202,7 @@ showEmp();
 			}
 		});
 		Show_Emp_1.setForeground(Color.WHITE);
-		Show_Emp_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
+		Show_Emp_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15)); 
 		Show_Emp_1.setBackground(new Color(0, 102, 102));
 		Show_Emp_1.setBounds(419, 421, 145, 28);
 		panel.add(Show_Emp_1);
@@ -213,7 +213,7 @@ showEmp();
 
 	public static void showEmp() {
 
-		rr = new role_history();
+		
 		Connection con;
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 

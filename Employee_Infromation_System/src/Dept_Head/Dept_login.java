@@ -160,8 +160,7 @@ public class Dept_login extends JFrame {
 									} else {
 										if (dept_head.equalsIgnoreCase("seniorprogrammingmanager") && pass.equalsIgnoreCase("dept1234")) {
 											setVisible(false);
-											new Programming_dept
-											().setVisible(true);
+											new Programming_dept().setVisible(true);
 											result=true;
 										}
 									}

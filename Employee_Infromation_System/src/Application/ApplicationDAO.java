@@ -1,6 +1,8 @@
 package Application;
 
 import Main.Employee;
+import Main.pr_member;
+import Main.project;
 import Main.Address;
 import Main.role_history;
 import java.sql.Connection;
@@ -9,6 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
+
+import javax.swing.JOptionPane;
 
 public class ApplicationDAO {
 	  private  Connection con;
@@ -43,6 +48,45 @@ public class ApplicationDAO {
 	        	   
 	          }
 	    	return result;
+	    }
+	    
+	    public ArrayList<String>  showEmpId() throws SQLException{
+	    	ArrayList<String> result=new ArrayList<String>();
+	       String query="select Emp_id from employee";
+	    	PreparedStatement pst = con.prepareStatement(query);
+	          ResultSet rs=pst.executeQuery();
+	          while(rs.next()) {
+	        	   result.add(rs.getString(1));
+	          }
+			return result;
+	    }
+	    
+	    public ArrayList<String>  showDept() throws SQLException{
+	    	ArrayList<String> result=new ArrayList<String>();
+	       String query="select dept_id from department";
+	    	PreparedStatement pst = con.prepareStatement(query);
+	          ResultSet rs=pst.executeQuery();
+	          while(rs.next()) {
+	        	   result.add(rs.getString(1));
+	          }
+			return result;
+	    }
+	    
+	    public void create_pj(project p) throws SQLException {
+	    	
+	    	PreparedStatement pst = con.prepareStatement("insert into project values(?,?,?,?,?)");
+	         pst.setString(1, p.getProject_Id());
+	         pst.setString(2, p.getProject_Name());
+	         pst.setInt(3, p.getDept_id());
+	         pst.setString(4, p.getStart_date());
+	         pst.setString(5, p.getEnd_date());
+	         
+       int i=pst.executeUpdate();
+	         
+	         if(i> 0) {
+	        	  JOptionPane.showMessageDialog(null, "Data Correct Successfully", "Data Successfullly",JOptionPane.ERROR_MESSAGE);
+	         }
+
 	    }
 	    
 	

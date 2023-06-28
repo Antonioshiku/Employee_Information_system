@@ -59,6 +59,12 @@ public class Application_dept extends JFrame {
 		panel.setLayout(null);
 		
 		JButton btnProjects = new JButton("");
+		btnProjects.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				new Project().setVisible(true);
+			}
+		});
 		btnProjects.setBounds(524, 208, 201, 99);
 		btnProjects.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\icons8-department-96.png"));
 		btnProjects.setForeground(new Color(128, 128, 128));

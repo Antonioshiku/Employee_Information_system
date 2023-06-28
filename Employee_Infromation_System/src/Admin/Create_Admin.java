@@ -1,397 +1,488 @@
-package Admin;
+
+package Admin
+
+;
 
 import java.awt.BorderLayout;
-import Main.Employee;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-
-import com.toedter.calendar.JDateChooser;
-
-import javax.swing.JDesktopPane;
-import java.awt.Color;
+import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import java.awt.Color;
+import javax.swing.SwingConstants;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.swing.JButton;
-import javax.swing.JColorChooser;
-
+import javax.swing.JDesktopPane;
+import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.awt.event.ActionEvent;
-import javax.swing.JRadioButton;
-import javax.swing.AbstractButton;
-import javax.swing.ButtonGroup;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+import com.toedter.calendar.JDateChooser;
 
+import Main.Qualification;
+import Main.Working_Exe;
+import Main.role_history;
 
 public class Create_Admin extends JFrame {
 
-	
- private Connection con;	
-  private JPanel contentPane;
-  private final JDesktopPane desktopPane = new JDesktopPane();
-  private final JLabel lblPersonalInformation = new JLabel("Personal Information");
-  private final JLabel lblEmployeeId = new JLabel("Last Name      :");
-  private final JLabel lblFatherName = new JLabel("Father Name    :");
-  private final JLabel lblNewLabel_2 = new JLabel("Date Of Birth  :");
-  private JTextField emp_id;
-  private JTextField txtfname;
-  private JTextField txtlname;
-  private JTextField txtF_name;
-  private final JLabel lblFastName = new JLabel("First Name     :");
-  private final JLabel label_1 = new JLabel("Employee ID    :");
-  private final JDesktopPane desktopPane_3 = new JDesktopPane();
-  private final JLabel lblAdditionalInformation = new JLabel("Address Information");
-  private final JLabel lblAge = new JLabel("Gender         :");
-  private final JLabel lblAge_1 = new JLabel("Age            :");
-  private final JTextField txtage = new JTextField();
-  private JTextField txtemail;
-  private JTextField txtP_ph;
-  private JTextField txtw_ph;
-  private JTextField txtN;
-  private JTextField txtR;
-  private JTextField txtC;
-  private JTextField txtTown;
-  private JTextField txtNation;
-  private final ButtonGroup Bbutton = new ButtonGroup();
-  private  JComboBox cbostatus,dept_combo;
-	JDateChooser dob_chooser ;
-    JRadioButton rdoFemale;
+	private JPanel contentPane;
+	private JTextField txtemp;
+	private JTextField txtdept;
+	private JTextField txtdegree;
+	private JTextField txtfname;
+	private JTextField txtoname;
+	private JTextField txtrole_id;
+	private JTextField txtemp_id;
+	private JTextField txtdept_id;
+	private JTextField txtp;
+	private JTextField txts;
+	private JTextField txtstatus;
+	private JTextField txte_id;
+	private JTextField txtC;
+	private JTextField txtP;
+	private JTextField txtW_exp;
+	private JTextField txtW_id;
+	private JTextField txtqf_id;
 
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Create_Admin frame = new Create_Admin();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-private JRadioButton rdomale;
-  private final ButtonGroup buttonGroup = new ButtonGroup();
-  public static void main(String[] args) {
-    EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        try {
-      
-          Create_Admin frame = new Create_Admin();
-          frame.setVisible(true); 
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
-      }
-    });
-  }
-  public Create_Admin() throws SQLException {
-    setTitle("Add Employee");
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setBounds(100, 100, 1100, 742);
-    contentPane = new JPanel();
-    contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-    setContentPane(contentPane);
-    contentPane.setLayout(null);
-    desktopPane.setBackground(new Color(51, 102, 153));
-    desktopPane.setBounds(15, 16, 1063, 710);
-    contentPane.add(desktopPane);
-    desktopPane_3.setBackground(new Color(204, 204, 204));
-    desktopPane_3.setBounds(503, 0, 476, 439);
-    
-    desktopPane.add(desktopPane_3);
-    lblAdditionalInformation.setFont(new Font("Monospaced", Font.BOLD, 20));
-    lblAdditionalInformation.setBounds(33, 16, 260, 30);
-    
-    desktopPane_3.add(lblAdditionalInformation);
-    
-    JLabel lblEmail = new JLabel("E-mail                 :");
-    lblEmail.setBounds(15, 259, 163, 34);
-    desktopPane_3.add(lblEmail);
-    lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 18));
-    
-    txtemail = new JTextField();
-    txtemail.setBounds(223, 266, 186, 22);
-    desktopPane_3.add(txtemail);
-    txtemail.setColumns(10);
-    
-    JLabel lblNrc = new JLabel("NRC          :");
-    lblNrc.setFont(new Font("Monospaced", Font.BOLD, 18));
-    lblNrc.setBounds(16, 207, 192, 34);
-    desktopPane_3.add(lblNrc);
-    
-    JLabel lblReligion = new JLabel("Religion     :");
-    lblReligion.setFont(new Font("Monospaced", Font.BOLD, 18));
-    lblReligion.setBounds(16, 157, 192, 34);
-    desktopPane_3.add(lblReligion);
-    
-    JLabel lblCity = new JLabel("City         :");
+	public Create_Admin() {
+		setTitle("Employee Information System");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1100, 742);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(51, 102, 102));
+		panel.setBounds(0, 0, 1082, 695);
+		contentPane.add(panel);
+		panel.setLayout(null);
 
-lblCity.setFont(new Font("Monospaced", Font.BOLD, 18));
-    lblCity.setBounds(16, 107, 192, 34);
-    desktopPane_3.add(lblCity);
-    
-    JLabel lblTownship = new JLabel("TownShip     :");
-    lblTownship.setFont(new Font("Monospaced", Font.BOLD, 18));
-    lblTownship.setBounds(16, 62, 192, 34);
-    desktopPane_3.add(lblTownship);
-    
-    txtN = new JTextField();
-    txtN.setColumns(10);
-    txtN.setBounds(223, 214, 186, 22);
-    desktopPane_3.add(txtN);
-    
-    txtR = new JTextField();
-    txtR.setColumns(10);
-    txtR.setBounds(223, 169, 186, 22);
-    desktopPane_3.add(txtR);
-    
-    txtC = new JTextField();
-    txtC.setColumns(10);
-    txtC.setBounds(223, 114, 186, 22);
-    desktopPane_3.add(txtC);
-    
-    txtTown = new JTextField();
-    txtTown.setColumns(10);
-    txtTown.setBounds(223, 69, 186, 22);
-    desktopPane_3.add(txtTown);
-    
-    JLabel lblNationality = new JLabel("Nationality  :");
-    lblNationality.setFont(new Font("Monospaced", Font.BOLD, 18));
-    lblNationality.setBounds(15, 322, 192, 22);
-    desktopPane_3.add(lblNationality);
-    
-    txtNation = new JTextField();
-    txtNation.setColumns(10);
-    txtNation.setBounds(219, 323, 190, 22);
-    desktopPane_3.add(txtNation);
-    
-    JLabel label = new JLabel("");
-    label.setBounds(12, 342, 56, 16);
-    desktopPane_3.add(label);
-    
-    JLabel lblJoinedDate = new JLabel("Joined Date  :");
-    lblJoinedDate.setFont(new Font("Monospaced", Font.BOLD, 18));
-    lblJoinedDate.setBounds(15, 374, 192, 22);
-    desktopPane_3.add(lblJoinedDate);
-    
-    JDateChooser jD_chooser = new JDateChooser();
-    jD_chooser.setBounds(223, 364, 196, 32);
-    desktopPane_3.add(jD_chooser);
-    
-//    JDateChooser dateChooser_1 = new JDateChooser();
-//    dateChooser_1.setBounds(223, 374, 186, 26);
-//    desktopPane_3.add(dateChooser_1);
-    
-    JButton btnNewButton = new JButton("Add");
-    btnNewButton.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-    		
-            String id=emp_id.getText();
-             int dept=Integer.parseInt(dept_combo.getSelectedItem().toString());
-            String fname=txtfname.getText();
-            String lname=txtlname.getText();
-            String age=txtage.getText();
-            String gender=null;
-            if(rdomale .isSelected())
-              gender="Male";
-            if(rdoFemale.isSelected())
-              gender="Female";
-            String email=txtemail.getText();
-            String  w_phno=txtw_ph.getText();
-            String  P_phno=txtP_ph.getText();
-            String TownShip=txtTown.getText();
-            String City=txtC.getText();
-            String nrc=txtN.getText();
-            String Nationality=txtNation.getText();
-            String Father_Name=txtF_name.getText();
-            String religion=txtR.getText();
-            String city=txtC.getText();
-            String town=txtTown.getText();
-          String txt_status =cbostatus.getSelectedItem().toString();
-          Date jD=new Date(jD_chooser.getDate().getTime());
-         Date dob=new Date(dob_chooser.getDate().getTime());
-         System.out.println(dob);
-  //       Employee ee=new Employee(id,dept,fname,lname,gender,age,String.valueOf(dob), nrc,email,w_phno,P_phno,txt_status,Nationality,religion,Father_Name,String.valueOf(jD),fname,fname);
-//         try {
-//			//new AdminDAO().AddEmp(ee);
-//		} catch (SQLException e1) {
-//			// TODO Auto-generated catch block
-//			JOptionPane.showMessageDialog(null, "Error happened", "error found try again",JOptionPane.ERROR_MESSAGE);
-//			System.out.println(e1);
-//		}
-         
-    	}
-    });
-    btnNewButton.setFont(new Font("Monospaced", Font.BOLD, 18));
-    btnNewButton.setBounds(819, 500, 97, 25);
-    desktopPane.add(btnNewButton);
-    
-    JButton btnBack = new JButton("Clear");
-    btnBack.setFont(new Font("Monospaced", Font.BOLD, 18));
-    btnBack.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent arg0) {
-        emp_id.setText(null);
-        txtfname.setText(null);
-        txtlname.setText(null);
-        txtage.setText(null);
-        buttonGroup.clearSelection();
-        dept_combo.setSelectedIndex(0);
-        cbostatus.setSelectedIndex(0);
-        txtemail.setText(null);
-        txtP_ph.setText(null);
-        txtw_ph.setText(null);
-        txtTown.setText(null);
-        txtC.setText(null);
-        txtN.setText(null);
-        txtNation.setText(null);
-        txtF_name.setText(null);
-        txtR.setText(null);
-        dob_chooser.setDateFormatString("");
-        jD_chooser.setDateFormatString("");
-      }
-    });
-    btnBack.setBounds(819, 576, 97, 25);
-    desktopPane.add(btnBack);
-    
-    JButton btnNext = new JButton("Close");
-    btnNext.setFont(new Font("Monospaced", Font.BOLD, 18));
-    btnNext.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent arg0) {
-       System.exit(0);    
-      }
-    });
-    btnNext.setBounds(819, 617, 97, 25);
-    desktopPane.add(btnNext);
-    
-    JDesktopPane desktopPane_1 = new JDesktopPane();
-    desktopPane_1.setBackground(Color.LIGHT_GRAY);
-    desktopPane_1.setBounds(0, 0, 454, 670);
-    desktopPane.add(desktopPane_1);
-    lblFastName.setBounds(19, 161, 198, 34);
-    desktopPane_1.add(lblFastName);
-    lblFastName.setFont(new Font("Monospaced", Font.BOLD, 18));
-    lblEmployeeId.setBounds(20, 211, 188, 34);
-    desktopPane_1.add(lblEmployeeId);
-    lblEmployeeId.setFont(new Font("Monospaced", Font.BOLD, 18));
-    lblAge.setBounds(19, 261, 177, 34);
-    desktopPane_1.add(lblAge);
-    lblAge.setFont(new Font("Monospaced", Font.BOLD, 18));
-    
-    JLabel txt_status = new JLabel("Marital Status :");
-    txt_status.setBounds(19, 604, 188, 34);
-    desktopPane_1.add(txt_status);
-    txt_status.setFont(new Font("Monospaced", Font.BOLD, 18));
-    
-    JLabel lblWorkph = new JLabel("Work_Ph_no     :");
-    lblWorkph.setBounds(19, 554, 198, 34);
-    desktopPane_1.add(lblWorkph);
-    lblWorkph.setFont(new Font("Monospaced", Font.BOLD, 18));
-    
-    JLabel lblPersonalPh = new JLabel("Personal_Ph_no :");
-    lblPersonalPh.setBounds(19, 498, 198, 34);
-    desktopPane_1.add(lblPersonalPh);
-    lblPersonalPh.setFont(new Font("Monospaced", Font.BOLD, 18));
-    lblNewLabel_2.setBounds(19, 446, 178, 30);
-    desktopPane_1.add(lblNewLabel_2);
-    lblNewLabel_2.setFont(new Font("Monospaced", Font.BOLD, 18));
-    lblFatherName.setBounds(19, 386, 209, 34);
-    desktopPane_1.add(lblFatherName);
-    lblFatherName.setFont(new Font("Monospaced", Font.BOLD, 18));
-    lblAge_1.setBounds(19, 327, 188, 34);
-    desktopPane_1.add(lblAge_1);
-    lblAge_1.setFont(new Font("Monospaced", Font.BOLD, 18));
-    
-    txtw_ph = new JTextField();
-    txtw_ph.setBounds(226, 555, 198, 22);
-    desktopPane_1.add(txtw_ph);
-    txtw_ph.setColumns(10);
-    
-    txtP_ph = new JTextField();
-    txtP_ph.setBounds(226, 499, 198, 22);
-    desktopPane_1.add(txtP_ph);
-    txtP_ph.setColumns(10);
-//    
-//    JDateChooser dateChooser = new JDateChooser();
-//    dateChooser.setBounds(226, 440, 198, 26);
-//    desktopPane_1.add(dateChooser);
-    
-    txtF_name = new JTextField();
-    txtF_name.setBounds(226, 384, 198, 22);
-    desktopPane_1.add(txtF_name);
-    txtF_name.setColumns(10);
-    txtage.setBounds(226, 335, 198, 22);
-    desktopPane_1.add(txtage);
-    txtage.setColumns(10);
-    
-    rdomale = new JRadioButton("Male");
-    buttonGroup.add(rdomale);
-    rdomale.setBounds(226, 262, 86, 33);
-    desktopPane_1.add(rdomale);
-    rdomale.setFont(new Font("Monospaced", Font.BOLD, 18));
-     
-     txtlname = new JTextField();
-     txtlname.setBounds(226, 218, 198, 22);
-     desktopPane_1.add(txtlname);
-     txtlname.setColumns(10);
-     
-     txtfname = new JTextField();
-     txtfname.setBounds(226, 162, 198, 22);
-     desktopPane_1.add(txtfname);
-     txtfname.setColumns(10);
-     
-	dob_chooser = new JDateChooser();
-		dob_chooser.setBounds(228, 444, 196, 32);
-		desktopPane_1.add(dob_chooser);
-     
-     emp_id = new JTextField();
-     emp_id.setBounds(226, 73, 198, 22);
-     desktopPane_1.add(emp_id);
-     emp_id.setColumns(10);
-     
-     rdoFemale = new JRadioButton("Female");
-     buttonGroup.add(rdoFemale);
-     rdoFemale.setFont(new Font("Monospaced", Font.BOLD, 18));
-     rdoFemale.setBounds(318, 262, 105, 33);
-     desktopPane_1.add(rdoFemale);
-     
-     JLabel lblDepartmentId = new JLabel("Department ID  :");
-     lblDepartmentId.setFont(new Font("Monospaced", Font.BOLD, 18));
-     lblDepartmentId.setBounds(19, 111, 209, 34);
-     desktopPane_1.add(lblDepartmentId);
-     label_1.setBounds(19, 66, 183, 34);
-     desktopPane_1.add(label_1);
-     label_1.setFont(new Font("Monospaced", Font.BOLD, 18));
-     lblPersonalInformation.setBounds(15, 23, 330, 34);
-     desktopPane_1.add(lblPersonalInformation);
-     lblPersonalInformation.setFont(new Font("Monospaced", Font.BOLD, 20));
-     
-      cbostatus = new JComboBox();
-     cbostatus.setModel(new DefaultComboBoxModel(new String[] {"None", "1.Single", "2.Married", "3.Others"}));
-     cbostatus.setBounds(227, 609, 197, 26);
-     desktopPane_1.add(cbostatus);
-     
-		 dept_combo = new JComboBox(new AdminDAO().showDept().toArray());
-           dept_combo.setBounds(226, 121, 198, 24);
-           desktopPane_1.add(dept_combo);
-     
-     
-//      dept_combo = new JComboBox();
-//      dept_combo.setModel(new DefaultComboBoxModel(new String[] {"None",}));
-//     dept_combo.setBounds(226, 121, 198, 24);
-//     desktopPane_1.add(dept_combo);
-     
-     JButton btn_Next = new JButton("Next");
-     btn_Next.setFont(new Font("Monospaced", Font.BOLD, 18));
-     btn_Next.setBounds(819, 541, 97, 25);
-     desktopPane.add(btn_Next);
-  }
+		JLabel lblNewLabel = new JLabel("Welcome ");
+		lblNewLabel.setFont(new Font("Monospaced", Font.BOLD, 20));
+		lblNewLabel.setBounds(12, 13, 1046, 72);
+		panel.add(lblNewLabel);
+
+		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBackground(Color.LIGHT_GRAY);
+		desktopPane.setBounds(12, 86, 336, 596);
+		panel.add(desktopPane);
+
+		JLabel lblemp_id = new JLabel("Emp_id        :");
+		lblemp_id.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblemp_id.setBounds(12, 93, 168, 47);
+		desktopPane.add(lblemp_id);
+
+		txtemp = new JTextField();
+		txtemp.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txtemp.setBounds(190, 105, 126, 22);
+		desktopPane.add(txtemp);
+		txtemp.setColumns(10);
+
+		JLabel lbldept = new JLabel("Dept_id       :");
+		lbldept.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lbldept.setBounds(12, 139, 173, 47);
+		desktopPane.add(lbldept);
+
+		JLabel lblType = new JLabel("Type          :");
+		lblType.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblType.setBounds(12, 275, 181, 47);
+		desktopPane.add(lblType);
+
+		JLabel lblFieldname = new JLabel("Field_Name    :");
+		lblFieldname.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblFieldname.setBounds(12, 335, 181, 47);
+		desktopPane.add(lblFieldname);
+
+		JLabel lblOrgname = new JLabel("Org_Name      :");
+		lblOrgname.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblOrgname.setBounds(12, 395, 165, 47);
+		desktopPane.add(lblOrgname);
+
+		JLabel lblFromdate = new JLabel("From_date     :");
+		lblFromdate.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblFromdate.setBounds(12, 455, 165, 47);
+		desktopPane.add(lblFromdate);
+
+		JLabel lblEnddate = new JLabel("End_date      :");
+		lblEnddate.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblEnddate.setBounds(12, 520, 165, 47);
+		desktopPane.add(lblEnddate);
+
+		JLabel lblNewLabel_2 = new JLabel("Qualification");
+		lblNewLabel_2.setFont(new Font("Monospaced", Font.BOLD, 20));
+		lblNewLabel_2.setBounds(12, 13, 281, 37);
+		desktopPane.add(lblNewLabel_2);
+
+		JTextArea txtrDegree = new JTextArea();
+		txtrDegree.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txtrDegree.setText("Degree\r\nCertification :");
+		txtrDegree.setBackground(Color.LIGHT_GRAY);
+		txtrDegree.setBounds(12, 207, 168, 55);
+		desktopPane.add(txtrDegree);
+
+		txtdept = new JTextField();
+		txtdept.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txtdept.setColumns(10);
+		txtdept.setBounds(192, 153, 126, 22);
+		desktopPane.add(txtdept);
+
+		txtdegree = new JTextField();
+		txtdegree.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txtdegree.setColumns(10);
+		txtdegree.setBounds(192, 231, 126, 22);
+		desktopPane.add(txtdegree);
+
+		txtfname = new JTextField();
+		txtfname.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txtfname.setColumns(10);
+		txtfname.setBounds(192, 349, 126, 22);
+		desktopPane.add(txtfname);
+
+		txtoname = new JTextField();
+		txtoname.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txtoname.setColumns(10);
+		txtoname.setBounds(192, 409, 126, 22);
+		desktopPane.add(txtoname);
+
+		JComboBox cboType = new JComboBox();
+		cboType.setModel(new DefaultComboBoxModel(new String[] { "None", "Bachelor", "Cartificate" }));
+		cboType.setBounds(192, 289, 126, 22);
+		desktopPane.add(cboType);
+
+		JLabel lblQfid = new JLabel("QF_id         :");
+		lblQfid.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblQfid.setBounds(12, 44, 181, 47);
+		desktopPane.add(lblQfid);
+
+		txtqf_id = new JTextField();
+		txtqf_id.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txtqf_id.setColumns(10);
+		txtqf_id.setBounds(192, 56, 126, 22);
+		desktopPane.add(txtqf_id);
+
+		JDateChooser dcFrom_date = new JDateChooser();
+		dcFrom_date.setBounds(190, 470, 126, 20);
+		desktopPane.add(dcFrom_date);
+
+		JDateChooser dcEnd_date = new JDateChooser();
+		dcEnd_date.setBounds(190, 535, 126, 20);
+		desktopPane.add(dcEnd_date);
+
+		JDesktopPane desktopPane_1 = new JDesktopPane();
+		desktopPane_1.setBackground(Color.LIGHT_GRAY);
+		desktopPane_1.setBounds(373, 86, 336, 596);
+		panel.add(desktopPane_1);
+
+		JLabel lblRoleid = new JLabel("Role_id       :");
+		lblRoleid.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblRoleid.setBounds(12, 79, 168, 47);
+		desktopPane_1.add(lblRoleid);
+
+		JLabel lblEmpid = new JLabel("Emp_id        :");
+		lblEmpid.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblEmpid.setBounds(12, 139, 173, 47);
+		desktopPane_1.add(lblEmpid);
+
+		JLabel lblPosition = new JLabel("Position      :");
+		lblPosition.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblPosition.setBounds(12, 275, 181, 47);
+		desktopPane_1.add(lblPosition);
+
+		JLabel lblSalary = new JLabel("Salary        :");
+		lblSalary.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblSalary.setBounds(12, 335, 181, 47);
+		desktopPane_1.add(lblSalary);
+
+		JLabel lblStatus = new JLabel("Status        :");
+		lblStatus.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblStatus.setBounds(12, 395, 165, 47);
+		desktopPane_1.add(lblStatus);
+
+		JLabel label_5 = new JLabel("From_date     :");
+		label_5.setFont(new Font("Monospaced", Font.BOLD, 18));
+		label_5.setBounds(12, 455, 165, 47);
+		desktopPane_1.add(label_5);
+
+		JLabel lblTodate = new JLabel("To_date       :");
+		lblTodate.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblTodate.setBounds(12, 520, 165, 47);
+		desktopPane_1.add(lblTodate);
+
+		JLabel lblRolehistory = new JLabel("Role_History");
+		lblRolehistory.setFont(new Font("Monospaced", Font.BOLD, 20));
+		lblRolehistory.setBounds(12, 13, 281, 37);
+		desktopPane_1.add(lblRolehistory);
+
+		JLabel lblDeptid_1 = new JLabel("Dept_id       :");
+		lblDeptid_1.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblDeptid_1.setBounds(12, 215, 173, 47);
+		desktopPane_1.add(lblDeptid_1);
+
+		txtrole_id = new JTextField();
+		txtrole_id.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txtrole_id.setColumns(10);
+		txtrole_id.setBounds(187, 93, 126, 22);
+		desktopPane_1.add(txtrole_id);
+
+		txtemp_id = new JTextField();
+		txtemp_id.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txtemp_id.setColumns(10);
+		txtemp_id.setBounds(187, 153, 126, 22);
+		desktopPane_1.add(txtemp_id);
+
+		txtdept_id = new JTextField();
+		txtdept_id.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txtdept_id.setColumns(10);
+		txtdept_id.setBounds(187, 229, 126, 22);
+		desktopPane_1.add(txtdept_id);
+
+		txtp = new JTextField();
+		txtp.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txtp.setColumns(10);
+		txtp.setBounds(187, 289, 126, 22);
+		desktopPane_1.add(txtp);
+
+		txts = new JTextField();
+		txts.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txts.setColumns(10);
+		txts.setBounds(187, 349, 126, 22);
+		desktopPane_1.add(txts);
+
+		txtstatus = new JTextField();
+		txtstatus.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txtstatus.setColumns(10);
+		txtstatus.setBounds(187, 409, 126, 22);
+		desktopPane_1.add(txtstatus);
+
+		JDateChooser dcfrom_date = new JDateChooser();
+		dcfrom_date.setBounds(187, 468, 126, 20);
+		desktopPane_1.add(dcfrom_date);
+
+		JDateChooser dcto_date = new JDateChooser();
+		dcto_date.setBounds(187, 533, 126, 20);
+		desktopPane_1.add(dcto_date);
+
+		JDesktopPane desktoPane = new JDesktopPane();
+		desktoPane.setBackground(Color.LIGHT_GRAY);
+		desktoPane.setBounds(734, 86, 336, 527);
+		panel.add(desktoPane);
+
+		JLabel label_8 = new JLabel("Emp_id        :");
+		label_8.setFont(new Font("Monospaced", Font.BOLD, 18));
+		label_8.setBounds(12, 79, 168, 47);
+		desktoPane.add(label_8);
+
+		JLabel lblCompany = new JLabel("Company       :");
+		lblCompany.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblCompany.setBounds(12, 217, 173, 47);
+		desktoPane.add(lblCompany);
+
+		JLabel lblWorkingexp = new JLabel("Working_exp   :");
+		lblWorkingexp.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblWorkingexp.setBounds(10, 337, 181, 47);
+		desktoPane.add(lblWorkingexp);
+
+		JLabel lblWorkid = new JLabel("Work_id       :");
+		lblWorkid.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblWorkid.setBounds(12, 137, 181, 47);
+		desktoPane.add(lblWorkid);
+		JLabel lblWorking = new JLabel("Working_Experience");
+		lblWorking.setFont(new Font("Monospaced", Font.BOLD, 20));
+		lblWorking.setBounds(12, 13, 281, 37);
+		desktoPane.add(lblWorking);
+
+		JLabel lblPosition_1 = new JLabel("Position      :");
+		lblPosition_1.setFont(new Font("Monospaced", Font.BOLD, 18));
+		lblPosition_1.setBounds(12, 275, 181, 47);
+		desktoPane.add(lblPosition_1);
+
+		txte_id = new JTextField();
+		txte_id.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txte_id.setColumns(10);
+		txte_id.setBounds(198, 93, 126, 22);
+		desktoPane.add(txte_id);
+
+		txtC = new JTextField();
+		txtC.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txtC.setColumns(10);
+		txtC.setBounds(198, 153, 126, 22);
+		desktoPane.add(txtC);
+
+		txtP = new JTextField();
+		txtP.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txtP.setColumns(10);
+		txtP.setBounds(198, 229, 126, 22);
+		desktoPane.add(txtP);
+
+		txtW_exp = new JTextField();
+		txtW_exp.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txtW_exp.setColumns(10);
+		txtW_exp.setBounds(198, 287, 126, 22);
+		desktoPane.add(txtW_exp);
+
+		txtW_id = new JTextField();
+		txtW_id.setFont(new Font("Monospaced", Font.BOLD, 18));
+		txtW_id.setColumns(10);
+		txtW_id.setBounds(198, 349, 126, 22);
+
+		desktoPane.add(txtW_id);
+
+		JButton btnNewButton = new JButton("Add");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//boolean ch = inputCheck();
+//				if (ch == true) {
+
+					String QF_id = txtqf_id.getText().trim();
+					String emp_id = txtemp.getText().trim();
+					int dept_id = Integer.parseInt(txtdept.getText().trim());
+					String degree_certificate = txtdegree.getText().trim();
+					String Type = cboType.getSelectedItem().toString();
+					String Field_name = txtfname.getText().trim();
+					String Org_name = txtoname.getText().trim();
+					Date From_date = new Date(dcFrom_date.getDate().getTime());
+					Date End_date = new Date(dcEnd_date.getDate().getTime());
+					// Qualification q=new
+					// Qualification(QF_id,emp_id,0,degree_certificate,Type,Field_name,Org_name,String.valueOf(From_date),String.valueOf(End_date));
+					Qualification q = new Qualification(QF_id,emp_id,dept_id,degree_certificate,Type,Field_name,Org_name,String.valueOf(From_date),String.valueOf(End_date));
+//					q.setQF_id(QF_id);
+//					q.setEmp_id(emp_id);
+//					q.setDept_id(dept_id);
+//					q.setDegree_Certificate(degree_certificate);
+//					q.setType(Type);
+//					q.setField_name(Field_name);
+//					q.setOrg_name(Org_name);
+//					q.setFrom_date(String.valueOf(From_date));
+//					q.setEnd_date(String.valueOf(End_date));
+
+					String Role_id = txtrole_id.getText().trim();
+					String Emp_id = txtemp_id.getText().trim();
+					int Dept_id = Integer.parseInt(txtdept_id.getText().trim());
+					String position = txtp.getText().trim();
+					String Salary = txts.getText().trim();
+					String status = txtstatus.getText().trim();
+					Date from_date = new Date(dcfrom_date.getDate().getTime());
+					Date to_date = new Date(dcto_date.getDate().getTime());
+					// role_history r=new
+					// role_history(Role_id,Emp_id,0,position,Salary,status,String.valueOf(from_date),String.valueOf(to_date));
+					role_history r = new role_history(Role_id,Emp_id,dept_id,position,Salary,status,String.valueOf(from_date),String.valueOf(to_date));
+//					r.setRole_id(Role_id);
+//					r.setEmp_id(Emp_id);
+//					r.setDept_id(dept_id);
+//					r.setPosition(position);
+//					r.setSalary(Salary);
+//					r.setStatus(status);
+//					r.setFrom_date(String.valueOf(from_date));
+//					r.setTo_date(String.valueOf(to_date));
+
+					String Work_id = txtW_id.getText();
+					String Employee_id = txte_id.getText();
+					String Company = txtC.getText();
+					String Position = txtP.getText();
+					String Working_exp = txtW_exp.getText();
+
+					// Working_experience w=new
+					// Working_experience(Work_id,Employee_id,Company,Position,Working_exp);
+					Working_Exe w = new Working_Exe(Work_id,Employee_id,Company,Position,Working_exp);
+//					w.setWork_id(Work_id);
+//					w.setEmp_id(Employee_id);
+//					w.setCompany(Company);
+//					w.setPosition(Position);
+//					w.setWorking_exp(Working_exp);
+
+					int choice = JOptionPane.showConfirmDialog(null, "Do you really want to save your data",
+							"Comfirm Message", JOptionPane.INFORMATION_MESSAGE);
+					if (choice == JOptionPane.YES_OPTION)
+						try {
+							new AdminDAO().addEmployee_QFInfo(q);
+							new AdminDAO().addEmployee_RoleInfo(r);
+							new AdminDAO().addEmployee_Work_expInfo(w);
+
+						} catch (SQLException e1_) {
+							JOptionPane.showMessageDialog(null, "Database Connection Error", "Save Error",
+									JOptionPane.ERROR_MESSAGE);
+						}
+				
+			}
+		});
+		btnNewButton.setFont(new Font("Monospaced", Font.BOLD, 18));
+		btnNewButton.setForeground(Color.BLACK);
+		btnNewButton.setBounds(735, 645, 97, 37);
+		panel.add(btnNewButton);
+
+		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtqf_id.setText("");
+				txtemp.setText("");
+				txtdept.setText("");
+				cboType.setSelectedIndex(0);
+				txtdegree.setText("");
+				txtfname.setText("");
+				txtoname.setText("");
+				dcFrom_date.setDate(null);
+				dcEnd_date.setDate(null);
+
+				txtrole_id.setText("");
+				txtemp_id.setText("");
+				txtdept_id.setText("");
+				txtp.setText("");
+				txts.setText("");
+				txtstatus.setText("");
+				dcfrom_date.setDate(null);
+				dcto_date.setDate(null);
+
+				txte_id.setText("");
+				txtC.setText(" ");
+				txtP.setText("");
+				txtW_exp.setText("");
+				txtW_id.setText(" ");
+
+			}
+		});
+		btnClear.setFont(new Font("Monospaced", Font.BOLD, 18));
+		btnClear.setForeground(Color.BLACK);
+		btnClear.setBounds(857, 645, 97, 37);
+		panel.add(btnClear);
+
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnBack.setFont(new Font("Monospaced", Font.BOLD, 18));
+		btnBack.setForeground(Color.BLACK);
+		btnBack.setBounds(973, 645, 97, 37);
+		panel.add(btnBack);
+	}
+
+	public boolean inputCheck() {
+		return true;
+
+	}
 }
