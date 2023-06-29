@@ -32,7 +32,7 @@ import javax.swing.border.CompoundBorder;
 
 public class Project extends JFrame {
 	private JTable table;
-
+    private String project_id;
 	/**
 	 * Launch the application.
 	 */
@@ -41,6 +41,7 @@ public class Project extends JFrame {
 			public void run() {
 				try {
 					Project frame = new Project();
+					
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -139,6 +140,18 @@ public class Project extends JFrame {
 		btnCreate.setBackground(Color.WHITE);
 		
 		JButton btnView = new JButton("View");
+		btnView.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			        String project_id=table.getValueAt(table.getSelectedRow(), 0).toString();	
+			        String Project_Name=table.getValueAt(table.getSelectedRow(), 1).toString();
+			        String dept_id=table.getValueAt(table.getSelectedRow(), 2).toString();
+			        String Start_date=table.getValueAt(table.getSelectedRow(), 3).toString();
+			        String end_date=table.getValueAt(table.getSelectedRow(), 4).toString();
+			        new Project_member_view(project_id,Project_Name,dept_id,Start_date,end_date).setVisible(true);
+			        new Project().setProject_id(project_id);
+			}
+		});
 		btnView.setBounds(10, 215, 110, 28);
 		panel_1.add(btnView);
 		btnView.setForeground(new Color(0, 102, 102));
@@ -169,6 +182,15 @@ public class Project extends JFrame {
 		panel.add(label);
 	}
 	
+	
+	public String getProject_id() {
+		return project_id;
+	}
+
+	public void setProject_id(String project_id) {
+		this.project_id = project_id;
+	}
+
 	public void ShowProject() throws SQLException {
 		
 		  Connection con;

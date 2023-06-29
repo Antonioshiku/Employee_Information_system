@@ -305,7 +305,7 @@ public class View_Emp extends JFrame {
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_inforamtion_system" + "", "root",
 					"123456");
 			PreparedStatement stmt = con.prepareStatement(query);
-			stmt.setString(1, "1001");
+			stmt.setString(1, emp);
 
 			ResultSet rs = stmt.executeQuery();
 //			String emp_id, F_Name, L_Name, Ph_No, add, Email, town, city, salary, position, status, dept_id;

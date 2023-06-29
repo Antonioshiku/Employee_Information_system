@@ -10,11 +10,17 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
@@ -24,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
 public class view_project extends JFrame {
-	private JTable table;
+	private static JTable table;
 
 	/**
 	 * Launch the application.
@@ -34,6 +40,7 @@ public class view_project extends JFrame {
 			public void run() {
 				try {
 					view_project frame = new view_project();
+					ShowPjmember("pid-503");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -175,6 +182,25 @@ public class view_project extends JFrame {
 		button_1.setBackground(new Color(0, 102, 102));
 		button_1.setBounds(195, 421, 110, 28);
 		panel_2.add(button_1);
+	}
+	
+	public static  void ShowPjmember(String pj) {
+		   Connection con;
+		   
+			try {
+				 	DefaultTableModel model = (DefaultTableModel) table.getModel();
+				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_inforamtion_system" + "", "root",
+						"123456");
+		        PreparedStatement stmt = con.prepareStatement("select pr_member_id,position,emp_id from project_member where pr_id=?;");         
+		        stmt.setString(1, pj);
+		        ResultSet rs=stmt.executeQuery();
+		        while(rs.next()) {
+		        	   model.addRow(new String[] {rs.getString(1) , rs.getString(2), rs.getString(3)});
+		        }
+			} catch (SQLException e1_) {
+			
+				System.out.println(e1_);
+			}
 	}
 }
 
