@@ -65,6 +65,12 @@ public class Admin_Dashboard extends JFrame {
 		panel.add(button);
 		
 		JButton btnProjects = new JButton("PJs");
+		btnProjects.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				new Project().setVisible(true);
+			}
+		});
 		btnProjects.setBounds(623, 250, 201, 99);
 		btnProjects.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\icons8-project-management-96 (1).png"));
 		btnProjects.setForeground(new Color(128, 128, 128));

@@ -89,6 +89,29 @@ public class ApplicationDAO {
 
 	    }
 	    
+	    public void updatePj(pr_member pr,String pj_id) throws SQLException{
+	    	PreparedStatement pst = con.prepareStatement("update project set end_date=? where pr_id=?");
+	    	pst.setString(1, pr.getEnd_date());
+	    	pst.setString(2, pj_id);
+	    	
+	    	PreparedStatement stmt = con.prepareStatement("update project_member set position=?,pr_member_id=? where pr_id=? && emp_id=?");
+	    	stmt.setString(1, pr.getPosition());
+	    	stmt.setString(2, pr.getPr_member_id());
+	    	stmt.setString(3, pj_id);
+	    	stmt.setString(4, pr.getEmp_Id());
+	    	
+	        int i=pst.executeUpdate();
+	        int ii=stmt.executeUpdate();
+	         
+	         if(ii> 0 && i>0) {
+	        	  JOptionPane.showMessageDialog(null, "Data Correct Successfully", "Data Successfullly",JOptionPane.ERROR_MESSAGE);
+	         }else {
+	        	 JOptionPane.showMessageDialog(null, "Wrong data  Error", "Save Error",
+							JOptionPane.ERROR_MESSAGE);
+	         }
+	    	
+	    }
+	    
 
 	    
 	    

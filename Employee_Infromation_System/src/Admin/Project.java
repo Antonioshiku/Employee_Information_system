@@ -1,4 +1,4 @@
-package Application;
+package Admin;
 
 
 import java.awt.BorderLayout;
@@ -31,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.border.CompoundBorder;
 
 public class Project extends JFrame {
-	private JTable table;
+	private  static JTable table;
     private String project_id;
 	/**
 	 * Launch the application.
@@ -41,7 +41,7 @@ public class Project extends JFrame {
 			public void run() {
 				try {
 					Project frame = new Project();
-					
+					ShowProject();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -101,12 +101,7 @@ public class Project extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				
-				try {
-					new Application_dept().setVisible(true);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				new Admin_Dashboard().setVisible(true);
 			}
 		});
 		btnBack.setForeground(Color.WHITE);
@@ -121,24 +116,6 @@ public class Project extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JButton btnCreate = new JButton("Create");
-		btnCreate.setBounds(10, 43, 110, 28);
-		panel_1.add(btnCreate);
-		btnCreate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setVisible(false);
-				try {
-					new create_project().setVisible(true);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-		btnCreate.setForeground(new Color(0, 102, 102));
-		btnCreate.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
-		btnCreate.setBackground(Color.WHITE);
-		
 		JButton btnView = new JButton("View");
 		btnView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -152,7 +129,7 @@ public class Project extends JFrame {
 			        new Project().setProject_id(project_id);
 			}
 		});
-		btnView.setBounds(10, 154, 110, 28);
+		btnView.setBounds(10, 187, 110, 28);
 		panel_1.add(btnView);
 		btnView.setForeground(new Color(0, 102, 102));
 		btnView.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
@@ -172,26 +149,15 @@ public class Project extends JFrame {
 		btnShowPj.setForeground(new Color(0, 102, 102));
 		btnShowPj.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		btnShowPj.setBackground(Color.WHITE);
-		btnShowPj.setBounds(10, 93, 110, 28);
+		btnShowPj.setBounds(10, 62, 110, 28);
 		panel_1.add(btnShowPj);
 		
-		JButton btnUpdate = new JButton("Update");
-		btnUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			     String project_id=table.getValueAt(table.getSelectedRow(), 0).toString();	
-			        String Project_Name=table.getValueAt(table.getSelectedRow(), 1).toString();
-			        String dept_id=table.getValueAt(table.getSelectedRow(), 2).toString();
-			        String Start_date=table.getValueAt(table.getSelectedRow(), 3).toString();
-			        String end_date=table.getValueAt(table.getSelectedRow(), 4).toString();
-				setVisible(false);
-				new update_project(project_id,Project_Name,dept_id,Start_date,end_date).setVisible(true);
-			}
-		});
-		btnUpdate.setForeground(new Color(0, 102, 102));
-		btnUpdate.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
-		btnUpdate.setBackground(Color.WHITE);
-		btnUpdate.setBounds(10, 218, 110, 28);
-		panel_1.add(btnUpdate);
+		JButton btnShowPj_1 = new JButton("Show PJ");
+		btnShowPj_1.setForeground(new Color(0, 102, 102));
+		btnShowPj_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
+		btnShowPj_1.setBackground(Color.WHITE);
+		btnShowPj_1.setBounds(10, 127, 110, 28);
+		panel_1.add(btnShowPj_1);
 		
 		JLabel label = new JLabel("");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -209,16 +175,15 @@ public class Project extends JFrame {
 		this.project_id = project_id;
 	}
 
-	public void ShowProject() throws SQLException {
+	public static void ShowProject() throws SQLException {
 		
 		  Connection con;
 		        try{
 		            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_inforamtion_system","root","123456");
 		            
 		            DefaultTableModel model = (DefaultTableModel) table.getModel();
-		            String query="select * from project where dept_id=?";
+		            String query="select * from project";
 		        	PreparedStatement pst = con.prepareStatement(query);
-		        	pst.setInt(1, 100);
 		            ResultSet rs=pst.executeQuery();
 		      	while(rs.next()) {
 		      	 model.addRow(new String[] {rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),});

@@ -29,6 +29,7 @@ import java.awt.SystemColor;
 import javax.swing.JComboBox;
 import Application.ApplicationDAO;
 import Main.project;
+import javax.swing.DefaultComboBoxModel;
 
 public class create_project extends JFrame {
 	private JTextField txt_pN;
@@ -145,7 +146,8 @@ public class create_project extends JFrame {
 		dcend_date.setBounds(235, 288, 245, 20);
 		panel_3.add(dcend_date);
 
-		comboDept = new JComboBox(new ApplicationDAO().showDept().toArray());
+		comboDept = new JComboBox();
+		comboDept.setModel(new DefaultComboBoxModel(new String[] {"none", "100"}));
 		comboDept.setBounds(235, 132, 245, 24);
 		panel_3.add(comboDept);
 
