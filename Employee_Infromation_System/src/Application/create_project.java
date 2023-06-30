@@ -191,7 +191,7 @@ public class create_project extends JFrame {
 		button_2.setForeground(Color.WHITE);
 		button_2.setFont(new Font("Monospaced", Font.BOLD, 20));
 		button_2.setBackground(new Color(0, 102, 102));
-		button_2.setBounds(389, 420, 110, 28);
+		button_2.setBounds(330, 420, 110, 28);
 		panel_2.add(button_2);
 
 		JButton btnCreate = new JButton("Create");
@@ -234,7 +234,7 @@ public class create_project extends JFrame {
 		btnCreate.setForeground(Color.WHITE);
 		btnCreate.setFont(new Font("Monospaced", Font.BOLD, 20));
 		btnCreate.setBackground(new Color(0, 102, 102));
-		btnCreate.setBounds(66, 420, 110, 28);
+		btnCreate.setBounds(55, 420, 110, 28);
 		panel_2.add(btnCreate);
 
 		JButton btnNext = new JButton("Next");
@@ -256,8 +256,26 @@ public class create_project extends JFrame {
 		btnNext.setForeground(Color.WHITE);
 		btnNext.setFont(new Font("Monospaced", Font.BOLD, 20));
 		btnNext.setBackground(new Color(0, 102, 102));
-		btnNext.setBounds(229, 420, 110, 28);
+		btnNext.setBounds(192, 420, 110, 28);
 		panel_2.add(btnNext);
+		
+		JButton button_1_1 = new JButton("Add project Member");
+		button_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				try {
+					new create_pj_member().setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		button_1_1.setForeground(Color.WHITE);
+		button_1_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
+		button_1_1.setBackground(new Color(0, 102, 102));
+		button_1_1.setBounds(467, 422, 229, 28);
+		panel_2.add(button_1_1);
 	}
 
 	public void inputCheck() {

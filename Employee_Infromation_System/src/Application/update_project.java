@@ -89,6 +89,12 @@ public class update_project extends JFrame {
 		panel.setLayout(null);
 
 		JButton button = new JButton("Back");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				new Project().setVisible(true);
+			}
+		});
 		button.setForeground(Color.WHITE);
 		button.setFont(new Font("Monospaced", Font.BOLD, 20));
 		button.setBackground(new Color(0, 102, 102));
@@ -121,7 +127,7 @@ public class update_project extends JFrame {
 
 						txt_pj_member.setText(" ");
 
-						dcend_date.setDate(null);
+					
 						dcend_date.setDate(null);
 					} catch (SQLException e1_) {
 						JOptionPane.showMessageDialog(null, "Database Connection Error", "Save Error",
@@ -139,6 +145,17 @@ public class update_project extends JFrame {
 		panel.add(btnUpdate);
 
 		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txt_position.setText(" ");
+				comboEmp.setSelectedIndex(0);
+
+				txt_pj_member.setText(" ");
+
+				dcend_date.setDate(null);
+				dcend_date.setDate(null);
+			}
+		});
 		btnClear.setForeground(Color.WHITE);
 		btnClear.setFont(new Font("Monospaced", Font.BOLD, 20));
 		btnClear.setBackground(new Color(0, 102, 102));
@@ -146,6 +163,11 @@ public class update_project extends JFrame {
 		panel.add(btnClear);
 
 		JButton btnClose = new JButton("Close");
+		btnClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btnClose.setForeground(Color.WHITE);
 		btnClose.setFont(new Font("Monospaced", Font.BOLD, 20));
 		btnClose.setBackground(new Color(0, 102, 102));

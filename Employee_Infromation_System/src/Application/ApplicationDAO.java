@@ -26,30 +26,6 @@ public class ApplicationDAO {
 	        }
 	    }
 	    
-	    public  ArrayList<String>  showEmp() throws SQLException{
-	    	String query=" select employee.emp_id,employee.dept_id,employee.F_Name,employee.L_Name,employee.Per_Ph_No,employee.Email,Address.address,Address.TownShip,Address.City,role_history.position,role_history.Salary,role_history.status from employee,role_history,address where employee.dept_id=100 && employee.emp_id=role_history.emp_id && employee.emp_id=address.emp_id;";
-	    	ArrayList<String> result=new ArrayList<String>();
-	    	PreparedStatement pst = con.prepareStatement(query);
-	          ResultSet rs=pst.executeQuery();
-	         
-	          while(rs.next()) {
-	        	   result.add(rs.getString(1));
-	        	   result.add(Integer.toString(rs.getInt(2)));
-	        	   result.add(rs.getString(3));
-	        	   result.add(rs.getString(4));
-	        	   result.add(rs.getString(5));
-	        	   result.add(rs.getString(6));
-	        	   result.add(rs.getString(7));
-	        	   result.add(rs.getString(8));
-	        	   result.add(rs.getString(9));
-	        	   result.add(rs.getString(10));
-	        	   result.add(rs.getString(11));
-	        	   result.add(rs.getString(12));
-	        	   
-	          }
-	    	return result;
-	    }
-	    
 	    public ArrayList<String>  showEmpId() throws SQLException{
 	    	ArrayList<String> result=new ArrayList<String>();
 	       String query="select Emp_id from employee";
@@ -106,10 +82,47 @@ public class ApplicationDAO {
 	         if(ii> 0 && i>0) {
 	        	  JOptionPane.showMessageDialog(null, "Data Correct Successfully", "Data Successfullly",JOptionPane.ERROR_MESSAGE);
 	         }else {
-	        	 JOptionPane.showMessageDialog(null, "Wrong data  Error", "Save Error",
-							JOptionPane.ERROR_MESSAGE);
+	        	 JOptionPane.showMessageDialog(null, "Wrong data  Error", "Save Error",JOptionPane.ERROR_MESSAGE);
 	         }
 	    	
+	    }
+	    
+	    
+	    public void updateEmp(role_history rr,String emp) throws SQLException{
+	    	PreparedStatement pst = con.prepareStatement("update employee set Work_Ph_no=?,Email=?,matrital_status=? where emp_id=?");
+	    	pst.setString(1,rr.getW_phno());
+	    pst.setString(2,rr.getEmail());
+	    pst.setString(3,rr.getMatrital_status());
+	    pst.setString(4, emp);
+	    
+		PreparedStatement stmt = con.prepareStatement("update address set address=?,township=?,city=?,region=? where emp_id=?");
+		stmt.setString(1, rr.getAddr());
+		stmt.setString(2, rr.getTownship());
+		stmt.setString(3, rr.getCity());
+		stmt.setString(4, rr.getRegion());
+		stmt.setString(5, emp);
+		
+		PreparedStatement pptt = con.prepareStatement("update role_history set salary=?,position=?,status=? where emp_id=?");
+		pptt.setString(1, rr.getSalary());
+		pptt.setString(2, rr.getPosition());
+		pptt.setString(3, rr.getStatus());
+		pptt.setString(4, emp);
+		
+		
+		
+		
+		
+		
+	    int i=pst.executeUpdate();
+        int ii=stmt.executeUpdate();
+        int iii=pptt.executeUpdate();
+         
+         if(ii> 0 && i>0 && iii>0) {
+        	  JOptionPane.showMessageDialog(null, "Data Correct Successfully", "Data Successfullly",JOptionPane.ERROR_MESSAGE);
+         }else {
+        	 JOptionPane.showMessageDialog(null, "Wrong data  Error", "Save Error",JOptionPane.ERROR_MESSAGE);
+         }
+	    
 	    }
 	    
 

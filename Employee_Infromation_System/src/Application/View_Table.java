@@ -121,7 +121,7 @@ showEmp();
 
 			}
 		});
-		btnClear.setBounds(58, 422, 145, 28);
+		btnClear.setBounds(20, 421, 118, 30);
 		panel.add(btnClear);
 		btnClear.setForeground(Color.WHITE);
 		btnClear.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
@@ -136,7 +136,7 @@ showEmp();
 		button_3.setForeground(Color.WHITE);
 		button_3.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		button_3.setBackground(new Color(0, 102, 102));
-		button_3.setBounds(249, 422, 145, 28);
+		button_3.setBounds(148, 421, 110, 30);
 		panel.add(button_3);
 
 		JLabel label = new JLabel("");
@@ -204,8 +204,29 @@ showEmp();
 		Show_Emp_1.setForeground(Color.WHITE);
 		Show_Emp_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15)); 
 		Show_Emp_1.setBackground(new Color(0, 102, 102));
-		Show_Emp_1.setBounds(419, 421, 145, 28);
+		Show_Emp_1.setBounds(282, 422, 118, 29);
 		panel.add(Show_Emp_1);
+		
+		JButton Show_Emp_2 = new JButton("Update");
+		Show_Emp_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				  String emp_id= table.getValueAt(table.getSelectedRow(), 0).toString();
+				    String Ph_No=table.getValueAt(table.getSelectedRow(), 2).toString();
+				    String address=table.getValueAt(table.getSelectedRow(), 3).toString();
+				    String email=table.getValueAt(table.getSelectedRow(), 4).toString();
+				    String township=table.getValueAt(table.getSelectedRow(), 5).toString();
+				    String city=table.getValueAt(table.getSelectedRow(), 6).toString();
+				    String salary=table.getValueAt(table.getSelectedRow(), 7).toString();
+				    String position=table.getValueAt(table.getSelectedRow(), 8).toString();
+				    new Update_dept_emp(emp_id,Ph_No,address,email,township,city,salary,position).setVisible(true);
+				
+			}
+		});
+		Show_Emp_2.setForeground(Color.WHITE);
+		Show_Emp_2.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
+		Show_Emp_2.setBackground(new Color(0, 102, 102));
+		Show_Emp_2.setBounds(410, 421, 145, 28);
+		panel.add(Show_Emp_2);
 
 	}
 

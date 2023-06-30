@@ -1,6 +1,6 @@
 package Main;
 
-public class role_history extends Employee {
+public class role_history extends Address {
     String role_id;
     String emp_id;
     int dept_id;
@@ -14,6 +14,7 @@ public role_history() {
 }
 public role_history(String role_id, String emp_id, int dept_id, String position, String salary, String status,
 		String from_date, String to_date) {
+	
 	this.role_id = role_id;
 	this.emp_id = emp_id;
 	this.dept_id = dept_id;
