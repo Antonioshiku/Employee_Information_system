@@ -57,6 +57,13 @@ public class Admin_Dashboard extends JFrame {
 		panel.setLayout(null);
 		
 		JButton button = new JButton("Dept ");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				new Dept_Table().setVisible(true);
+				
+			}
+		});
 		button.setBounds(391, 211, 201, 99);
 		button.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\icons8-department-64.png"));
 		button.setForeground(new Color(0, 102, 102));
@@ -82,6 +89,8 @@ public class Admin_Dashboard extends JFrame {
 		button_2.setBounds(155, 163, 201, 99);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+				new Choose_update_create_emp().setVisible(true);
 			}
 		});
 		button_2.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\icons8-employee-96.png"));

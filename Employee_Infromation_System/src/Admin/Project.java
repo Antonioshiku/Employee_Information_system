@@ -152,13 +152,7 @@ public class Project extends JFrame {
 		btnShowPj.setBounds(10, 62, 110, 28);
 		panel_1.add(btnShowPj);
 		
-		JButton btnShowPj_1 = new JButton("Show PJ");
-		btnShowPj_1.setForeground(new Color(0, 102, 102));
-		btnShowPj_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
-		btnShowPj_1.setBackground(Color.WHITE);
-		btnShowPj_1.setBounds(10, 127, 110, 28);
-		panel_1.add(btnShowPj_1);
-		
+
 		JLabel label = new JLabel("");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBackground(new Color(0, 102, 102));

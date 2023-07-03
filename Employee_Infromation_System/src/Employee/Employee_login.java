@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -25,10 +26,15 @@ import javax.swing.border.BevelBorder;
 import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Employee_login extends JFrame {
 	private JTextField txt_Email;
-	private JTextField txt_Password;
+	private JPasswordField txt_Password;
 	private final String Admin_acc="adminE@gmail.com";
 	private final String Admin_pass="Admin1234!!";
 
@@ -108,12 +114,42 @@ public class Employee_login extends JFrame {
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				inputCheck();
-				if(txt_Email.getText().equalsIgnoreCase(Admin_acc)  && txt_Password.getText().equalsIgnoreCase(Admin_pass)) {
-					   setVisible(false);
+				try {
+					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_inforamtion_system",
+							"root", "123456");
+					PreparedStatement pst = con.prepareStatement("select user_name,password,Type,emp_Id from  login where emp_id= ?");
+					pst.setString(1, txt_Email.getText());
+					ResultSet rs = pst.executeQuery();
+   
+					boolean result = false;
+					while (rs.next()) {
+						String type = rs.getString(3);
+						String email=rs.getString(1);
+						String pass = rs.getString(2);
+						String emp=rs.getString(4);
+						
+						if(type.equalsIgnoreCase("Employee") && pass.equalsIgnoreCase("emp1234")) {
+							 setVisible(false);
+							 new Employee_Dashboard(emp,email).setVisible(true);
+							 result=true;
+						}else {
+						//	JOptionPane.showMessageDialog(null, "User not found", "User not found error",JOptionPane.ERROR_MESSAGE);
+							txt_Email.requestFocus();
+							txt_Email.setText(" ");
+							txt_Password.setText(" ");
+							result=false;
+						}
+					}
 					
-					   
-				}else {
-					 JOptionPane.showMessageDialog(null, "error","error",JOptionPane.ERROR_MESSAGE);
+					if(result==false) {
+						 JOptionPane.showMessageDialog(null, "User not found", "User not found error",JOptionPane.ERROR_MESSAGE);
+					}else {
+						 JOptionPane.showMessageDialog(null, "Enter Successfully", "Successfully Message",JOptionPane.INFORMATION_MESSAGE);
+					}
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});
@@ -143,7 +179,7 @@ public class Employee_login extends JFrame {
 		btnBack.setFont(new Font("Modern No. 20", Font.BOLD, 20));
 		btnBack.setBackground(Color.WHITE);
 		
-		JLabel lblEmailOrUsername = new JLabel("Email or Username");
+		JLabel lblEmailOrUsername = new JLabel("Emp Id ");
 		lblEmailOrUsername.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
 		lblEmailOrUsername.setBounds(38, 132, 145, 14);
 		panel_2.add(lblEmailOrUsername);
@@ -167,7 +203,7 @@ public class Employee_login extends JFrame {
 		panel_2.add(txt_Email);
 		txt_Email.setColumns(10);
 		
-		txt_Password = new JTextField();
+		txt_Password = new JPasswordField();
 		txt_Password.setColumns(10);
 		txt_Password.setBounds(38, 221, 245, 28);
 		panel_2.add(txt_Password);

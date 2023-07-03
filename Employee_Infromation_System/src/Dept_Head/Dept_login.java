@@ -1,11 +1,9 @@
 package Dept_Head;
 
 import Employee.Employee_Dashboard;
+
 import Main.Choose_User;
-import Management.management_dept;
-import Programming.Programming_dept;
-import Security.Security_dept;
-import User_Support.User_Support_Dept;
+
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -24,7 +22,6 @@ import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
 import Admin.Admin_Dashboard;
-import Application.Application_dept;
 
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
@@ -126,57 +123,29 @@ public class Dept_login extends JFrame {
 					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_inforamtion_system",
 							"root", "123456");
 					PreparedStatement pst = con
-							.prepareStatement("select user_name,password,Type from  login where emp_id= ?");
+							.prepareStatement("select login.user_name,login.password,login.Type,login.emp_id,employee.dept_id from employee,login where login.emp_id=? && login.emp_id=employee.emp_id;");
 					pst.setString(1, txt_Email.getText());
 					ResultSet rs = pst.executeQuery();
 
 					boolean result = false;
 					while (rs.next()) {
-						String dept_head = rs.getString(3).replaceAll(" ", "").toLowerCase();
+						String dept_head = rs.getString(3);
 						String pass = rs.getString(2);
-                      
-						if (dept_head.equalsIgnoreCase("applicationmanager") && pass.equalsIgnoreCase("dept1234")) {             
+						String email=rs.getString(1);
+						String emp=rs.getString(4);
+						String dept_id=rs.getString(5); 
+						
+					//	System.out.println(dept_head + " " + pass);
+						if (dept_head.equalsIgnoreCase(dept_head) && pass.equalsIgnoreCase("dept1234")) {             
 							setVisible(false);
-							new Application_dept().setVisible(true);
+							new Application_dept(email,emp,dept_head,dept_id).setVisible(true);
 							              result=true;
-						} else {
-							if (dept_head.equalsIgnoreCase("itmanagementmanager")
-									&& pass.equalsIgnoreCase("dept1234")) {
-								setVisible(false);
-								new management_dept().setVisible(true);
-								result=true;
-							} else {
-								if (dept_head.equalsIgnoreCase("itsecuritymanager")
-										&& pass.equalsIgnoreCase("dept1234")) {
-									setVisible(false);
-									new Security_dept().setVisible(true);
-									result=true;
-								} else {
-									if (dept_head.equalsIgnoreCase("ituserservicemanager")
-											&& pass.equalsIgnoreCase("dept1234")) {
-										setVisible(false);
-										new User_Support_Dept().setVisible(true);
-										result=true;
-									} else {
-										if (dept_head.equalsIgnoreCase("seniorprogrammingmanager") && pass.equalsIgnoreCase("dept1234")) {
-											setVisible(false);
-											new Programming_dept().setVisible(true);
-											result=true;
-										}
-									}
-								}
-							}
-							
 						}
-
+						else {
+							 JOptionPane.showMessageDialog(null, "User not found", "User not found error",JOptionPane.ERROR_MESSAGE);
+						}
 					}
-					
-					if(result==false) {
-						 JOptionPane.showMessageDialog(null, "User not found", "User not found error",JOptionPane.ERROR_MESSAGE);
-					}else {
-						 JOptionPane.showMessageDialog(null, "Enter Successfully", "Successfully Message",JOptionPane.INFORMATION_MESSAGE);
-					}
-				} catch (SQLException e1) {
+					} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -249,6 +218,8 @@ public class Dept_login extends JFrame {
 		label_1.setBounds(27, 120, 260, 88);
 		panel_1.add(label_1);
 	}
+	
+
 
 	public void inputCheck() {
 		if (txt_Email.getText().isEmpty()) {

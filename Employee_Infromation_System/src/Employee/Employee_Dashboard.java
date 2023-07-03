@@ -28,7 +28,7 @@ public class Employee_Dashboard extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Employee_Dashboard frame = new Employee_Dashboard();
+					Employee_Dashboard frame = new Employee_Dashboard(null,null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class Employee_Dashboard extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Employee_Dashboard() {
+	public Employee_Dashboard(String emp,String email) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\HR Info Sys Pto\\icons8-old-vmware-logo-50 (3) (1).png"));
 		setTitle("Employee Information Management System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,8 +55,14 @@ public class Employee_Dashboard extends JFrame {
 		panel.setLayout(null);
 		
 		JButton btnProjects = new JButton("PJs");
+		btnProjects.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			  new employe_project_view(emp).setVisible(true);;
+			}
+		});
 		btnProjects.setBounds(524, 208, 201, 99);
-		btnProjects.setIcon(new ImageIcon("D:\\HR Info Sys Pto\\icons8-project-96.png"));
+		btnProjects.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\icons8-organization-chart-people-96.png"));
 		btnProjects.setForeground(new Color(128, 128, 128));
 		btnProjects.setFont(new Font("Monospaced", Font.BOLD, 20));
 		btnProjects.setBackground(Color.WHITE);
@@ -66,9 +72,11 @@ public class Employee_Dashboard extends JFrame {
 		btnInfo.setBounds(259, 163, 201, 99);
 		btnInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+				new employee_info(emp).setVisible(true);
 			}
 		});
-		btnInfo.setIcon(new ImageIcon("D:\\HR Info Sys Pto\\icons8-info-64.png"));
+		btnInfo.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\icons8-profile-96.png"));
 		btnInfo.setForeground(new Color(0, 0, 102));
 		btnInfo.setFont(new Font("Monospaced", Font.BOLD, 20));
 		btnInfo.setBackground(Color.WHITE);
@@ -93,20 +101,27 @@ public class Employee_Dashboard extends JFrame {
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(0, 0, 102, 92);
 		panel_3.add(lblNewLabel_1);
-		lblNewLabel_1.setIcon(new ImageIcon("D:\\HR Info Sys Pto\\photo_2023-06-09_23-32-58 (2).png"));
+		lblNewLabel_1.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\photo_2023-06-15_10-33-47.jpg"));
 		
-		JLabel lblAdmin = new JLabel("Lone Lone");
+		JLabel lblAdmin = new JLabel(emp);
 		lblAdmin.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAdmin.setBounds(41, 102, 71, 28);
+		lblAdmin.setBounds(63, 113, 60, 28);
 		panel_1.add(lblAdmin);
 		lblAdmin.setFont(new Font("Modern No. 20", Font.BOLD, 14));
 		
-		JLabel lblaphonen = new JLabel("@lone2lone");
+		JLabel lblaphonen = new JLabel(email);
+		lblaphonen.setFont(new Font("Modern No. 20", Font.BOLD, 15));
 		lblaphonen.setHorizontalAlignment(SwingConstants.CENTER);
-		lblaphonen.setBounds(31, 118, 84, 23);
+		lblaphonen.setBounds(0, 143, 145, 23);
 		panel_1.add(lblaphonen);
 		
 		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				new Employee_login().setVisible(true);
+			}
+		});
 		btnLogout.setIcon(new ImageIcon("D:\\HR Info Sys Pto\\icons8-logout-rounded-30.png"));
 		btnLogout.setBackground(Color.LIGHT_GRAY);
 		btnLogout.setFont(new Font("Modern No. 20", Font.BOLD, 20));
@@ -115,8 +130,13 @@ public class Employee_Dashboard extends JFrame {
 		
 		JPanel panel_8 = new JPanel();
 		panel_8.setBackground(Color.LIGHT_GRAY);
-		panel_8.setBounds(0, 152, 145, 10);
+		panel_8.setBounds(0, 176, 145, 10);
 		panel_1.add(panel_8);
+		
+		JLabel lblNewLabel = new JLabel("Emp Id : ");
+		lblNewLabel.setFont(new Font("Modern No. 20", Font.BOLD, 14));
+		lblNewLabel.setBounds(20, 115, 77, 24);
+		panel_1.add(lblNewLabel);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(0, 0, 834, 33);
