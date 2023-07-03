@@ -25,6 +25,10 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import com.toedter.calendar.JDateChooser;
 
+import Main.Qualification;
+import Main.Working_Exe;
+import Main.role_history;
+
 public class Create_otherEmpInfo extends JFrame {
 	
 	
@@ -376,19 +380,15 @@ public class Create_otherEmpInfo extends JFrame {
 		panel_5.setLayout(null);
 		
 		JButton button = new JButton("Back");
-//		button.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent arg0) {
-//				 Create_Admin a = null;
-//				try {
-//					a = new Create_Admin();
-//				} catch (SQLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				 a.setVisible(true);
-//				
-//			}
-//		});
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+		
+				setVisible(false);
+				new Choose_update_create_emp().setVisible(true);
+			
+				
+			}
+		});
 		button.setBounds(93, 33, 110, 28);
 		panel_5.add(button);
 		button.setForeground(Color.WHITE);
@@ -396,80 +396,80 @@ public class Create_otherEmpInfo extends JFrame {
 		button.setBackground(new Color(0, 102, 102));
 		
 		JButton btnCreate = new JButton("Create");
-//		btnCreate.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//               boolean ch=inputCheck();
-//               if(ch==true){
-//					String QF_id=txtqf_id.getText().trim();
-//					String emp_id=txtemp.getText().trim();
-//					int dept_id=Integer.parseInt(txtdept.getText());
-//					String degree_certificate=txtdegree.getText().trim();
-//					String Type=cboType.getSelectedItem().toString();
-//					String Field_name=txtfname.getText().trim();
-//					String Org_name=txtoname.getText().trim();
-//					Date From_date=new Date(dcFrom_date.getDate().getTime());
-//					Date End_date=new Date(dcEnd_date.getDate().getTime());
-//					//Qualification q=new Qualification(QF_id,emp_id,0,degree_certificate,Type,Field_name,Org_name,String.valueOf(From_date),String.valueOf(End_date));
-//				//	Qualification q=new Qualification();
-//					q.setQF_id(QF_id);
-//					q.setEmp_id(emp_id);
-//					q.setDept_id(dept_id);
-//					q.setDegree_Certificate(degree_certificate);
-//					q.setType(Type);
-//					q.setField_name(Field_name);
-//					q.setOrg_name(Org_name);
-//					q.setFrom_date(String.valueOf(From_date));
-//					q.setEnd_date(String.valueOf(End_date));
-//					
-//					String Role_id=txtrole_id.getText().trim();
-//					String Emp_id=txtemp_id.getText().trim();
-//					int Dept_id=Integer.parseInt(txtdept_id.getText().trim());
-//				String position=txtp.getText().trim();
-//				String Salary=txts.getText().trim();
-//				String status=txtstatus.getText().trim();
-//					Date from_date=new Date(dcfrom_date.getDate().getTime());
-//					Date to_date=new Date(dcto_date.getDate().getTime());
-//					//role_history r=new role_history(Role_id,Emp_id,0,position,Salary,status,String.valueOf(from_date),String.valueOf(to_date));	
-//				//	role_history r=new role_history();
-//					r.setRole_id(Role_id);
-//					r.setEmp_id(Emp_id);
-//					r.setDept_id(dept_id);
-//					r.setPosition(position);
-//					r.setSalary(Salary);
-//					r.setStatus(status);
-//					r.setFrom_date(String.valueOf(from_date));
-//					r.setTo_date(String.valueOf(to_date));
-//					
-//					String Work_id=txtW_id.getText();
-//					String Employee_id=txte_id.getText();
-//					String Company=txtC.getText();
-//					String Position=txtP.getText();
-//					String Working_exp=txtW_exp.getText();
-//					
-//		//			Working_experience w=new Working_experience(Work_id,Employee_id,Company,Position,Working_exp);
-//					//Working_experience w=new Working_experience();
-//					 w.setWork_id(Work_id);
-//					 w.setEmp_id(Employee_id);
-//					 w.setCompany(Company);
-//					 w.setPosition(Position);
-//					 w.setWorking_exp(Working_exp);
-//           System.out.print(w.getWork_id());
-//           System.out.print(w.getEmp_id());
-//           System.out.print(w.getCompany());
-//           System.out.print(w.getWorking_exp());
-//					 int choice=JOptionPane.showConfirmDialog(null, "Do you really want to save your data","Comfirm Message",JOptionPane.INFORMATION_MESSAGE);
-//					if(choice==JOptionPane.YES_OPTION)
-//						try{
-//							new Create_emp_infoDAO().addEmployee_QFInfo(q);
-//							new Create_emp_infoDAO().addEmployee_RoleInfo(r);
-//							new Create_emp_infoDAO().addEmployee_Work_expInfo(w);
-//							
-//						}catch (SQLException e1_) {
-//							JOptionPane.showMessageDialog(null, "Database Connection Error","Save Error",JOptionPane.ERROR_MESSAGE);
-//						}
-//					}
-//				}
-//			});
+		btnCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+               boolean ch=inputCheck();
+               if(ch==true){
+					String QF_id=txtqf_id.getText().trim();
+					String emp_id=txtemp.getText().trim();
+					int dept_id=Integer.parseInt(txtdept.getText());
+					String degree_certificate=txtdegree.getText().trim();
+					String Type=cboType.getSelectedItem().toString();
+					String Field_name=txtfname.getText().trim();
+					String Org_name=txtoname.getText().trim();
+					Date From_date=new Date(dcFrom_date.getDate().getTime());
+					Date End_date=new Date(dcEnd_date.getDate().getTime());
+				
+					Qualification q=new Qualification();
+					q.setQF_id(QF_id);
+					q.setEmp_id(emp_id);
+					q.setDept_id(dept_id);
+					q.setDegree_Certificate(degree_certificate);
+					q.setType(Type);
+					q.setField_name(Field_name);
+					q.setOrg_name(Org_name);
+					q.setFrom_date(String.valueOf(From_date));
+					q.setEnd_date(String.valueOf(End_date));
+					
+					String Role_id=txtrole_id.getText().trim();
+					String Emp_id=txtemp_id.getText().trim();
+					int Dept_id=Integer.parseInt(txtdept_id.getText().trim());
+				String position=txtp.getText().trim();
+				String Salary=txts.getText().trim();
+				String status=txtstatus.getText().trim();
+					Date from_date=new Date(dcfrom_date.getDate().getTime());
+					Date to_date=new Date(dcto_date.getDate().getTime());
+					//role_history r=new role_history(Role_id,Emp_id,0,position,Salary,status,String.valueOf(from_date),String.valueOf(to_date));	
+					role_history r=new role_history();
+					r.setRole_id(Role_id);
+					r.setEmp_id(Emp_id);
+					r.setDept_id(dept_id);
+					r.setPosition(position);
+					r.setSalary(Salary);
+					r.setStatus(status);
+					r.setFrom_date(String.valueOf(from_date));
+					r.setTo_date(String.valueOf(to_date));
+					
+					String Work_id=txtW_id.getText();
+					String Employee_id=txte_id.getText();
+					String Company=txtC.getText();
+					String Position=txtP.getText();
+					String Working_exp=txtW_exp.getText();
+					
+		//			Working_experience w=new Working_experience(Work_id,Employee_id,Company,Position,Working_exp);
+					Working_Exe w=new Working_Exe();
+					 w.setWork_id(Work_id);
+					 w.setEmp_id(Employee_id);
+					 w.setCompany(Company);
+					 w.setPosition(Position);
+					 w.setWorking_exp(Working_exp);
+           System.out.print(w.getWork_id());
+           System.out.print(w.getEmp_id());
+           System.out.print(w.getCompany());
+           System.out.print(w.getWorking_exp());
+					 int choice=JOptionPane.showConfirmDialog(null, "Do you really want to save your data","Comfirm Message",JOptionPane.INFORMATION_MESSAGE);
+					if(choice==JOptionPane.YES_OPTION)
+						try{
+						new AdminDAO().addEmployee_QFInfo(q);
+						new AdminDAO().addEmployee_RoleInfo(r);
+						new AdminDAO().addEmployee_Work_expInfo(w);
+							
+						}catch (SQLException e1_) {
+							JOptionPane.showMessageDialog(null, "Database Connection Error","Save Error",JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				}
+			});
 
 				
 		btnCreate.setBounds(232, 33, 110, 28);

@@ -10,6 +10,9 @@ public class Qualification extends Employee {
     String  org_name;
     String from_date;
     String end_date;
+    public Qualification() {
+    	 
+    }
 	public Qualification(String qF_id, String emp_id, int dept_id, String degree_Certificate, String type,
 			String field_name, String org_name, String from_date, String end_date) {
 

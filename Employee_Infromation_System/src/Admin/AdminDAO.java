@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import Main.Address;
+import Main.Employee;
 import Main.Qualification;
 import Main.role_history;
 import Main.Working_Exe;
@@ -27,8 +28,8 @@ private Connection con;
     }
   }
   
-  public void addEmployee_info(Address a)throws SQLException{
-	  PreparedStatement pst=con.prepareStatement("insert into employee(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+  public void addEmployee_info(Employee a) throws SQLException{
+	  PreparedStatement pst=con.prepareStatement("insert into employee values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 	  pst.setString(1, a.getEmp_id());
 	  pst.setInt(2, a.getDept_id());
 	  pst.setString(3, a.getFname());
@@ -45,20 +46,10 @@ private Connection con;
 	  pst.setString(14, a.getReligion());
 	  pst.setString(15, a.getFather_name());
 	  pst.setString(16, a.getJoined_date());
+	  
 	  int i=pst.executeUpdate();
 	  
-	  PreparedStatement stmt=con.prepareStatement("insert into address(?,?,?,?,?,?,?)");
-	  stmt.setString(1, a.getEmp_id());
-	  stmt.setString(2, a.getAddr_code());
-	  stmt.setString(3, a.getAddr());
-	  stmt.setString(4, a.getTownship());
-	  stmt.setString(5, a.getCity());
-	  stmt.setString(6, a.getRegion());
-	  stmt.setString(7, a.getPostalCode());
-	  
-	  int ii=pst.executeUpdate();
-	  
-      if(i>0 && ii>0) {
+      if(i>0 ) {
     	  JOptionPane.showMessageDialog(null, "Your Data have been saved successfully","Finished Saving",JOptionPane.INFORMATION_MESSAGE);
       }else {
     	  JOptionPane.showMessageDialog(null, "Wrong data entry. Try again.","Error Saving",JOptionPane.INFORMATION_MESSAGE);
@@ -67,6 +58,22 @@ private Connection con;
 	  
 	   
   }
+  
+  public void addEmployee_addres(Address e) throws SQLException{
+	  PreparedStatement stmt=con.prepareStatement("insert into address values(?,?,?,?,?,?,?)");
+	  stmt.setString(1, e.getEmp_id());
+	  stmt.setString(2, e.getAddr_code());
+	  stmt.setString(3, e.getAddr());
+	  stmt.setString(4, e.getTownship());
+	  stmt.setString(5, e.getCity());
+	  stmt.setString(6, e.getRegion());
+	  stmt.setString(7, e.getPostalCode());
+	  
+	  int ii=stmt.executeUpdate();
+	  
+  }
+  
+  
   public void addEmployee_QFInfo(Qualification q) throws SQLException{
     PreparedStatement pst=con.prepareStatement("insert into qualification(QF_id,emp_id,dept_id,Degree_Certificate,Type,Field_name,org_name,from_date,end_date) values(?,?,?,?,?,?,?,?,?)");
     pst.setString(1, q.getQF_id());

@@ -13,23 +13,31 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
+
+import com.toedter.calendar.JDateChooser;
+
+import Main.Address;
+import Main.Employee;
+
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.JComboBox;
 
 public class Create_emp_info extends JFrame {
 	private JTextField txt_emp_id;
-	private JTextField txt_dept_id;
 	private JTextField txt_FName;
 	private JTextField txt_LName;
 	private JTextField txt_age;
-	private JTextField txt_dob;
 	private JTextField txt_Per_ph;
 	private JTextField txt_Work_ph;
 	private JTextField txt_M_status;
@@ -38,13 +46,15 @@ public class Create_emp_info extends JFrame {
 	private JTextField txt_religion;
 	private JTextField txt_nrc;
 	private JTextField txt_Email;
-	private JTextField txt_J_Date;
 	private JTextField txt_nationality;
 	private JTextField txt_FatherN;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField txt_town;
 	private JTextField txt_postal;
-	private JTextField txt_add_code;
+	private JTextField txt_region;
+	private JTextField txt_addr_code;
+	private JComboBox comboDept;
+	private JRadioButton rdbtnMale,rdbtnFemale;
 
 	/**
 	 * Launch the application.
@@ -64,8 +74,9 @@ public class Create_emp_info extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public Create_emp_info() {
+	public Create_emp_info() throws SQLException {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\HR Info Sys Pto\\icons8-old-vmware-logo-50 (3) (1).png"));
 		setTitle("Employee Information management System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -95,16 +106,11 @@ public class Create_emp_info extends JFrame {
 		txt_emp_id.setBounds(10, 79, 328, 28);
 		panel_1.add(txt_emp_id);
 		
-		JLabel label_9 = new JLabel("Departmengt ID :");
-		label_9.setForeground(Color.BLACK);
-		label_9.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		label_9.setBounds(10, 136, 245, 14);
-		panel_1.add(label_9);
-		
-		txt_dept_id = new JTextField();
-		txt_dept_id.setColumns(10);
-		txt_dept_id.setBounds(10, 155, 328, 28);
-		panel_1.add(txt_dept_id);
+		JLabel lblDepartmentId = new JLabel("Department ID :");
+		lblDepartmentId.setForeground(Color.BLACK);
+		lblDepartmentId.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
+		lblDepartmentId.setBounds(10, 136, 245, 14);
+		panel_1.add(lblDepartmentId);
 		
 		JLabel lblDegreeCer = new JLabel("First Name :");
 		lblDegreeCer.setForeground(Color.BLACK);
@@ -152,19 +158,23 @@ public class Create_emp_info extends JFrame {
 		lblQualification.setBounds(11, 2, 327, 47);
 		panel_1.add(lblQualification);
 		
-		JRadioButton rdbtnMale = new JRadioButton("Male");
+		 rdbtnMale = new JRadioButton("Male");
 		buttonGroup.add(rdbtnMale);
 		rdbtnMale.setBackground(Color.WHITE);
 		rdbtnMale.setFont(new Font("Monospaced", Font.PLAIN, 13));
 		rdbtnMale.setBounds(20, 374, 109, 23);
 		panel_1.add(rdbtnMale);
 		
-		JRadioButton rdbtnFemale = new JRadioButton("Female");
+		 rdbtnFemale = new JRadioButton("Female");
 		buttonGroup.add(rdbtnFemale);
 		rdbtnFemale.setBackground(new Color(255, 255, 255));
 		rdbtnFemale.setFont(new Font("Monospaced", Font.PLAIN, 13));
 		rdbtnFemale.setBounds(159, 374, 109, 23);
 		panel_1.add(rdbtnFemale);
+		
+		 comboDept = new JComboBox(new AdminDAO().showEmpId().toArray());
+		comboDept.setBounds(10, 167, 328, 33);
+		panel_1.add(comboDept);
 		
 		JLabel label = new JLabel("EIMS");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -190,10 +200,9 @@ public class Create_emp_info extends JFrame {
 		lblRoleId.setBounds(10, 80, 245, 14);
 		panel_2.add(lblRoleId);
 		
-		txt_dob = new JTextField();
-		txt_dob.setColumns(10);
-		txt_dob.setBounds(10, 104, 328, 28);
-		panel_2.add(txt_dob);
+		JDateChooser dob = new JDateChooser();
+		dob.setBounds(10, 104, 328, 28);
+		panel_2.add(dob);
 		
 		JLabel lblEmployeeId = new JLabel("Personal_Ph_No. :");
 		lblEmployeeId.setForeground(Color.BLACK);
@@ -209,23 +218,23 @@ public class Create_emp_info extends JFrame {
 		JLabel lblDeptId = new JLabel("Work_Ph_No. :");
 		lblDeptId.setForeground(Color.BLACK);
 		lblDeptId.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblDeptId.setBounds(10, 321, 245, 14);
+		lblDeptId.setBounds(10, 290, 245, 14);
 		panel_2.add(lblDeptId);
 		
 		txt_Work_ph = new JTextField();
 		txt_Work_ph.setColumns(10);
-		txt_Work_ph.setBounds(10, 340, 328, 28);
+		txt_Work_ph.setBounds(10, 320, 328, 28);
 		panel_2.add(txt_Work_ph);
 		
 		JLabel lblPosition = new JLabel("Marital Status :");
 		lblPosition.setForeground(Color.BLACK);
 		lblPosition.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblPosition.setBounds(10, 413, 245, 14);
+		lblPosition.setBounds(10, 367, 245, 14);
 		panel_2.add(lblPosition);
 		
 		txt_M_status = new JTextField();
 		txt_M_status.setColumns(10);
-		txt_M_status.setBounds(10, 432, 328, 28);
+		txt_M_status.setBounds(10, 391, 328, 28);
 		panel_2.add(txt_M_status);
 		
 		JLabel label_1 = new JLabel("Father Name :");
@@ -240,15 +249,10 @@ public class Create_emp_info extends JFrame {
 		panel_2.add(txt_FatherN);
 		
 		JLabel lblEndDate_2 = new JLabel("Joined Date :");
-		lblEndDate_2.setBounds(10, 470, 245, 14);
+		lblEndDate_2.setBounds(10, 429, 245, 14);
 		panel_2.add(lblEndDate_2);
 		lblEndDate_2.setForeground(Color.BLACK);
 		lblEndDate_2.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		
-		txt_J_Date = new JTextField();
-		txt_J_Date.setBounds(10, 509, 328, 28);
-		panel_2.add(txt_J_Date);
-		txt_J_Date.setColumns(10);
 		
 		JLabel lblWorkingExp = new JLabel("NRC :");
 		lblWorkingExp.setBounds(20, 142, 245, 14);
@@ -260,6 +264,21 @@ public class Create_emp_info extends JFrame {
 		txt_nrc.setBounds(10, 179, 328, 28);
 		panel_2.add(txt_nrc);
 		txt_nrc.setColumns(10);
+		
+		JLabel lblEndDate_2_1 = new JLabel("Address Code :");
+		lblEndDate_2_1.setForeground(Color.BLACK);
+		lblEndDate_2_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
+		lblEndDate_2_1.setBounds(10, 491, 245, 14);
+		panel_2.add(lblEndDate_2_1);
+		
+		txt_addr_code = new JTextField();
+		txt_addr_code.setColumns(10);
+		txt_addr_code.setBounds(10, 509, 328, 28);
+		panel_2.add(txt_addr_code);
+		
+		JDateChooser txt_J_Date = new JDateChooser();
+		txt_J_Date.setBounds(10, 453, 328, 28);
+		panel_2.add(txt_J_Date);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(null);
@@ -350,16 +369,16 @@ public class Create_emp_info extends JFrame {
 		txt_postal.setBounds(11, 265, 328, 28);
 		panel_3.add(txt_postal);
 		
-		JLabel lblAddressCode = new JLabel("address code :");
+		JLabel lblAddressCode = new JLabel("Region:");
 		lblAddressCode.setForeground(Color.BLACK);
 		lblAddressCode.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
 		lblAddressCode.setBounds(11, 485, 245, 14);
 		panel_3.add(lblAddressCode);
 		
-		txt_add_code = new JTextField();
-		txt_add_code.setColumns(10);
-		txt_add_code.setBounds(11, 509, 328, 28);
-		panel_3.add(txt_add_code);
+		txt_region = new JTextField();
+		txt_region.setColumns(10);
+		txt_region.setBounds(11, 509, 328, 28);
+		panel_3.add(txt_region);
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setBounds(368, 559, 706, 94);
@@ -384,13 +403,13 @@ public class Create_emp_info extends JFrame {
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_emp_id.setText("");
-				txt_dept_id.setText("");
+				comboDept.setSelectedIndex(0);
 				txt_FName.setText(" ");
 				txt_LName.setText(" ");
 				buttonGroup.clearSelection();
 				txt_age.setText(" ");
 				txt_FatherN.setText(" ");
-				txt_dob.setText(" ");
+				dob.setDate(null);
 				txt_Per_ph.setText(" ");
 				txt_Work_ph.setText(" ");
 				txt_M_status.setText(" ");
@@ -400,7 +419,9 @@ public class Create_emp_info extends JFrame {
 				txt_nrc.setText(" ");
 				txt_Email.setText(" ");
 				txt_nationality.setText(" ");
-				txt_J_Date.setText(" ");
+				txt_J_Date.setDate(null);
+				txt_addr_code.setText(" ");
+				txt_region.setText(" ");
 			}
 		});
 		btnClear.setBounds(408, 33, 110, 28);
@@ -419,8 +440,99 @@ public class Create_emp_info extends JFrame {
 		JButton btnCreate_2 = new JButton("Create");
 		btnCreate_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-			}
+			String emp_id=txt_emp_id.getText();
+			int dept_id= Integer.parseInt(comboDept.getSelectedItem().toString());
+			String F_Name=	txt_FName.getText();
+			String L_Name=txt_LName.getText();
+			String gender = null;
+			if(rdbtnMale.isSelected())
+				gender="Male";
+			if(rdbtnFemale.isSelected())
+				gender="Female";
+			String age=	txt_age.getText();
+			String Father_N=	txt_FatherN.getText();
+			Date DOB=new Date(dob.getDate().getTime());
+		    String Per_Ph_no=	txt_Per_ph.getText();
+			String work_ph=	txt_Work_ph.getText();
+			String M_statsu=	txt_M_status.getText();
+			String address=		txt_address.getText();
+			String township=		txt_town.getText();
+			String city=	txt_city.getText();
+			String religion=	txt_religion.getText();
+			String nrc=		txt_nrc.getText();
+			String email=	txt_Email.getText();
+			String nationality=	txt_nationality.getText();
+			Date J_date=new Date(txt_J_Date.getDate().getTime());
+			String postal=	txt_postal.getText();
+			String addr_code=	txt_region.getText();
+			String region=txt_region.getText();
+			
+			Address ee=new Address();
+			  ee.setRegion(region);
+			   ee.setPostalCode(postal);
+			   ee.setAddr_code(addr_code);
+			   ee.setAddr(address);
+			   ee.setEmp_id(emp_id);
+	            ee.setAddr(address);
+	            ee.setTownship(township);
+	            ee.setCity(city);
+			Employee aa=new Employee();
+			aa.setEmp_id(emp_id);
+			aa.setDept_id(dept_id);
+			aa.setFname(F_Name);
+			aa.setLname(L_Name);
+            aa.setGender(gender);		
+            aa.setAge(age);
+            aa.setFather_name(Father_N);;
+            aa.setDob(String.valueOf(DOB));
+            aa.setP_phno(Per_Ph_no);
+            aa.setW_phno(work_ph);
+            aa.setMatrital_status(M_statsu);
+            aa.setEmail(email);
+            aa.setReligion(religion);
+            aa.setNationality(nationality);
+            aa.setJoined_date(String.valueOf(J_date));
+            aa.setNRC(nrc);
+            
+           
+
+	           int choice=JOptionPane.showConfirmDialog(null, "Do you really want to save your data","Comfirm Message",JOptionPane.INFORMATION_MESSAGE);
+	          if(choice==JOptionPane.YES_OPTION)
+	            try{
+	     
+	            	new AdminDAO().addEmployee_info(aa);
+	            	new AdminDAO().addEmployee_addres(ee);
+	            	
+	            	
+					txt_emp_id.setText("");
+					comboDept.setSelectedIndex(0);
+					txt_FName.setText(" ");
+					txt_LName.setText(" ");
+					buttonGroup.clearSelection();
+					txt_age.setText(" ");
+					txt_FatherN.setText(" ");
+					dob.setDate(null);
+					txt_Per_ph.setText(" ");
+					txt_Work_ph.setText(" ");
+					txt_M_status.setText(" ");
+					txt_address.setText(" ");
+					txt_city.setText(" ");
+					txt_religion.setText(" ");
+					txt_nrc.setText(" ");
+					txt_Email.setText(" ");
+					txt_nationality.setText(" ");
+					txt_J_Date.setDate(null);
+					txt_addr_code.setText(" ");
+					txt_region.setText(" ");
+	              
+	            }catch (SQLException e1_) {
+	              JOptionPane.showMessageDialog(null, "Database Connection Error","Save Error",JOptionPane.ERROR_MESSAGE);
+	              System.out.println(e1_);
+	             
+	            }
+	          }
+			
+			
 		});
 		btnCreate_2.setForeground(Color.WHITE);
 		btnCreate_2.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));

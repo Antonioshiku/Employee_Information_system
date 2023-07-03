@@ -16,6 +16,7 @@ import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import Main.Choose_User;
@@ -61,7 +62,12 @@ public class Choose_update_create_emp extends JFrame {
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
-				new Create_emp_info().setVisible(true);
+				try {
+					new Create_emp_info().setVisible(true);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		button_2.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\icons8-employee-96.png"));
