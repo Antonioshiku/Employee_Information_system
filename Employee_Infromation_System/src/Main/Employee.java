@@ -183,10 +183,6 @@ public class Employee {
 	    this.joined_date = joined_date;
 	  }
 
-	public void addAccountInfo(Employee e) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 	  
