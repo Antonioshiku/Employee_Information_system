@@ -25,6 +25,11 @@ import java.awt.event.MouseEvent;
 public class Application_dept extends JFrame {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -82,16 +87,11 @@ public class Application_dept extends JFrame {
 //				button_2.setBounds(259, 163, 201, 99);
 //			}
 //		});
-		button_2.setBounds(259, 163, 201, 99);
+		button_2.setBounds(279, 208, 201, 99);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
-					try {
-						new View_Table(emp_id,dept_id).setVisible(true);
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					new create_emp_dept(emp_id,dept_id,email,Type).setVisible(true);
 			
 			}
 		});
@@ -130,7 +130,7 @@ public class Application_dept extends JFrame {
 		
 		JLabel lemail = new JLabel(email);
 		lemail.setHorizontalAlignment(SwingConstants.CENTER);
-		lemail.setBounds(21, 119, 114, 23);
+		lemail.setBounds(0, 119, 163, 23);
 		panel_1.add(lemail);
 		
 		JButton btnLogout = new JButton("Logout");
@@ -148,7 +148,7 @@ public class Application_dept extends JFrame {
 		
 		JPanel panel_8 = new JPanel();
 		panel_8.setBackground(Color.LIGHT_GRAY);
-		panel_8.setBounds(0, 152, 163, 10);
+		panel_8.setBounds(0, 152, 163, 2);
 		panel_1.add(panel_8);
 		
 		JPanel panel_2 = new JPanel();
@@ -176,7 +176,7 @@ public class Application_dept extends JFrame {
 		panel.add(panel_4);
 		
 		JPanel panel_7 = new JPanel();
-		panel_7.setBounds(259, 260, 201, 47);
+		panel_7.setBounds(279, 306, 201, 47);
 		panel_7.setBackground(new Color(0, 102, 102));
 		panel.add(panel_7);
 		panel_7.setLayout(null);

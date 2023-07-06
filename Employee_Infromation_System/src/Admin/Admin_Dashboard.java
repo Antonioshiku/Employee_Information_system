@@ -78,7 +78,7 @@ public class Admin_Dashboard extends JFrame {
 				new Project().setVisible(true);
 			}
 		});
-		btnProjects.setBounds(623, 250, 201, 99);
+		btnProjects.setBounds(623, 211, 201, 99);
 		btnProjects.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\icons8-project-management-96 (1).png"));
 		btnProjects.setForeground(new Color(128, 128, 128));
 		btnProjects.setFont(new Font("Monospaced", Font.BOLD, 20));
@@ -86,7 +86,7 @@ public class Admin_Dashboard extends JFrame {
 		panel.add(btnProjects);
 		
 		JButton button_2 = new JButton("Emp");
-		button_2.setBounds(155, 163, 201, 99);
+		button_2.setBounds(155, 211, 201, 99);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
@@ -149,7 +149,7 @@ public class Admin_Dashboard extends JFrame {
 		
 		JPanel panel_8 = new JPanel();
 		panel_8.setBackground(Color.LIGHT_GRAY);
-		panel_8.setBounds(0, 152, 145, 10);
+		panel_8.setBounds(0, 152, 145, 2);
 		panel_1.add(panel_8);
 		
 		JPanel panel_2 = new JPanel();
@@ -177,40 +177,40 @@ public class Admin_Dashboard extends JFrame {
 		panel.add(panel_4);
 		
 		JPanel panel_5 = new JPanel();
-		panel_5.setBounds(155, 263, 201, 47);
+		panel_5.setBounds(155, 306, 201, 47);
 		panel_5.setBackground(new Color(0, 102, 102));
 		panel.add(panel_5);
 		panel_5.setLayout(null);
 		
-		JLabel lblEmployee = new JLabel("  Employee Mgmt");
+		JLabel lblEmployee = new JLabel("  Employee ");
 		lblEmployee.setBounds(0, 0, 201, 47);
 		panel_5.add(lblEmployee);
 		lblEmployee.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEmployee.setFont(new Font("Monospaced", Font.BOLD, 20));
+		lblEmployee.setFont(new Font("Monospaced", Font.BOLD, 23));
 		
 		JPanel panel_6 = new JPanel();
-		panel_6.setBounds(391, 309, 201, 47);
+		panel_6.setBounds(391, 306, 201, 47);
 		panel_6.setBackground(new Color(0, 102, 102));
 		panel.add(panel_6);
 		panel_6.setLayout(null);
 		
-		JLabel lblDepartmentMgmt = new JLabel("Department Mgmt");
+		JLabel lblDepartmentMgmt = new JLabel("Department ");
 		lblDepartmentMgmt.setBounds(0, 0, 201, 47);
 		panel_6.add(lblDepartmentMgmt);
 		lblDepartmentMgmt.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDepartmentMgmt.setFont(new Font("Monospaced", Font.BOLD, 20));
+		lblDepartmentMgmt.setFont(new Font("Monospaced", Font.BOLD, 23));
 		
 		JPanel panel_7 = new JPanel();
-		panel_7.setBounds(623, 348, 201, 47);
+		panel_7.setBounds(623, 306, 201, 47);
 		panel_7.setBackground(new Color(0, 102, 102));
 		panel.add(panel_7);
 		panel_7.setLayout(null);
 		
-		JLabel lblProjectsInfo = new JLabel("Projects Info");
+		JLabel lblProjectsInfo = new JLabel("Projects ");
 		lblProjectsInfo.setBounds(0, 0, 201, 47);
 		panel_7.add(lblProjectsInfo);
 		lblProjectsInfo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblProjectsInfo.setFont(new Font("Monospaced", Font.BOLD, 20));
+		lblProjectsInfo.setFont(new Font("Monospaced", Font.BOLD, 23));
 		
 		JLabel lblAdminster = new JLabel("Position : Administrator");
 		lblAdminster.setBackground(Color.WHITE);

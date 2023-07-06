@@ -41,6 +41,7 @@ import java.sql.SQLException;
 public class Dept_login extends JFrame {
 	private JTextField txt_Email;
 	private JPasswordField txt_Password;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -91,7 +92,7 @@ public class Dept_login extends JFrame {
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(Color.WHITE);
-		panel_5.setBounds(46, 107, 283, 4);
+		panel_5.setBounds(22, 106, 283, 4);
 		panel_1.add(panel_5);
 
 		JPanel panel_4 = new JPanel();
@@ -122,8 +123,18 @@ public class Dept_login extends JFrame {
 				try {
 					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_inforamtion_system",
 							"root", "123456");
-					PreparedStatement pst = con
-							.prepareStatement("select login.user_name,login.password,login.Type,login.emp_id,employee.dept_id from employee,login where login.emp_id=? && login.emp_id=employee.emp_id;");
+					
+					PreparedStatement stmt=con.prepareStatement("select email from employee where emp_id=?");
+					stmt.setString(1, txt_Email.getText());
+				
+					
+					ResultSet rr=stmt.executeQuery();
+					
+					String email="";
+					while(rr.next()) {
+					  email=rr.getString(1);
+					}
+					PreparedStatement pst = con.prepareStatement("select login.user_name,login.password,login.Type,login.emp_id,employee.dept_id from employee,login where login.emp_id=? && login.emp_id=employee.emp_id;");
 					pst.setString(1, txt_Email.getText());
 					ResultSet rs = pst.executeQuery();
 
@@ -131,12 +142,12 @@ public class Dept_login extends JFrame {
 					while (rs.next()) {
 						String dept_head = rs.getString(3);
 						String pass = rs.getString(2);
-						String email=rs.getString(1);
+						
 						String emp=rs.getString(4);
 						String dept_id=rs.getString(5); 
 						
 					//	System.out.println(dept_head + " " + pass);
-						if (dept_head.equalsIgnoreCase(dept_head) && pass.equalsIgnoreCase("dept1234")) {             
+						if (dept_head.equalsIgnoreCase(dept_head) && textField.getText().equalsIgnoreCase(email) && pass.equalsIgnoreCase("dept1234")) {             
 							setVisible(false);
 							new Application_dept(email,emp,dept_head,dept_id).setVisible(true);
 							              result=true;
@@ -158,7 +169,7 @@ public class Dept_login extends JFrame {
 		btnLogIn.setBackground(new Color(0, 102, 102));
 
 		JLabel lblLogIn = new JLabel("Login Account");
-		lblLogIn.setBounds(10, 56, 295, 42);
+		lblLogIn.setBounds(10, 10, 295, 42);
 		panel_2.add(lblLogIn);
 		lblLogIn.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLogIn.setForeground(new Color(0, 102, 102));
@@ -180,7 +191,7 @@ public class Dept_login extends JFrame {
 
 		JLabel lblEmailOrUsername = new JLabel("Emp-id");
 		lblEmailOrUsername.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblEmailOrUsername.setBounds(38, 132, 145, 14);
+		lblEmailOrUsername.setBounds(38, 62, 145, 14);
 		panel_2.add(lblEmailOrUsername);
 
 		JLabel lblPassword = new JLabel("Password");
@@ -195,7 +206,7 @@ public class Dept_login extends JFrame {
 
 			}
 		});
-		txt_Email.setBounds(38, 157, 245, 28);
+		txt_Email.setBounds(38, 86, 245, 28);
 		panel_2.add(txt_Email);
 		txt_Email.setColumns(10);
 
@@ -203,10 +214,20 @@ public class Dept_login extends JFrame {
 		txt_Password.setColumns(10);
 		txt_Password.setBounds(38, 221, 245, 28);
 		panel_2.add(txt_Password);
+		
+		JLabel lblEmail = new JLabel("Email");
+		lblEmail.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
+		lblEmail.setBounds(38, 124, 145, 14);
+		panel_2.add(lblEmail);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(38, 144, 245, 28);
+		panel_2.add(textField);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.WHITE);
-		panel_3.setBounds(46, 38, 283, 4);
+		panel_3.setBounds(22, 44, 283, 4);
 		panel_1.add(panel_3);
 
 		JLabel label_1 = new JLabel("EIMS");

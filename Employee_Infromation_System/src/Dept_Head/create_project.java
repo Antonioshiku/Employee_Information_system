@@ -86,14 +86,14 @@ public class create_project extends JFrame {
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new LineBorder(new Color(0, 102, 102)));
 		panel_3.setBackground(UIManager.getColor("CheckBox.background"));
-		panel_3.setBounds(56, 10, 640, 400);
+		panel_3.setBounds(10, 10, 640, 400);
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
 
 		JLabel lblDepartmentId = new JLabel("Department ID   :");
 		lblDepartmentId.setForeground(Color.BLACK);
 		lblDepartmentId.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblDepartmentId.setBounds(37, 142, 124, 14);
+		lblDepartmentId.setBounds(37, 136, 124, 14);
 		panel_3.add(lblDepartmentId);
 
 		JLabel lblProjectId = new JLabel("Project ID          :");
@@ -135,7 +135,7 @@ public class create_project extends JFrame {
 		panel_3.add(txt_pN);
 
 		dcstart_date = new JDateChooser();
-		dcstart_date.setBounds(235, 240, 245, 20);
+		dcstart_date.setBounds(235, 240, 245, 28);
 		panel_3.add(dcstart_date);
 
 		txt_PId = new JTextField();
@@ -144,12 +144,12 @@ public class create_project extends JFrame {
 		panel_3.add(txt_PId);
 
 		dcend_date = new JDateChooser();
-		dcend_date.setBounds(235, 288, 245, 20);
+		dcend_date.setBounds(235, 288, 245, 28);
 		panel_3.add(dcend_date);
 
 		comboDept = new JComboBox();
 		comboDept.setModel(new DefaultComboBoxModel(new String[] {"none",dept_id}));
-		comboDept.setBounds(235, 132, 245, 24);
+		comboDept.setBounds(235, 132, 245, 28);
 		panel_3.add(comboDept);
 
 		JButton button = new JButton("Back");
@@ -162,7 +162,7 @@ public class create_project extends JFrame {
 		button.setForeground(Color.WHITE);
 		button.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		button.setBackground(new Color(0, 102, 102));
-		button.setBounds(706, 44, 110, 28);
+		button.setBounds(663, 202, 145, 28);
 		panel_2.add(button);
 
 		JButton button_1 = new JButton("Close");
@@ -174,7 +174,7 @@ public class create_project extends JFrame {
 		button_1.setForeground(Color.WHITE);
 		button_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		button_1.setBackground(new Color(0, 102, 102));
-		button_1.setBounds(706, 100, 110, 28);
+		button_1.setBounds(663, 345, 145, 28);
 		panel_2.add(button_1);
 
 		JButton button_2 = new JButton("Clear");
@@ -192,7 +192,7 @@ public class create_project extends JFrame {
 		button_2.setForeground(Color.WHITE);
 		button_2.setFont(new Font("Monospaced", Font.BOLD, 20));
 		button_2.setBackground(new Color(0, 102, 102));
-		button_2.setBounds(330, 420, 110, 28);
+		button_2.setBounds(663, 275, 145, 28);
 		panel_2.add(button_2);
 
 		JButton btnCreate = new JButton("Create");
@@ -235,7 +235,7 @@ public class create_project extends JFrame {
 		btnCreate.setForeground(Color.WHITE);
 		btnCreate.setFont(new Font("Monospaced", Font.BOLD, 20));
 		btnCreate.setBackground(new Color(0, 102, 102));
-		btnCreate.setBounds(55, 420, 110, 28);
+		btnCreate.setBounds(663, 128, 145, 28);
 		panel_2.add(btnCreate);
 
 		JButton btnNext = new JButton("Next");
@@ -257,7 +257,7 @@ public class create_project extends JFrame {
 		btnNext.setForeground(Color.WHITE);
 		btnNext.setFont(new Font("Monospaced", Font.BOLD, 20));
 		btnNext.setBackground(new Color(0, 102, 102));
-		btnNext.setBounds(192, 420, 110, 28);
+		btnNext.setBounds(663, 60, 145, 28);
 		panel_2.add(btnNext);
 		
 		JButton button_1_1 = new JButton("Add project Member");
@@ -275,7 +275,7 @@ public class create_project extends JFrame {
 		button_1_1.setForeground(Color.WHITE);
 		button_1_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		button_1_1.setBackground(new Color(0, 102, 102));
-		button_1_1.setBounds(467, 422, 229, 28);
+		button_1_1.setBounds(194, 423, 230, 28);
 		panel_2.add(button_1_1);
 	}
 

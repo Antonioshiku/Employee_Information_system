@@ -88,7 +88,7 @@ public class Project extends JFrame {
 		
 		
 		JButton button_1 = new JButton("Close");
-		button_1.setBounds(604, 392, 110, 28);
+		button_1.setBounds(570, 392, 145, 28);
 		panel.add(button_1);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -115,7 +115,7 @@ public class Project extends JFrame {
 		btnBack.setForeground(Color.WHITE);
 		btnBack.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		btnBack.setBackground(new Color(0, 102, 102));
-		btnBack.setBounds(462, 392, 110, 28);
+		btnBack.setBounds(415, 392, 145, 28);
 		panel.add(btnBack);
 		
 		JPanel panel_1 = new JPanel();
@@ -125,7 +125,7 @@ public class Project extends JFrame {
 		panel_1.setLayout(null);
 		
 		JButton btnCreate = new JButton("Create");
-		btnCreate.setBounds(10, 43, 110, 28);
+		btnCreate.setBounds(10, 48, 110, 28);
 		panel_1.add(btnCreate);
 		btnCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -155,7 +155,7 @@ public class Project extends JFrame {
 			        new Project(end_date).setProject_id(project_id);
 			}
 		});
-		btnView.setBounds(10, 154, 110, 28);
+		btnView.setBounds(10, 165, 110, 28);
 		panel_1.add(btnView);
 		btnView.setForeground(new Color(0, 102, 102));
 		btnView.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
@@ -175,7 +175,7 @@ public class Project extends JFrame {
 		btnShowPj.setForeground(new Color(0, 102, 102));
 		btnShowPj.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		btnShowPj.setBackground(Color.WHITE);
-		btnShowPj.setBounds(10, 93, 110, 28);
+		btnShowPj.setBounds(10, 104, 110, 28);
 		panel_1.add(btnShowPj);
 		
 		JButton btnUpdate = new JButton("Update");
@@ -193,7 +193,7 @@ public class Project extends JFrame {
 		btnUpdate.setForeground(new Color(0, 102, 102));
 		btnUpdate.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		btnUpdate.setBackground(Color.WHITE);
-		btnUpdate.setBounds(10, 218, 110, 28);
+		btnUpdate.setBounds(10, 223, 110, 28);
 		panel_1.add(btnUpdate);
 		
 		JLabel label = new JLabel("");

@@ -16,7 +16,12 @@ import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
@@ -66,6 +71,9 @@ public class Update_emp_form extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100,850,500);
 		getContentPane().setLayout(null);
+		
+		ArrayList<String> rr=new ArrayList<String>();
+		rr=showRegion(emp);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -156,6 +164,7 @@ public class Update_emp_form extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				  txt_address.setText(" ");
 				  txt_town.setText(" ");
+				  txt_email.setText(" ");
 				  txt_city.setText(" ");
 				  txt_region.setText(" ");
 				  txt_salary.setText(" ");
@@ -218,7 +227,7 @@ public class Update_emp_form extends JFrame {
 		lblDepartmentId.setBounds(295, 71, 126, 16);
 		panel.add(lblDepartmentId);
 		
-		txt_region = new JTextField();
+		txt_region = new JTextField(rr.get(0));
 		txt_region.setColumns(10);
 		txt_region.setBounds(557, 182, 245, 28);
 		panel.add(txt_region);
@@ -325,5 +334,30 @@ public class Update_emp_form extends JFrame {
 		combodpt.setBounds(401, 71, 139, 28);
 		panel.add(combodpt);
 	}
+	
+	public ArrayList<String> showRegion(String emp) {
+		ArrayList<String> result = new ArrayList<String>();
+		Connection con;
+		String query = "select region from employee,address where employee.emp_id =?  &&  employee.emp_Id = address.emp_id; ";
+
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_inforamtion_system" + "", "root",
+					"123456");
+			PreparedStatement stmt = con.prepareStatement(query);
+			stmt.setString(1, emp);
+
+			ResultSet rs = stmt.executeQuery();
+//			String emp_id, F_Name, L_Name, Ph_No, add, Email, town, city, salary, position, status, dept_id;
+			while (rs.next()) {
+				result.add(0, rs.getString(1));
+
+			}
+
+		} catch (Exception ee) {
+			ee.printStackTrace();
+		}
+		return result;
+	}
+	
 }
 

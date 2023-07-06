@@ -69,7 +69,7 @@ public class Employee_Dashboard extends JFrame {
 		panel.add(btnProjects);
 		
 		JButton btnInfo = new JButton("Info");
-		btnInfo.setBounds(259, 163, 201, 99);
+		btnInfo.setBounds(259, 208, 201, 99);
 		btnInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
@@ -130,7 +130,7 @@ public class Employee_Dashboard extends JFrame {
 		
 		JPanel panel_8 = new JPanel();
 		panel_8.setBackground(Color.LIGHT_GRAY);
-		panel_8.setBounds(0, 176, 145, 10);
+		panel_8.setBounds(0, 176, 145, 2);
 		panel_1.add(panel_8);
 		
 		JLabel lblNewLabel = new JLabel("Emp Id : ");
@@ -163,7 +163,7 @@ public class Employee_Dashboard extends JFrame {
 		panel.add(panel_4);
 		
 		JPanel panel_7 = new JPanel();
-		panel_7.setBounds(259, 260, 201, 47);
+		panel_7.setBounds(259, 306, 201, 47);
 		panel_7.setBackground(new Color(0, 102, 102));
 		panel.add(panel_7);
 		panel_7.setLayout(null);

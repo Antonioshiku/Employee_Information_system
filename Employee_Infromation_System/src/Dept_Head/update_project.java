@@ -182,7 +182,7 @@ public class update_project extends JFrame {
 
 		JLabel lblPosition_3 = new JLabel("Project Name:");
 		lblPosition_3.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblPosition_3.setBounds(20, 238, 125, 14);
+		lblPosition_3.setBounds(10, 247, 125, 14);
 		panel.add(lblPosition_3);
 
 		txt_pj_member = new JTextField();
@@ -192,12 +192,12 @@ public class update_project extends JFrame {
 
 		JLabel lblRegion = new JLabel("Project member Id  :");
 		lblRegion.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblRegion.setBounds(322, 290, 245, 14);
+		lblRegion.setBounds(333, 290, 245, 14);
 		panel.add(lblRegion);
 
 		JLabel lblPosition_1 = new JLabel("emp_id :");
 		lblPosition_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblPosition_1.setBounds(339, 199, 245, 14);
+		lblPosition_1.setBounds(333, 199, 245, 14);
 		panel.add(lblPosition_1);
 
 		dcend_date = new JDateChooser();
@@ -211,7 +211,7 @@ public class update_project extends JFrame {
 
 		JLabel lblCity = new JLabel("Position :");
 		lblCity.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblCity.setBounds(333, 238, 245, 14);
+		lblCity.setBounds(333, 247, 145, 14);
 		panel.add(lblCity);
 
 		JLabel lblEmployeeUpdate = new JLabel("Project Updat Form ");
@@ -224,12 +224,12 @@ public class update_project extends JFrame {
 
 		JLabel lblPosition_3_1 = new JLabel("Project ID:");
 		lblPosition_3_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblPosition_3_1.setBounds(20, 291, 125, 12);
+		lblPosition_3_1.setBounds(10, 291, 125, 12);
 		panel.add(lblPosition_3_1);
 
 		JLabel lblPosition_3_2 = new JLabel("Start Date:");
 		lblPosition_3_2.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblPosition_3_2.setBounds(20, 347, 125, 14);
+		lblPosition_3_2.setBounds(10, 347, 125, 14);
 		panel.add(lblPosition_3_2);
 
 		JLabel lDept = new JLabel(dept_id);
@@ -239,7 +239,7 @@ public class update_project extends JFrame {
 
 		JLabel lPjName = new JLabel(pj_name);
 		lPjName.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lPjName.setBounds(143, 230, 284, 28);
+		lPjName.setBounds(143, 239, 161, 28);
 		panel.add(lPjName);
 
 		JLabel lPjId = new JLabel(pj_id);

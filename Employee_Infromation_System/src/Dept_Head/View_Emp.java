@@ -63,6 +63,8 @@ public class View_Emp extends JFrame {
 		ArrayList<String> rs = new ArrayList<String>();
 		rs = empInfo(emp);
 		String dept_id=rs.get(0);
+		
+		
 
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage("D:\\HR Info Sys Pto\\icons8-old-vmware-logo-50 (3) (1).png"));
@@ -91,8 +93,9 @@ public class View_Emp extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				try {
-					
-					new View_Table(emp,dept_id).setVisible(true);
+					ArrayList<String> rr=new ArrayList<String>();
+					rr=type(emp);
+					new View_Table(emp,dept_id,rr.get(0),rr.get(1)).setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -322,6 +325,28 @@ public class View_Emp extends JFrame {
 			ee.printStackTrace();
 		}
 		return result;
+	}
+	
+	public ArrayList<String> type(String emp){
+		ArrayList<String> rr = new ArrayList<String>();
+		Connection con;
+		String query = "select Email,Type from login where emp_id=?";
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_inforamtion_system" + "", "root",
+					"123456");
+			PreparedStatement stmt = con.prepareStatement(query);
+			stmt.setString(1, emp);
+
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				rr.add(0, rs.getString(1));
+				rr.add(1,rs.getString(2));
+			}
+
+		} catch (Exception ee) {
+			ee.printStackTrace();
+		}
+		return rr;
 	}
 
 }

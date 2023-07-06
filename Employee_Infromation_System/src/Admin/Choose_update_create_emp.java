@@ -53,12 +53,12 @@ public class Choose_update_create_emp extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel.setBackground(Color.LIGHT_GRAY);
-		panel.setBounds(0, 10, 834, 461);
+		panel.setBounds(0, 0, 834, 461);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JButton button_2 = new JButton("Emp");
-		button_2.setBounds(155, 163, 201, 99);
+		button_2.setBounds(248, 211, 201, 99);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
@@ -126,7 +126,7 @@ public class Choose_update_create_emp extends JFrame {
 		
 		JPanel panel_8 = new JPanel();
 		panel_8.setBackground(Color.LIGHT_GRAY);
-		panel_8.setBounds(0, 152, 145, 10);
+		panel_8.setBounds(0, 152, 145, 2);
 		panel_1.add(panel_8);
 		
 		JPanel panel_2 = new JPanel();
@@ -154,7 +154,7 @@ public class Choose_update_create_emp extends JFrame {
 		panel.add(panel_4);
 		
 		JPanel panel_5 = new JPanel();
-		panel_5.setBounds(155, 263, 201, 47);
+		panel_5.setBounds(248, 309, 201, 47);
 		panel_5.setBackground(new Color(0, 102, 102));
 		panel.add(panel_5);
 		panel_5.setLayout(null);
@@ -183,13 +183,13 @@ public class Choose_update_create_emp extends JFrame {
 		button_2_1.setForeground(new Color(0, 0, 102));
 		button_2_1.setFont(new Font("Monospaced", Font.BOLD, 20));
 		button_2_1.setBackground(Color.WHITE);
-		button_2_1.setBounds(479, 211, 201, 99);
+		button_2_1.setBounds(518, 211, 201, 99);
 		panel.add(button_2_1);
 		
 		JPanel panel_5_1 = new JPanel();
 		panel_5_1.setLayout(null);
 		panel_5_1.setBackground(new Color(0, 102, 102));
-		panel_5_1.setBounds(479, 309, 201, 47);
+		panel_5_1.setBounds(518, 309, 201, 47);
 		panel.add(panel_5_1);
 		
 		JLabel lblViewEmployee = new JLabel("View Employee");

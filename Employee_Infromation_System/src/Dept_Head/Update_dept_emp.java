@@ -16,7 +16,12 @@ import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
@@ -67,6 +72,9 @@ public class Update_dept_emp extends JFrame {
 		setBounds(100, 100,850,500);
 		getContentPane().setLayout(null);
 		
+		ArrayList<String> rr=new ArrayList<String>();
+		rr=showRegion(emp);
+		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel.setBackground(Color.LIGHT_GRAY);
@@ -79,7 +87,9 @@ public class Update_dept_emp extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				try {
-					new View_Table(emp,dept_id).setVisible(true);
+					ArrayList<String> rr=new ArrayList<String>();
+					rr=type(emp);
+					new View_Table(emp,dept_id,rr.get(0),rr.get(1)).setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -219,7 +229,7 @@ public class Update_dept_emp extends JFrame {
 		lblDepartmentId.setBounds(295, 71, 126, 16);
 		panel.add(lblDepartmentId);
 		
-		txt_region = new JTextField();
+		txt_region = new JTextField(rr.get(0));
 		txt_region.setColumns(10);
 		txt_region.setBounds(557, 182, 245, 28);
 		panel.add(txt_region);
@@ -326,6 +336,53 @@ public class Update_dept_emp extends JFrame {
 		comboMastatus.setModel(new DefaultComboBoxModel(new String[] {"none", "Single", "Merried"}));
 		comboMastatus.setBounds(40, 378, 500, 21);
 		panel.add(comboMastatus);
+	}
+	
+	public ArrayList<String> showRegion(String emp) {
+		ArrayList<String> result = new ArrayList<String>();
+		Connection con;
+		String query = "select region from employee,address where employee.emp_id =?  &&  employee.emp_Id = address.emp_id; ";
+
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_inforamtion_system" + "", "root",
+					"123456");
+			PreparedStatement stmt = con.prepareStatement(query);
+			stmt.setString(1, emp);
+
+			ResultSet rs = stmt.executeQuery();
+//			String emp_id, F_Name, L_Name, Ph_No, add, Email, town, city, salary, position, status, dept_id;
+			while (rs.next()) {
+				result.add(0, rs.getString(1));
+
+			}
+
+		} catch (Exception ee) {
+			ee.printStackTrace();
+		}
+		return result;
+	}
+	
+	
+	public ArrayList<String> type(String emp){
+		ArrayList<String> rr = new ArrayList<String>();
+		Connection con;
+		String query = "select user_name,Type from login where emp_id=?";
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_inforamtion_system" + "", "root",
+					"123456");
+			PreparedStatement stmt = con.prepareStatement(query);
+			stmt.setString(1, emp);
+
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				rr.add(0, rs.getString(1));
+				rr.add(1,rs.getString(2));
+			}
+
+		} catch (Exception ee) {
+			ee.printStackTrace();
+		}
+		return rr;
 	}
 }
 

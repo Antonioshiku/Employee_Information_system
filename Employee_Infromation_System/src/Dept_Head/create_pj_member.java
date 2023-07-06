@@ -87,7 +87,7 @@ public class create_pj_member extends JFrame {
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new LineBorder(new Color(0, 102, 102)));
 		panel_3.setBackground(UIManager.getColor("CheckBox.background"));
-		panel_3.setBounds(56, 10, 640, 400);
+		panel_3.setBounds(91, 10, 640, 400);
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
 		
@@ -115,7 +115,7 @@ public class create_pj_member extends JFrame {
 		JLabel lblPosition = new JLabel("Position   :");
 		lblPosition.setForeground(Color.BLACK);
 		lblPosition.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblPosition.setBounds(78, 312, 167, 14);
+		lblPosition.setBounds(37, 312, 167, 14);
 		panel_3.add(lblPosition);
 		
 		 combopj = new JComboBox(new ApplicationDAO().showEmpId().toArray());
@@ -153,7 +153,7 @@ public class create_pj_member extends JFrame {
 		button.setForeground(Color.WHITE);
 		button.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		button.setBackground(new Color(0, 102, 102));
-		button.setBounds(137, 422, 110, 28);
+		button.setBounds(91, 420, 145, 28);
 		panel_2.add(button);
 		
 		JButton button_1 = new JButton("Close");
@@ -165,7 +165,7 @@ public class create_pj_member extends JFrame {
 		button_1.setForeground(Color.WHITE);
 		button_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		button_1.setBackground(new Color(0, 102, 102));
-		button_1.setBounds(586, 422, 110, 28);
+		button_1.setBounds(584, 418, 145, 28);
 		panel_2.add(button_1);
 		
 		JButton button_2 = new JButton("Clear");
@@ -180,7 +180,7 @@ public class create_pj_member extends JFrame {
 		button_2.setForeground(Color.WHITE);
 		button_2.setFont(new Font("Monospaced", Font.BOLD, 20));
 		button_2.setBackground(new Color(0, 102, 102));
-		button_2.setBounds(442, 420, 110, 28);
+		button_2.setBounds(417, 418, 145, 28);
 		panel_2.add(button_2);
 		
 		JButton btnCreate = new JButton("Add");
@@ -233,7 +233,7 @@ public class create_pj_member extends JFrame {
 		btnCreate.setForeground(Color.WHITE);
 		btnCreate.setFont(new Font("Monospaced", Font.BOLD, 20));
 		btnCreate.setBackground(new Color(0, 102, 102));
-		btnCreate.setBounds(291, 421, 110, 28);
+		btnCreate.setBounds(251, 418, 145, 28);
 		panel_2.add(btnCreate);
 	}
 	

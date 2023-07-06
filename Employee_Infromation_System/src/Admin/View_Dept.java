@@ -61,7 +61,7 @@ public class View_Dept extends JFrame {
 		setBounds(100, 100,850,500);
 		getContentPane().setLayout(null);
 		
-	
+		//ShowDeptEmp(dept_id);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -80,53 +80,53 @@ public class View_Dept extends JFrame {
 		
 		JPanel ldeptName = new JPanel();
 		ldeptName.setBorder(new LineBorder(new Color(0, 102, 102)));
-		ldeptName.setBackground(UIManager.getColor("CheckBox.background"));
-		ldeptName.setBounds(24, 10, 750, 400);
+		ldeptName.setBackground(new Color(255, 255, 255));
+		ldeptName.setBounds(24, 11, 750, 400);
 		panel_2.add(ldeptName);
 		ldeptName.setLayout(null);
 		
 		JLabel lblEmployeeId = new JLabel("Department Name :");
 		lblEmployeeId.setForeground(Color.BLACK);
-		lblEmployeeId.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblEmployeeId.setBounds(10, 229, 124, 14);
+		lblEmployeeId.setFont(new Font("Dialog", Font.BOLD, 13));
+		lblEmployeeId.setBounds(6, 229, 124, 14);
 		ldeptName.add(lblEmployeeId);
 		
 		JLabel lblProjectId = new JLabel("Department ID :");
 		lblProjectId.setForeground(Color.BLACK);
 		lblProjectId.setBackground(new Color(0, 102, 102));
-		lblProjectId.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblProjectId.setBounds(10, 171, 128, 14);
+		lblProjectId.setFont(new Font("Dialog", Font.BOLD, 13));
+		lblProjectId.setBounds(6, 171, 128, 14);
 		ldeptName.add(lblProjectId);
 		
 		JLabel lPosition = new JLabel("Department Ph No :");
 		lPosition.setForeground(Color.BLACK);
-		lPosition.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lPosition.setBounds(0, 293, 118, 13);
+		lPosition.setFont(new Font("Dialog", Font.BOLD, 13));
+		lPosition.setBounds(6, 293, 135, 12);
 		ldeptName.add(lPosition);
 		
 		JLabel ldeptId = new JLabel(dept_id);
-		ldeptId.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 11));
+		ldeptId.setFont(new Font("Dialog", Font.BOLD, 13));
 		ldeptId.setBounds(151, 171, 105, 14);
 		ldeptName.add(ldeptId);
 		
 		JLabel lEmpID = new JLabel(dept_name);
-		lEmpID.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 11));
+		lEmpID.setFont(new Font("Dialog", Font.BOLD, 13));
 		lEmpID.setBounds(151, 229, 105, 14);
 		ldeptName.add(lEmpID);
 		
 		JLabel ldeptph = new JLabel(dept_ph);
-		ldeptph.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 13));
-		ldeptph.setBounds(128, 291, 132, 14);
+		ldeptph.setFont(new Font("Dialog", Font.BOLD, 13));
+		ldeptph.setBounds(151, 291, 132, 14);
 		ldeptName.add(ldeptph);
 		
 		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(new Color(0, 102, 102));
-		panel_4.setBounds(255, 0, 495, 400);
+		panel_4.setBackground(new Color(255, 255, 255));
+		panel_4.setBounds(254, 0, 496, 400);
 		ldeptName.add(panel_4);
 		panel_4.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 0, 495, 400);
+		scrollPane.setBounds(0, 0, 518, 400);
 		panel_4.add(scrollPane);
 		
 		table = new JTable();
@@ -143,8 +143,8 @@ public class View_Dept extends JFrame {
 		lblProject.setHorizontalAlignment(SwingConstants.CENTER);
 		lblProject.setForeground(Color.BLACK);
 		lblProject.setFont(new Font("Modern No. 20", Font.BOLD, 27));
-		lblProject.setBackground(new Color(0, 102, 102));
-		lblProject.setBounds(10, 42, 245, 94);
+		lblProject.setBackground(new Color(192, 192, 192));
+		lblProject.setBounds(10, 41, 245, 94);
 		ldeptName.add(lblProject);
 		
 		JButton button = new JButton("Back");
@@ -172,17 +172,7 @@ public class View_Dept extends JFrame {
 		button_1.setBounds(195, 421, 110, 28);
 		panel_2.add(button_1);
 		
-		JButton btnViewEmployee = new JButton("View Employee");
-		btnViewEmployee.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ShowDeptEmp(dept_id);
-			}
-		});
-		btnViewEmployee.setForeground(Color.WHITE);
-		btnViewEmployee.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
-		btnViewEmployee.setBackground(new Color(0, 102, 102));
-		btnViewEmployee.setBounds(593, 420, 181, 31);
-		panel_2.add(btnViewEmployee);
+		ShowDeptEmp(dept_id);
 	}
 	
 	public  void ShowDeptEmp(String dept_id) {

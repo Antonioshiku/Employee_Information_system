@@ -85,14 +85,14 @@ public class Project_member_view extends JFrame {
 		JLabel label = new JLabel("Department ID :");
 		label.setForeground(Color.BLACK);
 		label.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		label.setBounds(37, 163, 124, 14);
+		label.setBounds(10, 163, 124, 14);
 		panel_3.add(label);
 		
 		JLabel lblProjectId = new JLabel("Project ID :");
 		lblProjectId.setForeground(Color.BLACK);
 		lblProjectId.setBackground(new Color(0, 102, 102));
 		lblProjectId.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblProjectId.setBounds(37, 121, 105, 14);
+		lblProjectId.setBounds(10, 121, 105, 14);
 		panel_3.add(lblProjectId);
 		
 		JLabel lpjName = new JLabel("Project Name :");
@@ -104,23 +104,23 @@ public class Project_member_view extends JFrame {
 		JLabel lblStartDate = new JLabel("Start Date :");
 		lblStartDate.setForeground(Color.BLACK);
 		lblStartDate.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblStartDate.setBounds(37, 246, 85, 14);
+		lblStartDate.setBounds(10, 247, 85, 14);
 		panel_3.add(lblStartDate);
 		
 		JLabel lblEndDate = new JLabel("End Date :");
 		lblEndDate.setForeground(Color.BLACK);
 		lblEndDate.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblEndDate.setBounds(37, 289, 124, 14);
+		lblEndDate.setBounds(10, 291, 124, 14);
 		panel_3.add(lblEndDate);
 		
 		JLabel lPjId = new JLabel(pj_id);
 		lPjId.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 11));
-		lPjId.setBounds(175, 121, 105, 14);
+		lPjId.setBounds(102, 121, 105, 14);
 		panel_3.add(lPjId);
 		
 		JLabel lDeptId = new JLabel(dept_id);
 		lDeptId.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 11));
-		lDeptId.setBounds(189, 163, 105, 14);
+		lDeptId.setBounds(127, 163, 105, 14);
 		panel_3.add(lDeptId);
 		
 		JLabel lPjName = new JLabel(pj_name);
@@ -130,12 +130,12 @@ public class Project_member_view extends JFrame {
 		
 		JLabel lStart = new JLabel(start_date);
 		lStart.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 11));
-		lStart.setBounds(140, 247, 105, 14);
+		lStart.setBounds(105, 247, 105, 14);
 		panel_3.add(lStart);
 		
 		JLabel lEnd = new JLabel(end_date);
 		lEnd.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 11));
-		lEnd.setBounds(164, 291, 105, 14);
+		lEnd.setBounds(102, 291, 105, 14);
 		panel_3.add(lEnd);
 		
 		JPanel panel_4 = new JPanel();
@@ -176,7 +176,7 @@ public class Project_member_view extends JFrame {
 		button.setForeground(Color.WHITE);
 		button.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		button.setBackground(new Color(0, 102, 102));
-		button.setBounds(62, 421, 110, 28);
+		button.setBounds(62, 421, 145, 28);
 		panel_2.add(button);
 		
 		JButton button_1 = new JButton("Close");
@@ -188,21 +188,21 @@ public class Project_member_view extends JFrame {
 		button_1.setForeground(Color.WHITE);
 		button_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		button_1.setBackground(new Color(0, 102, 102));
-		button_1.setBounds(195, 421, 110, 28);
+		button_1.setBounds(217, 421, 145, 28);
 		panel_2.add(button_1);
 		
-		JButton button_1_1 = new JButton("View Pj Member");
-		button_1_1.addActionListener(new ActionListener() {
+		JButton btnViewMember = new JButton("View Member");
+		btnViewMember.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ShowPjMember(pj_id);
-				button_1_1.setEnabled(false);
+				btnViewMember.setEnabled(false);
 			}
 		});
-		button_1_1.setForeground(Color.WHITE);
-		button_1_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
-		button_1_1.setBackground(new Color(0, 102, 102));
-		button_1_1.setBounds(607, 420, 167, 28);
-		panel_2.add(button_1_1);
+		btnViewMember.setForeground(Color.WHITE);
+		btnViewMember.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
+		btnViewMember.setBackground(new Color(0, 102, 102));
+		btnViewMember.setBounds(372, 421, 145, 28);
+		panel_2.add(btnViewMember);
 	}
 	
 

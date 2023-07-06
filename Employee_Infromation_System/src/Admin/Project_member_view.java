@@ -191,18 +191,7 @@ public class Project_member_view extends JFrame {
 		button_1.setBounds(195, 421, 110, 28);
 		panel_2.add(button_1);
 		
-		JButton button_1_1 = new JButton("View Pj Member");
-		button_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ShowPjMember(pj_id);
-				button_1_1.setEnabled(false);
-			}
-		});
-		button_1_1.setForeground(Color.WHITE);
-		button_1_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
-		button_1_1.setBackground(new Color(0, 102, 102));
-		button_1_1.setBounds(607, 420, 167, 28);
-		panel_2.add(button_1_1);
+		ShowPjMember(pj_id);
 	}
 	
 

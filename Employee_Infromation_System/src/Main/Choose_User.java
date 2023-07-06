@@ -80,7 +80,7 @@ public class Choose_User extends JFrame {
 			        setVisible(false);
 			}
 		});
-		but_admin.setBounds(155, 163, 201, 99);
+		but_admin.setBounds(165, 211, 201, 99);
 		but_admin.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\icons8-administrator-male-80.png"));
 		but_admin.setForeground(new Color(0, 0, 102));
 		but_admin.setFont(new Font("Monospaced", Font.BOLD, 20));
@@ -107,7 +107,7 @@ public class Choose_User extends JFrame {
 		JPanel panel_5 = new JPanel();
 		panel_5.setLayout(null);
 		panel_5.setBackground(new Color(0, 102, 102));
-		panel_5.setBounds(155, 261, 201, 47);
+		panel_5.setBounds(165, 309, 201, 47);
 		panel.add(panel_5);
 		
 		JLabel lblAdminLogin = new JLabel("Admin Login");
@@ -131,7 +131,7 @@ public class Choose_User extends JFrame {
 		JPanel panel_7 = new JPanel();
 		panel_7.setLayout(null);
 		panel_7.setBackground(new Color(0, 102, 102));
-		panel_7.setBounds(623, 348, 201, 47);
+		panel_7.setBounds(623, 309, 201, 47);
 		panel.add(panel_7);
 		
 		JLabel lblEmployeeLogin = new JLabel("Employee Login");
@@ -173,7 +173,7 @@ public class Choose_User extends JFrame {
 		
 		JPanel panel_8 = new JPanel();
 		panel_8.setBackground(Color.LIGHT_GRAY);
-		panel_8.setBounds(0, 152, 145, 10);
+		panel_8.setBounds(0, 152, 145, 2);
 		panel_1.add(panel_8);
 		
 		JLabel lblEims = new JLabel("EIMS");
@@ -190,6 +190,7 @@ public class Choose_User extends JFrame {
 		panel.add(panel_2);
 		
 		JLabel lblHelloWelcome = new JLabel("Hello!");
+		lblHelloWelcome.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblHelloWelcome.setBounds(102, 0, 162, 33);
 		panel_2.add(lblHelloWelcome);
 		lblHelloWelcome.setIcon(new ImageIcon("D:\\HR Info Sys Pto\\icons8-male-user-24.png"));
@@ -202,7 +203,7 @@ public class Choose_User extends JFrame {
 		 		setVisible(false);
 		 	}
 		 });
-		but_emp.setBounds(623, 250, 201, 99);
+		but_emp.setBounds(623, 211, 201, 99);
 		panel.add(but_emp);
 		but_emp.setIcon(new ImageIcon("D:\\Java Project\\Employee_Infromation_System\\photo\\icons8-employee-96.png"));
 		but_emp.setForeground(Color.DARK_GRAY);

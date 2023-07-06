@@ -55,7 +55,7 @@ public class View_Table extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					View_Table frame = new View_Table(null,null);
+					View_Table frame = new View_Table(null,null,null,null);
 					
 					frame.setVisible(true);
 
@@ -73,7 +73,7 @@ public class View_Table extends JFrame {
 	 */
 	
 	
-	public View_Table(String emp_Id,String dept_id) throws SQLException {
+	public View_Table(String emp_Id,String dept_id,String email,String Type) throws SQLException {
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage("D:\\HR Info Sys Pto\\icons8-old-vmware-logo-50 (3) (1).png"));
 		setTitle("Employee Information management System");
@@ -110,13 +110,20 @@ public class View_Table extends JFrame {
 		});
 
 		scrollPane.setViewportView(table);
+		
+				JLabel label = new JLabel("");
+				scrollPane.setColumnHeaderView(label);
+				label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+				label.setIcon(new ImageIcon("C:\\Users\\aungp\\Downloads\\icons8-search-24.png"));
+				label.setHorizontalAlignment(SwingConstants.CENTER);
+				label.setBackground(new Color(0, 102, 102));
 
 		JButton btnClear = new JButton("Back");
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				try {
-					new Application_dept(null,null,null,dept_id).setVisible(true);
+					new Application_dept(email,emp_Id,Type,dept_id).setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -124,7 +131,7 @@ public class View_Table extends JFrame {
 
 			}
 		});
-		btnClear.setBounds(20, 421, 118, 30);
+		btnClear.setBounds(10, 421, 145, 28);
 		panel.add(btnClear);
 		btnClear.setForeground(Color.WHITE);
 		btnClear.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
@@ -139,15 +146,8 @@ public class View_Table extends JFrame {
 		button_3.setForeground(Color.WHITE);
 		button_3.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		button_3.setBackground(new Color(0, 102, 102));
-		button_3.setBounds(148, 421, 110, 30);
+		button_3.setBounds(177, 421, 145, 28);
 		panel.add(button_3);
-
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\aungp\\Downloads\\icons8-search-24.png"));
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBackground(new Color(0, 102, 102));
-		label.setBounds(58, 11, 34, 28);
-		panel.add(label);
 
 		txt_search = new JTextField();
 		txt_search.addKeyListener(new KeyAdapter() {
@@ -162,14 +162,14 @@ public class View_Table extends JFrame {
 			}
 		});
 		txt_search.setColumns(10);
-		txt_search.setBounds(88, 11, 556, 28);
+		txt_search.setBounds(113, 12, 556, 28);
 		panel.add(txt_search);
 
 		button = new JButton("Search");
 		button.setForeground(new Color(0, 102, 102));
 		button.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 19));
 		button.setBackground(Color.WHITE);
-		button.setBounds(649, 11, 118, 28);
+		button.setBounds(679, 11, 118, 28);
 		panel.add(button);
 
 		Show_Emp_View = new JButton("Show Emp");
@@ -205,7 +205,7 @@ public class View_Table extends JFrame {
 		Show_Emp_1.setForeground(Color.WHITE);
 		Show_Emp_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15)); 
 		Show_Emp_1.setBackground(new Color(0, 102, 102));
-		Show_Emp_1.setBounds(282, 422, 118, 29);
+		Show_Emp_1.setBounds(340, 421, 145, 28);
 		panel.add(Show_Emp_1);
 		
 		JButton Show_Emp_2 = new JButton("Update");
@@ -226,8 +226,23 @@ public class View_Table extends JFrame {
 		Show_Emp_2.setForeground(Color.WHITE);
 		Show_Emp_2.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		Show_Emp_2.setBackground(new Color(0, 102, 102));
-		Show_Emp_2.setBounds(410, 421, 145, 28);
+		Show_Emp_2.setBounds(509, 421, 145, 28);
 		panel.add(Show_Emp_2);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBackground(Color.LIGHT_GRAY);
+		btnNewButton.setIcon(new ImageIcon("C:\\Users\\User\\Downloads\\icons8-refresh-30.png"));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				 model.setRowCount(0);
+				 txt_search.setText(" ");
+				 Show_Emp_2.setEnabled(true);
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton.setBounds(10, 12, 98, 29);
+		panel.add(btnNewButton);
 
 	}
 
@@ -260,6 +275,4 @@ public class View_Table extends JFrame {
 
 
 	}
-
-
 }

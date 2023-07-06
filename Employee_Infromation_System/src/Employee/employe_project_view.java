@@ -83,42 +83,42 @@ public class employe_project_view extends JFrame {
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new LineBorder(new Color(0, 102, 102)));
 		panel_3.setBackground(UIManager.getColor("CheckBox.background"));
-		panel_3.setBounds(24, 10, 750, 400);
+		panel_3.setBounds(41, 10, 750, 400);
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
 		
 		JLabel lblEmployeeId = new JLabel("Employee ID :");
 		lblEmployeeId.setForeground(Color.BLACK);
-		lblEmployeeId.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblEmployeeId.setBounds(37, 229, 124, 14);
+		lblEmployeeId.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblEmployeeId.setBounds(6, 229, 124, 14);
 		panel_3.add(lblEmployeeId);
 		
 		JLabel lblProjectId = new JLabel("Project member ID :");
 		lblProjectId.setForeground(Color.BLACK);
 		lblProjectId.setBackground(new Color(0, 102, 102));
-		lblProjectId.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblProjectId.setBounds(10, 171, 128, 14);
+		lblProjectId.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblProjectId.setBounds(6, 171, 141, 14);
 		panel_3.add(lblProjectId);
 		
 		JLabel lPosition = new JLabel("Position :");
 		lPosition.setForeground(Color.BLACK);
-		lPosition.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lPosition.setBounds(37, 292, 167, 14);
+		lPosition.setFont(new Font("Dialog", Font.BOLD, 14));
+		lPosition.setBounds(6, 292, 74, 14);
 		panel_3.add(lPosition);
 		
 		JLabel lPJmID = new JLabel(EmpPjInfo.get(0));
-		lPJmID.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 11));
-		lPJmID.setBounds(151, 171, 105, 14);
+		lPJmID.setFont(new Font("Dialog", Font.BOLD, 14));
+		lPJmID.setBounds(157, 171, 105, 14);
 		panel_3.add(lPJmID);
 		
 		JLabel lEmpID = new JLabel(emp_id);
-		lEmpID.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 11));
-		lEmpID.setBounds(151, 229, 105, 14);
+		lEmpID.setFont(new Font("Dialog", Font.BOLD, 14));
+		lEmpID.setBounds(117, 229, 105, 14);
 		panel_3.add(lEmpID);
 		
 		JLabel label_16 = new JLabel(EmpPjInfo.get(1));
-		label_16.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 13));
-		label_16.setBounds(113, 292, 132, 14);
+		label_16.setFont(new Font("Dialog", Font.BOLD, 14));
+		label_16.setBounds(90, 292, 132, 14);
 		panel_3.add(label_16);
 		
 		JPanel panel_4 = new JPanel();
@@ -159,7 +159,7 @@ public class employe_project_view extends JFrame {
 		button.setForeground(Color.WHITE);
 		button.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		button.setBackground(new Color(0, 102, 102));
-		button.setBounds(62, 421, 110, 28);
+		button.setBounds(41, 420, 145, 28);
 		panel_2.add(button);
 		
 		JButton button_1 = new JButton("Close");
@@ -171,7 +171,7 @@ public class employe_project_view extends JFrame {
 		button_1.setForeground(Color.WHITE);
 		button_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		button_1.setBackground(new Color(0, 102, 102));
-		button_1.setBounds(195, 421, 110, 28);
+		button_1.setBounds(196, 420, 145, 28);
 		panel_2.add(button_1);
 		
 		JButton button_1_1 = new JButton("View Project");
@@ -183,7 +183,7 @@ public class employe_project_view extends JFrame {
 		button_1_1.setForeground(Color.WHITE);
 		button_1_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		button_1_1.setBackground(new Color(0, 102, 102));
-		button_1_1.setBounds(593, 420, 181, 31);
+		button_1_1.setBounds(351, 420, 145, 28);
 		panel_2.add(button_1_1);
 	}
 	

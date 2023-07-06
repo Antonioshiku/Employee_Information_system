@@ -40,6 +40,7 @@ import javax.swing.border.Border;
 public class Admin_Login extends JFrame {
 	private JTextField txt_Email;
 	private   JPasswordField  txt_Password;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -76,7 +77,7 @@ public class Admin_Login extends JFrame {
 		panel.setLayout(null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(98, 60, 630, 356);
+		panel_1.setBounds(93, 32, 635, 384);
 		panel_1.setBorder(new CompoundBorder());
 		panel_1.setBackground(new Color(0, 102, 102));
 		panel.add(panel_1);
@@ -110,7 +111,7 @@ public class Admin_Login extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.WHITE);
 		panel_2.setBorder(null);
-		panel_2.setBounds(315, 0, 315, 356);
+		panel_2.setBounds(315, -31, 320, 415);
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
 
@@ -122,14 +123,25 @@ public class Admin_Login extends JFrame {
 				try {
 					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_inforamtion_system",
 							"root", "123456");
-					PreparedStatement pst = con
-							.prepareStatement("select user_name,password,Type from  login where emp_id= ?");
+					
+					PreparedStatement stmt=con.prepareStatement("select email from employee where emp_id=?");
+					stmt.setString(1, txt_Email.getText());
+				
+					
+					ResultSet rr=stmt.executeQuery();
+					
+					String email="";
+					while(rr.next()) {
+					  email=rr.getString(1);
+					}
+					
+//					System.out.println(email);
+					PreparedStatement pst = con.prepareStatement("select user_name,password,Type from  login where emp_id= ?");
 					pst.setString(1, txt_Email.getText());
 					ResultSet rs = pst.executeQuery();
 
 					while (rs.next()) {
-						if (rs.getString(3).equalsIgnoreCase("Admin")
-								&& txt_Password.getText().equalsIgnoreCase(rs.getString(2))) {
+						if (rs.getString(3).equalsIgnoreCase("Admin")  &&  textField.getText().equalsIgnoreCase(email) &&txt_Password.getText().equalsIgnoreCase(rs.getString(2))) {
 							setVisible(false);
 							new Admin_Dashboard().setVisible(true);
 						} else {
@@ -146,7 +158,7 @@ public class Admin_Login extends JFrame {
 
 			}
 		});
-		btnLogIn.setBounds(84, 278, 145, 28);
+		btnLogIn.setBounds(84, 324, 145, 28);
 		btnLogIn.setForeground(Color.WHITE);
 		panel_2.add(btnLogIn);
 		btnLogIn.setFont(new Font("Modern No. 20", Font.BOLD, 20));
@@ -166,7 +178,7 @@ public class Admin_Login extends JFrame {
 				setVisible(false);
 			}
 		});
-		btnBack.setBounds(84, 317, 145, 28);
+		btnBack.setBounds(84, 362, 145, 28);
 		panel_2.add(btnBack);
 		btnBack.setForeground(new Color(0, 102, 102));
 		btnBack.setFont(new Font("Modern No. 20", Font.BOLD, 20));
@@ -174,12 +186,12 @@ public class Admin_Login extends JFrame {
 
 		JLabel lblEmailOrUsername = new JLabel("Employee Id");
 		lblEmailOrUsername.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblEmailOrUsername.setBounds(38, 132, 145, 14);
+		lblEmailOrUsername.setBounds(38, 121, 145, 14);
 		panel_2.add(lblEmailOrUsername);
 
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblPassword.setBounds(38, 196, 145, 14);
+		lblPassword.setBounds(38, 256, 145, 14);
 		panel_2.add(lblPassword);
 
 		txt_Email = new JTextField();
@@ -190,14 +202,25 @@ public class Admin_Login extends JFrame {
 
 			}
 		});
-		txt_Email.setBounds(38, 157, 245, 28);
+		txt_Email.setBounds(38, 145, 245, 28);
 		panel_2.add(txt_Email);
 		txt_Email.setColumns(10);
 
 		txt_Password = new JPasswordField();
 		txt_Password.setColumns(10);
-		txt_Password.setBounds(38, 221, 245, 28);
+		txt_Password.setBounds(38, 286, 245, 28);
 		panel_2.add(txt_Password);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBackground(Color.WHITE);
+		textField.setBounds(38, 218, 245, 28);
+		panel_2.add(textField);
+		
+		JLabel lblEmail = new JLabel("Email");
+		lblEmail.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
+		lblEmail.setBounds(38, 183, 145, 14);
+		panel_2.add(lblEmail);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.WHITE);
@@ -225,5 +248,4 @@ public class Admin_Login extends JFrame {
 			}
 		}
 	}
-
 }

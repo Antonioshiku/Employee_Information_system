@@ -58,6 +58,7 @@ public class Create_emp_info extends JFrame {
 	private JRadioButton rdbtnMale, rdbtnFemale;
 	private boolean nextCheck;
 	private JTextField txt_NRC;
+	private JButton btnCreate,btnCreate_2;
 
 	/**
 	 * Launch the application.
@@ -552,29 +553,6 @@ public class Create_emp_info extends JFrame {
 		button.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		button.setBackground(new Color(0, 102, 102));
 
-		JButton btnCreate = new JButton("Next ");
-		btnCreate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (nextCheck == true) {
-					setVisible(false);
-					try {
-						new Create_otherEmpInfo().setVisible(true);
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				} else {
-					JOptionPane.showMessageDialog(null, "You must create employee info.", "Error",
-							JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
-		btnCreate.setBounds(281, 33, 110, 28);
-		panel_5.add(btnCreate);
-		btnCreate.setForeground(Color.WHITE);
-		btnCreate.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
-		btnCreate.setBackground(new Color(0, 102, 102));
-
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -610,7 +588,8 @@ public class Create_emp_info extends JFrame {
 		JButton button_3 = new JButton("Close");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+			    System.exit(0);
+			
 			}
 		});
 		button_3.setBounds(544, 33, 110, 28);
@@ -619,7 +598,7 @@ public class Create_emp_info extends JFrame {
 		button_3.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		button_3.setBackground(new Color(0, 102, 102));
 
-		JButton btnCreate_2 = new JButton("Create");
+		btnCreate_2 = new JButton("Create");
 		btnCreate_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				inputCheck();
@@ -668,7 +647,6 @@ public class Create_emp_info extends JFrame {
 				aa.setGender(gender);
 				aa.setAge(age);
 				aa.setFather_name(Father_N);
-				;
 				aa.setDob(String.valueOf(DOB));
 				aa.setP_phno(Per_Ph_no);
 				aa.setW_phno(work_ph);
@@ -678,7 +656,7 @@ public class Create_emp_info extends JFrame {
 				aa.setNationality(nationality);
 				aa.setJoined_date(String.valueOf(J_date));
 				aa.setNRC(nrc);
-
+			
 				int choice = JOptionPane.showConfirmDialog(null, "Do you really want to save your data",
 						"Comfirm Message", JOptionPane.INFORMATION_MESSAGE);
 				if (choice == JOptionPane.YES_OPTION)
@@ -686,6 +664,7 @@ public class Create_emp_info extends JFrame {
 
 						new AdminDAO().addEmployee_info(aa);
 						new AdminDAO().addEmployee_addres(ee);
+						new AdminDAO().addEmployee_Login(aa);
 
 						nextCheck = true;
 						txt_emp_id.setText("");
@@ -707,18 +686,17 @@ public class Create_emp_info extends JFrame {
 						txt_J_Date.setDate(null);
 						txt_addr_code.setText(" ");
 						txt_region.setText(" ");
-						cboNRC1.setSelectedIndex(0);
-						NRC2.setSelectedIndex(0);
-						NRC3.setSelectedIndex(0);
 						txt_NRC.setText(" ");
-
+						btnCreate.setVisible(true);
+						btnCreate_2.setVisible(false);
 					} catch (SQLException e1_) {
 						JOptionPane.showMessageDialog(null, "Database Connection Error", "Save Error",
 								JOptionPane.ERROR_MESSAGE);
-						 System.out.println(e1_);
+						System.out.println(e1_);
 						nextCheck = false;
 
 					}
+
 			}
 
 		});
@@ -727,11 +705,32 @@ public class Create_emp_info extends JFrame {
 		btnCreate_2.setBackground(new Color(0, 102, 102));
 		btnCreate_2.setBounds(147, 33, 110, 28);
 		panel_5.add(btnCreate_2);
+
+		 btnCreate = new JButton("Next ");
+		btnCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				setVisible(false);
+				try {
+					new Create_otherEmpInfo().setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+
+		});
+		btnCreate.setBounds(281, 33, 110, 28);
+		panel_5.add(btnCreate);
+		btnCreate.setVisible(false);
+		btnCreate.setForeground(Color.WHITE);
+		btnCreate.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
+		btnCreate.setBackground(new Color(0, 102, 102));
 	}
 
 	public void inputCheck() {
 		if (txt_emp_id.getText().isEmpty()) {
-JOptionPane.showMessageDialog(null, "Emp _id is missing","missing data error",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Emp _id is missing", "missing data error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

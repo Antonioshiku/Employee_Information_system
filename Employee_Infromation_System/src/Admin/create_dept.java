@@ -93,8 +93,8 @@ public class create_dept extends JFrame {
 		JLabel lblProjectId = new JLabel("Department ID    :");
 		lblProjectId.setForeground(Color.BLACK);
 		lblProjectId.setBackground(new Color(0, 102, 102));
-		lblProjectId.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblProjectId.setBounds(37, 131, 146, 14);
+		lblProjectId.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
+		lblProjectId.setBounds(39, 131, 175, 14);
 		panel_3.add(lblProjectId);
 		
 		JLabel lblProject = new JLabel("Department");
@@ -107,7 +107,7 @@ public class create_dept extends JFrame {
 		
 		JLabel lblPosition = new JLabel("Department Ph No  :");
 		lblPosition.setForeground(Color.BLACK);
-		lblPosition.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
+		lblPosition.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		lblPosition.setBounds(37, 312, 167, 14);
 		panel_3.add(lblPosition);
 		
@@ -123,13 +123,13 @@ public class create_dept extends JFrame {
 		
 		JLabel lblProjectMemberId = new JLabel("Department Name :");
 		lblProjectMemberId.setForeground(Color.BLACK);
-		lblProjectMemberId.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblProjectMemberId.setBounds(37, 212, 167, 14);
+		lblProjectMemberId.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
+		lblProjectMemberId.setBounds(37, 220, 167, 14);
 		panel_3.add(lblProjectMemberId);
 		
 		txt_dept_name = new JTextField();
 		txt_dept_name.setColumns(10);
-		txt_dept_name.setBounds(235, 207, 245, 28);
+		txt_dept_name.setBounds(235, 215, 245, 28);
 		panel_3.add(txt_dept_name);
 		
 		JButton button = new JButton("Back");
