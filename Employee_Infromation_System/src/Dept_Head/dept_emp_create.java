@@ -19,14 +19,20 @@ import com.toedter.calendar.JDateChooser;
 
 import Main.Address;
 import Main.Employee;
+import Main.pr_member;
 import Dept_Head.other_dept_emp_info;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
@@ -66,7 +72,7 @@ public class dept_emp_create extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					dept_emp_create frame = new dept_emp_create(null);
+					dept_emp_create frame = new dept_emp_create(null,null,null,null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -80,7 +86,7 @@ public class dept_emp_create extends JFrame {
 	 * 
 	 * @throws SQLException
 	 */
-	public dept_emp_create(String dept) throws SQLException {
+	public dept_emp_create(String emp,String dept,String email,String Type) throws SQLException {
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage("D:\\HR Info Sys Pto\\icons8-old-vmware-logo-50 (3) (1).png"));
 		setTitle("Employee Information management System");
@@ -533,7 +539,7 @@ public class dept_emp_create extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				new create_emp_dept(null,null,null,null).setVisible(true);
+				new create_emp_dept(emp,dept,email,Type).setVisible(true);
 			}
 		});
 		button.setBounds(10, 33, 110, 28);
@@ -618,7 +624,7 @@ public class dept_emp_create extends JFrame {
 				String addr_code = txt_region.getText();
 				String region = txt_region.getText();
 
-				Address ee = new Address();
+			   Address ee=new Address();
 				ee.setRegion(region);
 				ee.setPostalCode(postal);
 				ee.setAddr_code(addr_code);
@@ -644,6 +650,9 @@ public class dept_emp_create extends JFrame {
 				aa.setNationality(nationality);
 				aa.setJoined_date(String.valueOf(J_date));
 				aa.setNRC(nrc);
+				
+				pr_member pp=new pr_member();
+				pp.setEmp_Id(emp_id);
 			
 				int choice = JOptionPane.showConfirmDialog(null, "Do you really want to save your data",
 						"Comfirm Message", JOptionPane.INFORMATION_MESSAGE);
@@ -652,7 +661,7 @@ public class dept_emp_create extends JFrame {
 
 						new ApplicationDAO().addEmployee_info(aa);
 						new ApplicationDAO().addEmployee_addres(ee);
-						new ApplicationDAO().addEmployee_Login(aa);
+						new ApplicationDAO().addEmployee_Login(pp);
 
 						nextCheck = true;
 						txt_emp_id.setText("");
@@ -700,7 +709,7 @@ public class dept_emp_create extends JFrame {
 
 				setVisible(false);
 				try {
-					new other_dept_emp_info(dept).setVisible(true);
+					new other_dept_emp_info(emp,dept,email,Type).setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -721,4 +730,27 @@ public class dept_emp_create extends JFrame {
 			JOptionPane.showMessageDialog(null, "Emp _id is missing", "missing data error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
+	public ArrayList<String> type(String emp){
+		ArrayList<String> rr = new ArrayList<String>();
+		Connection con;
+		String query = "select Email,Type from login where emp_id=?";
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_inforamtion_system" + "", "root",
+					"123456");
+			PreparedStatement stmt = con.prepareStatement(query);
+			stmt.setString(1, emp);
+
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				rr.add(0, rs.getString(1));
+				rr.add(1,rs.getString(2));
+			}
+
+		} catch (Exception ee) {
+			ee.printStackTrace();
+		}
+		return rr;
+	}
+	
 }

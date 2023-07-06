@@ -51,7 +51,7 @@ public class Dept_login extends JFrame {
 			public void run() {
 				try {
 					Dept_login frame = new Dept_login();
-					frame.setVisible(true);
+				 frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -149,7 +149,7 @@ public class Dept_login extends JFrame {
 					//	System.out.println(dept_head + " " + pass);
 						if (dept_head.equalsIgnoreCase(dept_head) && textField.getText().equalsIgnoreCase(email) && pass.equalsIgnoreCase("dept1234")) {             
 							setVisible(false);
-							new Application_dept(email,emp,dept_head,dept_id).setVisible(true);
+							new Application_dept(emp,dept_id,email,dept_head).setVisible(true);
 							              result=true;
 						}
 						else {

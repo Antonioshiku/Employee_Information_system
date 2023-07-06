@@ -9,7 +9,6 @@ public class department extends Employee {
 
 
 	public department(String dept_name, String dept_ph_no) {
-		super();
 		this.dept_name = dept_name;
 		this.dept_ph_no = dept_ph_no;
 	}

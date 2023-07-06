@@ -19,6 +19,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
@@ -38,7 +39,7 @@ public class Project_member_view extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Project_member_view frame = new Project_member_view(null,null,null,null,null);
+					Project_member_view frame = new Project_member_view(null,null,null,null,null,null,null,null);
 				
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -51,7 +52,7 @@ public class Project_member_view extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Project_member_view(String pj_id,String pj_name,String dept_id,String start_date,String end_date) {
+	public Project_member_view(String pj_id,String pj_name,String dept_id,String start_date,String end_date,String emp,String email,String Type) {
 		
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\HR Info Sys Pto\\icons8-old-vmware-logo-50 (3) (1).png"));
@@ -170,7 +171,7 @@ public class Project_member_view extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				new Project(dept_id).setVisible(true);
+				new Project(emp,dept_id,email,Type).setVisible(true);
 			}
 		});
 		button.setForeground(Color.WHITE);
@@ -191,18 +192,25 @@ public class Project_member_view extends JFrame {
 		button_1.setBounds(217, 421, 145, 28);
 		panel_2.add(button_1);
 		
-		JButton btnViewMember = new JButton("View Member");
-		btnViewMember.addActionListener(new ActionListener() {
+		JButton button_1_1 = new JButton("Add project Member");
+		button_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ShowPjMember(pj_id);
-				btnViewMember.setEnabled(false);
+				setVisible(false);
+				try {
+					new create_pj_member(emp,dept_id,email,Type).setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
-		btnViewMember.setForeground(Color.WHITE);
-		btnViewMember.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
-		btnViewMember.setBackground(new Color(0, 102, 102));
-		btnViewMember.setBounds(372, 421, 145, 28);
-		panel_2.add(btnViewMember);
+		button_1_1.setForeground(Color.WHITE);
+		button_1_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
+		button_1_1.setBackground(new Color(0, 102, 102));
+		button_1_1.setBounds(558, 420, 216, 28);
+		panel_2.add(button_1_1);
+		
+		ShowPjMember(pj_id);
 	}
 	
 

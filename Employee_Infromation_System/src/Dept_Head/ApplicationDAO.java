@@ -61,9 +61,9 @@ public class ApplicationDAO {
 		}
 		
 
-		public void addEmployee_Login(Employee e) throws SQLException {
+		public void addEmployee_Login(pr_member e) throws SQLException {
 			PreparedStatement pst = con.prepareStatement("insert into login values(?,?,?,?)");
-			pst.setString(1, e.getEmp_id());
+			pst.setString(1, e.getEmp_Id());
 			pst.setString(2, "employee@gmail.com");
 			pst.setString(3, "emp1234");
 			pst.setString(4, "Employee");
@@ -187,7 +187,7 @@ public class ApplicationDAO {
        int i=pst.executeUpdate();
 	         
 	         if(i> 0) {
-	        	  JOptionPane.showMessageDialog(null, "Data Correct Successfully", "Data Successfullly",JOptionPane.ERROR_MESSAGE);
+	        	  JOptionPane.showMessageDialog(null, "Data Correct Successfully", "Data Successfullly",JOptionPane.INFORMATION_MESSAGE);
 	         }
 
 	    }
@@ -251,6 +251,8 @@ public class ApplicationDAO {
          }
 	    
 	    }
+	    
+	 
 	    
 		public ArrayList<String> showDeptId() throws SQLException {
 			ArrayList<String> result = new ArrayList<String>();

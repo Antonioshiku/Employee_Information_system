@@ -14,7 +14,6 @@ public class project {
           }
 
 		public project(String project_Id, String project_Name, int dept_id, String start_date, String end_date) {
-			super();
 			Project_Id = project_Id;
 			Project_Name = project_Name;
 			this.dept_id = dept_id;

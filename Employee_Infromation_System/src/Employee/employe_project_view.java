@@ -30,9 +30,15 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class employe_project_view extends JFrame {
 	private  JTable table;
+	private ArrayList<String> rr;
+	private 	JLabel lPJmID,label_16;
 
 	/**
 	 * Launch the application.
@@ -64,6 +70,8 @@ public class employe_project_view extends JFrame {
 		ArrayList<String> EmpPjInfo=new ArrayList<String>();
 		EmpPjInfo=shoPjMemberInfo(emp_id);
 	
+		 rr=new ArrayList<String>();
+		 
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -106,20 +114,6 @@ public class employe_project_view extends JFrame {
 		lPosition.setBounds(6, 292, 74, 14);
 		panel_3.add(lPosition);
 		
-		JLabel lPJmID = new JLabel(EmpPjInfo.get(0));
-		lPJmID.setFont(new Font("Dialog", Font.BOLD, 14));
-		lPJmID.setBounds(157, 171, 105, 14);
-		panel_3.add(lPJmID);
-		
-		JLabel lEmpID = new JLabel(emp_id);
-		lEmpID.setFont(new Font("Dialog", Font.BOLD, 14));
-		lEmpID.setBounds(117, 229, 105, 14);
-		panel_3.add(lEmpID);
-		
-		JLabel label_16 = new JLabel(EmpPjInfo.get(1));
-		label_16.setFont(new Font("Dialog", Font.BOLD, 14));
-		label_16.setBounds(90, 292, 132, 14);
-		panel_3.add(label_16);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(new Color(0, 102, 102));
@@ -132,6 +126,38 @@ public class employe_project_view extends JFrame {
 		panel_4.add(scrollPane);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String pr_id=table.getValueAt(table.getSelectedRow(), 0).toString();
+				
+				  Connection con;
+				   rr=new ArrayList<String>();
+					try {
+						 	
+						con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_inforamtion_system" + "", "root",
+								"123456");
+						
+						String query="select pr_member_id,position from project_member where pr_id=?&& emp_id=?";
+				        PreparedStatement stmt = con.prepareStatement(query);         
+				        stmt.setString(1, pr_id);
+				        stmt.setString(2, emp_id);
+				        ResultSet rs=stmt.executeQuery();
+				        while(rs.next()) {
+				        	lPJmID.setText(rs.getString(1));
+							label_16.setText(rs.getString(2));
+			
+				        }
+					} catch (SQLException e1_) {
+					
+						System.out.println(e1_);
+					}
+					
+				
+				
+				
+			}
+		});
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
@@ -140,6 +166,22 @@ public class employe_project_view extends JFrame {
 			}
 		));
 		scrollPane.setViewportView(table);
+		
+		
+		 lPJmID = new JLabel();
+		lPJmID.setFont(new Font("Dialog", Font.BOLD, 14));
+		lPJmID.setBounds(157, 171, 105, 14);
+		panel_3.add(lPJmID);
+		
+		JLabel lEmpID = new JLabel(emp_id);
+		lEmpID.setFont(new Font("Dialog", Font.BOLD, 14));
+		lEmpID.setBounds(117, 229, 105, 14);
+		panel_3.add(lEmpID);
+		
+		 label_16 = new JLabel();
+		label_16.setFont(new Font("Dialog", Font.BOLD, 14));
+		label_16.setBounds(90, 292, 166, 25);
+		panel_3.add(label_16);
 		
 		JLabel lblProject = new JLabel("Project");
 		lblProject.setHorizontalAlignment(SwingConstants.CENTER);
@@ -174,17 +216,7 @@ public class employe_project_view extends JFrame {
 		button_1.setBounds(196, 420, 145, 28);
 		panel_2.add(button_1);
 		
-		JButton button_1_1 = new JButton("View Project");
-		button_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ShowPj(emp_id);
-			}
-		});
-		button_1_1.setForeground(Color.WHITE);
-		button_1_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
-		button_1_1.setBackground(new Color(0, 102, 102));
-		button_1_1.setBounds(351, 420, 145, 28);
-		panel_2.add(button_1_1);
+		ShowPj(emp_id);
 	}
 	
 	public  void ShowPj(String emp_id) {

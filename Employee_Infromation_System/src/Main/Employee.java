@@ -3,22 +3,23 @@ package Main;
 public class Employee {
 	 private String emp_id,  Fname, Lname, gender,age,  Father_name , p_phno , w_phno , dob ,addr, Township , City , Religion , NRC , Email , Nationality , matrital_status , joined_date;
      private int dept_id;
+     
 	  public Employee() {
 	  }
 
 	  public Employee(String emp_id,int dept_id, String fname, String lname, String Full,String gender, String age, String father_name, String p_phno,
 	      String w_phno, String dob,String addr, String township, String city, String religion, String nRC, String email,
 	      String nationality, String matrital_status, String joined_date) {
-	    emp_id = emp_id;
+	   this.emp_id = emp_id;
 	    this.dept_id=dept_id;
 	    Fname = fname;
 	    Lname = lname;
-	    gender = gender;
-	    age = age;
+	    this.gender = gender;
+	    this.age = age;
 	    Father_name = father_name;
-	    p_phno = p_phno;
-	    w_phno = w_phno;
-	    dob = dob;
+	    this.p_phno = p_phno;
+	    this.w_phno = w_phno;
+	    this.dob = dob;
 	    this.addr=addr;
 	    Township = township;
 	    City = city;
@@ -26,8 +27,8 @@ public class Employee {
 	    NRC = nRC;
 	    Email = email;
 	    Nationality = nationality;
-	    matrital_status = matrital_status;
-	    joined_date = joined_date;
+	    this.matrital_status = matrital_status;
+	    this.joined_date = joined_date;
 	  }
 
 

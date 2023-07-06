@@ -10,7 +10,6 @@ public class pr_member extends project {
                 }
 
 				public pr_member(String pr_member_id, String position, String emp_Id) {
-					super();
 					this.pr_member_id = pr_member_id;
 					this.position = position;
 					this.emp_Id = emp_Id;

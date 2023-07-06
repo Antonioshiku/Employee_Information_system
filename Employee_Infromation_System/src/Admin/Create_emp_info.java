@@ -639,6 +639,7 @@ public class Create_emp_info extends JFrame {
 				ee.setAddr(address);
 				ee.setTownship(township);
 				ee.setCity(city);
+				
 				Employee aa = new Employee();
 				aa.setEmp_id(emp_id);
 				aa.setDept_id(dept_id);

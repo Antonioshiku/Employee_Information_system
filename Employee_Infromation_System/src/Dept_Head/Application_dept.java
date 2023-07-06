@@ -48,7 +48,7 @@ public class Application_dept extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Application_dept(String email,String emp_id,String Type,String dept_id) throws SQLException{
+	public Application_dept(String emp_id,String dept_id,String email,String Type) throws SQLException{
 		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\HR Info Sys Pto\\icons8-old-vmware-logo-50 (3) (1).png"));
 		setTitle("Employee Information Management System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,7 +66,7 @@ public class Application_dept extends JFrame {
 		btnProjects.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				new Project(dept_id).setVisible(true);
+				new Project(emp_id,dept_id,email,Type).setVisible(true);
 			}
 		});
 		btnProjects.setBounds(524, 208, 201, 99);

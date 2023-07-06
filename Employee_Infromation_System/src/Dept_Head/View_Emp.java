@@ -41,7 +41,7 @@ public class View_Emp extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					View_Emp frame = new View_Emp(null, null, null, null, null, null, null, null, null);
+					View_Emp frame = new View_Emp(null, null, null, null, null, null, null, null, null,null,null);
 
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -58,7 +58,7 @@ public class View_Emp extends JFrame {
 	 */
 
 	public View_Emp(String emp, String name, String ph_no, String add, String email, String town, String city,
-			String salary, String position) {
+			String salary, String position,String user_name,String Type) {
 
 		ArrayList<String> rs = new ArrayList<String>();
 		rs = empInfo(emp);
@@ -95,7 +95,7 @@ public class View_Emp extends JFrame {
 				try {
 					ArrayList<String> rr=new ArrayList<String>();
 					rr=type(emp);
-					new View_Table(emp,dept_id,rr.get(0),rr.get(1)).setVisible(true);
+					new View_Table(emp,dept_id,user_name,Type).setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -330,7 +330,7 @@ public class View_Emp extends JFrame {
 	public ArrayList<String> type(String emp){
 		ArrayList<String> rr = new ArrayList<String>();
 		Connection con;
-		String query = "select Email,Type from login where emp_id=?";
+		String query = "select user_name,Type from login where emp_id=?";
 		try {
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_inforamtion_system" + "", "root",
 					"123456");

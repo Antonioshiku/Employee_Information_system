@@ -35,8 +35,8 @@ import javax.swing.DefaultComboBoxModel;
 public class create_project extends JFrame {
 	private JTextField txt_pN;
 	private JTextField txt_PId;
-	private JComboBox comboDept;
 	private JDateChooser dcend_date, dcstart_date;
+	private JButton btnNext;
 	private int next_id;
 
 	/**
@@ -46,7 +46,7 @@ public class create_project extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					create_project frame = new create_project(null);
+					create_project frame = new create_project(null,null,null,null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,7 +60,7 @@ public class create_project extends JFrame {
 	 * 
 	 * @throws SQLException
 	 */
-	public create_project(String dept_id) throws SQLException {
+	public create_project(String emp,String dept_id,String email,String Type) throws SQLException {
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage("D:\\HR Info Sys Pto\\icons8-old-vmware-logo-50 (3) (1).png"));
 		setTitle("Employee Information management System");
@@ -90,12 +90,6 @@ public class create_project extends JFrame {
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
 
-		JLabel lblDepartmentId = new JLabel("Department ID   :");
-		lblDepartmentId.setForeground(Color.BLACK);
-		lblDepartmentId.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblDepartmentId.setBounds(37, 136, 124, 14);
-		panel_3.add(lblDepartmentId);
-
 		JLabel lblProjectId = new JLabel("Project ID          :");
 		lblProjectId.setForeground(Color.BLACK);
 		lblProjectId.setBackground(new Color(0, 102, 102));
@@ -106,13 +100,13 @@ public class create_project extends JFrame {
 		JLabel lblProjectName = new JLabel("Project Name     :");
 		lblProjectName.setForeground(Color.BLACK);
 		lblProjectName.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblProjectName.setBounds(37, 185, 167, 14);
+		lblProjectName.setBounds(37, 157, 167, 14);
 		panel_3.add(lblProjectName);
 
 		JLabel lblStartDate = new JLabel("Start Date         :");
 		lblStartDate.setForeground(Color.BLACK);
 		lblStartDate.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 11));
-		lblStartDate.setBounds(37, 240, 146, 14);
+		lblStartDate.setBounds(37, 223, 146, 14);
 		panel_3.add(lblStartDate);
 
 		JLabel lblEndDate = new JLabel("End Date           :");
@@ -131,11 +125,11 @@ public class create_project extends JFrame {
 
 		txt_pN = new JTextField();
 		txt_pN.setColumns(10);
-		txt_pN.setBounds(235, 180, 245, 28);
+		txt_pN.setBounds(235, 152, 245, 28);
 		panel_3.add(txt_pN);
 
 		dcstart_date = new JDateChooser();
-		dcstart_date.setBounds(235, 240, 245, 28);
+		dcstart_date.setBounds(235, 223, 245, 28);
 		panel_3.add(dcstart_date);
 
 		txt_PId = new JTextField();
@@ -147,16 +141,11 @@ public class create_project extends JFrame {
 		dcend_date.setBounds(235, 288, 245, 28);
 		panel_3.add(dcend_date);
 
-		comboDept = new JComboBox();
-		comboDept.setModel(new DefaultComboBoxModel(new String[] {"none",dept_id}));
-		comboDept.setBounds(235, 132, 245, 28);
-		panel_3.add(comboDept);
-
 		JButton button = new JButton("Back");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				new Project(dept_id).setVisible(true);
+				new Project(emp,dept_id,email,Type).setVisible(true);
 			}
 		});
 		button.setForeground(Color.WHITE);
@@ -169,6 +158,7 @@ public class create_project extends JFrame {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
+			
 			}
 		});
 		button_1.setForeground(Color.WHITE);
@@ -181,7 +171,6 @@ public class create_project extends JFrame {
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_PId.setText(" ");
-				comboDept.setSelectedIndex(0);
 		//		combopj.setSelectedIndex(0);
 				txt_pN.setText(" ");
 			//	txtPosition.setText(" ");
@@ -200,14 +189,12 @@ public class create_project extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				inputCheck();
 				String pr_id = txt_PId.getText();
-				int dept_id = Integer.parseInt(comboDept.getSelectedItem().toString());
-			//	String emp_id = combopj.getSelectedItem().toString();
 				String pj_name = txt_pN.getText();
-			//	String position = txtPosition.getText();
 				Date start_date = new Date(dcstart_date.getDate().getTime());
 				Date end_date = new Date(dcend_date.getDate().getTime());
+				
 
-				project p = new project(pr_id, pj_name, dept_id, String.valueOf(start_date), String.valueOf(end_date));
+				project p = new project(pr_id, pj_name,Integer.parseInt(dept_id), String.valueOf(start_date), String.valueOf(end_date));
 				// pr_member pm=new pr_member();
 
 				int choice = JOptionPane.showConfirmDialog(null, "Do you really want to save your data",
@@ -218,12 +205,13 @@ public class create_project extends JFrame {
 						next_id = 1;
 						
 						txt_PId.setText(" ");
-						comboDept.setSelectedIndex(0);
 					//	combopj.setSelectedIndex(0);
 						txt_pN.setText(" ");
 					//	txtPosition.setText(" ");
 						dcstart_date.setDate(null);
 						dcend_date.setDate(null);
+						btnCreate.setVisible(false);
+						btnNext.setVisible(true);
 					} catch (SQLException e1_) {
 						JOptionPane.showMessageDialog(null, "Database Connection Error", "Save Error",
 								JOptionPane.ERROR_MESSAGE);
@@ -238,13 +226,13 @@ public class create_project extends JFrame {
 		btnCreate.setBounds(663, 128, 145, 28);
 		panel_2.add(btnCreate);
 
-		JButton btnNext = new JButton("Next");
+	btnNext = new JButton("Next");
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(next_id > 0) {
 					 setVisible(false);
 					 try {
-						new create_pj_member(dept_id).setVisible(true);
+						new create_pj_member(emp,dept_id,email,Type).setVisible(true);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -256,36 +244,16 @@ public class create_project extends JFrame {
 		});
 		btnNext.setForeground(Color.WHITE);
 		btnNext.setFont(new Font("Monospaced", Font.BOLD, 20));
+		btnNext.setVisible(false);
 		btnNext.setBackground(new Color(0, 102, 102));
 		btnNext.setBounds(663, 60, 145, 28);
 		panel_2.add(btnNext);
-		
-		JButton button_1_1 = new JButton("Add project Member");
-		button_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				try {
-					new create_pj_member(dept_id).setVisible(true);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		button_1_1.setForeground(Color.WHITE);
-		button_1_1.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
-		button_1_1.setBackground(new Color(0, 102, 102));
-		button_1_1.setBounds(194, 423, 230, 28);
-		panel_2.add(button_1_1);
 	}
 
 	public void inputCheck() {
 		    if(txt_PId.getText().isEmpty()) {
 		    	 JOptionPane.showMessageDialog(null, "Project Id is missing ", "missing check error",JOptionPane.ERROR_MESSAGE);
 		    }else {
-		    	 if(comboDept.getSelectedIndex() == 0) {
-		    		 JOptionPane.showMessageDialog(null, "Project Dept is missing ", "missing check error",JOptionPane.ERROR_MESSAGE);
-		    	 }else {
 		    		  if(txt_pN.getText().isEmpty()) {
 		    			  JOptionPane.showMessageDialog(null, "Project Name is missing ", "missing check error",JOptionPane.ERROR_MESSAGE);
 		    		  }
@@ -303,5 +271,5 @@ public class create_project extends JFrame {
 		    }
 	  }
 	
-}
+
 	

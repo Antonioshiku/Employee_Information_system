@@ -57,7 +57,7 @@ public class other_dept_emp_info extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					other_dept_emp_info frame = new other_dept_emp_info(null);
+					other_dept_emp_info frame = new other_dept_emp_info(null,null,null,null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -71,7 +71,7 @@ public class other_dept_emp_info extends JFrame {
 	 * 
 	 * @throws SQLException
 	 */
-	public other_dept_emp_info(String dept) throws SQLException {
+	public other_dept_emp_info(String emp,String dept,String email,String Type) throws SQLException {
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage("D:\\HR Info Sys Pto\\icons8-old-vmware-logo-50 (3) (1).png"));
 		setTitle("Employee Information management System");
@@ -362,7 +362,7 @@ public class other_dept_emp_info extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
 				try {
-					new dept_emp_create(null).setVisible(true);
+					new dept_emp_create(emp,dept,email,Type).setVisible(true);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

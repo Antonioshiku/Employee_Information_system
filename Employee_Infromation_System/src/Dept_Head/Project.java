@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
@@ -43,7 +44,7 @@ public class Project extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Project frame = new Project(null);
+					Project frame = new Project(null,null,null,null);
 					
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -56,7 +57,7 @@ public class Project extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Project(String dept_id) {
+	public Project(String emp,String dept_id,String email,String Type) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\HR Info Sys Pto\\icons8-old-vmware-logo-50 (3) (1).png"));
 		setTitle("Employee Information management System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -105,7 +106,7 @@ public class Project extends JFrame {
 				setVisible(false);
 				
 				try {
-					new Application_dept(null,null,null,dept_id).setVisible(true);
+					new Application_dept(emp,dept_id,email,Type).setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -125,13 +126,13 @@ public class Project extends JFrame {
 		panel_1.setLayout(null);
 		
 		JButton btnCreate = new JButton("Create");
-		btnCreate.setBounds(10, 48, 110, 28);
+		btnCreate.setBounds(10, 24, 110, 28);
 		panel_1.add(btnCreate);
 		btnCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
 				try {
-					new create_project(dept_id).setVisible(true);
+					new create_project(emp,dept_id,email,Type).setVisible(true);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -151,11 +152,11 @@ public class Project extends JFrame {
 			        String dept_id=table.getValueAt(table.getSelectedRow(), 2).toString();
 			        String Start_date=table.getValueAt(table.getSelectedRow(), 3).toString();
 			        String end_date=table.getValueAt(table.getSelectedRow(), 4).toString();
-			        new Project_member_view(project_id,Project_Name,dept_id,Start_date,end_date).setVisible(true);
-			        new Project(end_date).setProject_id(project_id);
+			        new Project_member_view(project_id,Project_Name,dept_id,Start_date,end_date,emp,email,Type).setVisible(true);
+			 
 			}
 		});
-		btnView.setBounds(10, 165, 110, 28);
+		btnView.setBounds(10, 129, 110, 28);
 		panel_1.add(btnView);
 		btnView.setForeground(new Color(0, 102, 102));
 		btnView.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
@@ -175,7 +176,7 @@ public class Project extends JFrame {
 		btnShowPj.setForeground(new Color(0, 102, 102));
 		btnShowPj.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		btnShowPj.setBackground(Color.WHITE);
-		btnShowPj.setBounds(10, 104, 110, 28);
+		btnShowPj.setBounds(10, 76, 110, 28);
 		panel_1.add(btnShowPj);
 		
 		JButton btnUpdate = new JButton("Update");
@@ -187,14 +188,68 @@ public class Project extends JFrame {
 			        String Start_date=table.getValueAt(table.getSelectedRow(), 3).toString();
 			        String end_date=table.getValueAt(table.getSelectedRow(), 4).toString();
 				setVisible(false);
-				new update_project(project_id,Project_Name,dept_id,Start_date,end_date).setVisible(true);
+				new update_project(project_id,Project_Name,dept_id,Start_date,end_date,emp,email,Type).setVisible(true);
 			}
 		});
 		btnUpdate.setForeground(new Color(0, 102, 102));
 		btnUpdate.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
 		btnUpdate.setBackground(Color.WHITE);
-		btnUpdate.setBounds(10, 223, 110, 28);
+		btnUpdate.setBounds(10, 185, 110, 28);
 		panel_1.add(btnUpdate);
+		
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Connection con;
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+				String pr_id = table.getValueAt(table.getSelectedRow(), 0).toString();
+				
+				String data = "Project_Id  : " + table.getValueAt(table.getSelectedRow(), 0).toString();
+				data += "\nProject Name   :" + table.getValueAt(table.getSelectedRow(), 1).toString();
+				data += "\nDept Id :  " + table.getValueAt(table.getSelectedRow(), 2).toString();
+				data += "\nStart Date; :  " + table.getValueAt(table.getSelectedRow(), 3).toString();
+				data += "\nEnd Date:  " + table.getValueAt(table.getSelectedRow(), 4).toString();
+				
+				int ch = JOptionPane.showConfirmDialog(null, data, "Confirm Message", JOptionPane.WARNING_MESSAGE);
+
+				if (ch == JOptionPane.YES_OPTION) {
+					try {
+						con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hr_inforamtion_system", "root",
+								"123456");
+						
+						
+						PreparedStatement stmt = con.prepareStatement(
+								"delete from project_member  where pr_id=?");
+						stmt.setString(1, pr_id);
+						PreparedStatement qua=con.prepareStatement("delete from project  where pr_id=?");
+						qua.setString(1,pr_id);
+					
+						int ii=stmt.executeUpdate();
+						int iii=qua.executeUpdate();
+
+					
+						if(ii > 0 && iii > 0) {
+							 JOptionPane.showMessageDialog(null, "data delete correct successfully","Correct",JOptionPane.INFORMATION_MESSAGE);
+						}else {
+							 
+						}
+
+				          DefaultTableModel dm=(DefaultTableModel)table.getModel();
+				          dm.removeRow(table.getSelectedRow());
+
+					} catch (Exception ee) {
+						ee.printStackTrace();
+						System.out.println(ee);
+					}
+				}
+			}
+		});
+		btnDelete.setBounds(10, 242, 110, 28);
+		panel_1.add(btnDelete);
+		btnDelete.setForeground(new Color(0, 102, 102));
+		btnDelete.setFont(new Font("MS Reference Sans Serif", Font.BOLD, 15));
+		btnDelete.setBackground(Color.WHITE);
 		
 		JLabel label = new JLabel("");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -231,7 +286,6 @@ public class Project extends JFrame {
 		            e.printStackTrace();
 		        }
 		    }
-    
     }
 		
 

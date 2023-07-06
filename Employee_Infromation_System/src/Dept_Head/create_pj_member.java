@@ -49,7 +49,7 @@ public class create_pj_member extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					create_pj_member frame = new create_pj_member(null);
+					create_pj_member frame = new create_pj_member(null,null,null,null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +62,7 @@ public class create_pj_member extends JFrame {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public create_pj_member(String dept_id) throws SQLException {
+	public create_pj_member(String emp,String dept_id,String email,String Type) throws SQLException {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\HR Info Sys Pto\\icons8-old-vmware-logo-50 (3) (1).png"));
 		setTitle("Employee Information management System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -147,7 +147,7 @@ public class create_pj_member extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				new Project(dept_id).setVisible(true);
+				new Project(emp,dept_id,email,Type).setVisible(true);
 			}
 		});
 		button.setForeground(Color.WHITE);

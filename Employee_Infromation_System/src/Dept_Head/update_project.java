@@ -57,7 +57,7 @@ public class update_project extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					update_project frame = new update_project(null, null, null, null, null);
+					update_project frame = new update_project(null, null, null, null, null,null,null,null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -69,7 +69,7 @@ public class update_project extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public update_project(String pj_id, String pj_name, String dept_id, String start_date, String end_date) {
+	public update_project(String pj_id, String pj_name, String dept_id, String start_date, String end_date,String emp,String email,String Type) {
 
 		ArrayList<String> rr = new ArrayList<String>();
 
@@ -93,7 +93,7 @@ public class update_project extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				new Project(dept_id).setVisible(true);
+				new Project(emp,dept_id,email,Type).setVisible(true);
 			}
 		});
 		button.setForeground(Color.WHITE);

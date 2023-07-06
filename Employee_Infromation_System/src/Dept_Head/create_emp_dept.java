@@ -63,7 +63,7 @@ public class create_emp_dept extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
 				try {
-					new dept_emp_create(dept).setVisible(true);
+					new dept_emp_create(emp,dept,email,Type).setVisible(true);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -128,6 +128,23 @@ public class create_emp_dept extends JFrame {
 		panel_8.setBackground(Color.LIGHT_GRAY);
 		panel_8.setBounds(0, 152, 145, 2);
 		panel_1.add(panel_8);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				try {
+					new Application_dept(emp,dept,email,Type).setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnBack.setFont(new Font("Modern No. 20", Font.BOLD, 20));
+		btnBack.setBackground(Color.LIGHT_GRAY);
+		btnBack.setBounds(0, 351, 145, 28);
+		panel_1.add(btnBack);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(0, 0, 834, 33);

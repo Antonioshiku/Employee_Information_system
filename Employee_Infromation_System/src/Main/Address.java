@@ -8,7 +8,6 @@ public class Address extends Employee {
 	}
 
 	public Address(String region, String postalCode, String Addr_code) {
-		super();
 		Region = region;
 		this.postalCode = postalCode;
 		this.Addr_code = Addr_code;
