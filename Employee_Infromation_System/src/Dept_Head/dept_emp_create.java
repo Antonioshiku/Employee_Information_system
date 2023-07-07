@@ -63,7 +63,7 @@ public class dept_emp_create extends JFrame {
 	private JRadioButton rdbtnMale, rdbtnFemale;
 	private boolean nextCheck;
 	private JTextField txt_NRC;
-	private JButton btnCreate,btnCreate_2;
+	private JButton btnCreate, btnCreate_2;
 
 	/**
 	 * Launch the application.
@@ -72,7 +72,7 @@ public class dept_emp_create extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					dept_emp_create frame = new dept_emp_create(null,null,null,null);
+					dept_emp_create frame = new dept_emp_create(null, null, null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -86,7 +86,7 @@ public class dept_emp_create extends JFrame {
 	 * 
 	 * @throws SQLException
 	 */
-	public dept_emp_create(String emp,String dept,String email,String Type) throws SQLException {
+	public dept_emp_create(String emp, String dept, String email, String Type) throws SQLException {
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage("D:\\HR Info Sys Pto\\icons8-old-vmware-logo-50 (3) (1).png"));
 		setTitle("Employee Information management System");
@@ -539,7 +539,7 @@ public class dept_emp_create extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				new create_emp_dept(emp,dept,email,Type).setVisible(true);
+				new create_emp_dept(emp, dept, email, Type).setVisible(true);
 			}
 		});
 		button.setBounds(10, 33, 110, 28);
@@ -552,7 +552,7 @@ public class dept_emp_create extends JFrame {
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_emp_id.setText("");
-			
+
 				txt_FName.setText(" ");
 				txt_LName.setText(" ");
 				buttonGroup.clearSelection();
@@ -583,8 +583,8 @@ public class dept_emp_create extends JFrame {
 		JButton button_3 = new JButton("Close");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    System.exit(0);
-			
+				System.exit(0);
+
 			}
 		});
 		button_3.setBounds(544, 33, 110, 28);
@@ -621,10 +621,10 @@ public class dept_emp_create extends JFrame {
 				String nationality = txt_nationality.getText();
 				Date J_date = new Date(txt_J_Date.getDate().getTime());
 				String postal = txt_postal.getText();
-				String addr_code = txt_region.getText();
+				String addr_code = txt_addr_code.getText();
 				String region = txt_region.getText();
 
-			   Address ee=new Address();
+				Address ee = new Address();
 				ee.setRegion(region);
 				ee.setPostalCode(postal);
 				ee.setAddr_code(addr_code);
@@ -650,10 +650,10 @@ public class dept_emp_create extends JFrame {
 				aa.setNationality(nationality);
 				aa.setJoined_date(String.valueOf(J_date));
 				aa.setNRC(nrc);
-				
-				pr_member pp=new pr_member();
+
+				pr_member pp = new pr_member();
 				pp.setEmp_Id(emp_id);
-			
+
 				int choice = JOptionPane.showConfirmDialog(null, "Do you really want to save your data",
 						"Comfirm Message", JOptionPane.INFORMATION_MESSAGE);
 				if (choice == JOptionPane.YES_OPTION)
@@ -665,7 +665,7 @@ public class dept_emp_create extends JFrame {
 
 						nextCheck = true;
 						txt_emp_id.setText("");
-					
+
 						txt_FName.setText(" ");
 						txt_LName.setText(" ");
 						buttonGroup.clearSelection();
@@ -703,13 +703,13 @@ public class dept_emp_create extends JFrame {
 		btnCreate_2.setBounds(147, 33, 110, 28);
 		panel_5.add(btnCreate_2);
 
-		 btnCreate = new JButton("Next ");
+		btnCreate = new JButton("Next ");
 		btnCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				setVisible(false);
 				try {
-					new other_dept_emp_info(emp,dept,email,Type).setVisible(true);
+					new other_dept_emp_info(emp, dept, email, Type).setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -728,10 +728,91 @@ public class dept_emp_create extends JFrame {
 	public void inputCheck() {
 		if (txt_emp_id.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Emp _id is missing", "missing data error", JOptionPane.ERROR_MESSAGE);
+		} else {
+			if (txt_FName.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "F_Name is missing", "missing data error",
+						JOptionPane.ERROR_MESSAGE);
+			} else {
+				if (txt_LName.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "L_Name is missing", "missing data error",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					if (txt_age.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Age is missing", "missing data error",
+								JOptionPane.ERROR_MESSAGE);
+					} else {
+						if (txt_FatherN.getText().isEmpty()) {
+							JOptionPane.showMessageDialog(null, "Father Name is missing", "missing data error",
+									JOptionPane.ERROR_MESSAGE);
+						} else {
+							if (txt_Per_ph.getText().isEmpty()) {
+								JOptionPane.showMessageDialog(null, "Personal Phone Num is missing",
+										"missing data error", JOptionPane.ERROR_MESSAGE);
+							} else {
+								if (txt_Work_ph.getText().isEmpty()) {
+									JOptionPane.showMessageDialog(null, "Work Ph Num is missing", "missing data error",
+											JOptionPane.ERROR_MESSAGE);
+								} else {
+									if (txt_M_status.getText().isEmpty()) {
+										JOptionPane.showMessageDialog(null, "M Status is missing", "missing data error",
+												JOptionPane.ERROR_MESSAGE);
+
+									} else {
+										if (txt_address.getText().isEmpty()) {
+											JOptionPane.showMessageDialog(null, "Township is missing",
+													"missing data error", JOptionPane.ERROR_MESSAGE);
+										} else {
+											if (txt_city.getText().isEmpty()) {
+												JOptionPane.showMessageDialog(null, "City is missing",
+														"missing data error", JOptionPane.ERROR_MESSAGE);
+											} else {
+												if (txt_region.getText().isEmpty()) {
+													JOptionPane.showMessageDialog(null, "Region is missing",
+															"missing data error", JOptionPane.ERROR_MESSAGE);
+												} else {
+													if (txt_religion.getText().isEmpty()) {
+														JOptionPane.showMessageDialog(null, "religion is missing",
+																"missing data error", JOptionPane.ERROR_MESSAGE);
+													} else {
+														if (txt_Email.getText().isEmpty()) {
+															JOptionPane.showMessageDialog(null, "Email is missing",
+																	"missing data error", JOptionPane.ERROR_MESSAGE);
+														} else {
+															if (txt_nationality.getText().isEmpty()) {
+																JOptionPane.showMessageDialog(null,
+																		"Nationality is missing", "missing data error",
+																		JOptionPane.ERROR_MESSAGE);
+															} else {
+																if (txt_postal.getText().isEmpty()) {
+																	JOptionPane.showMessageDialog(null,
+																			"Postal is missing", "missing data error",
+																			JOptionPane.ERROR_MESSAGE);
+																} else {
+																	if (txt_addr_code.getText().isEmpty()) {
+																		JOptionPane.showMessageDialog(null,
+																				"address code is missing",
+																				"missing data error",
+																				JOptionPane.ERROR_MESSAGE);
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	}
-	
-	public ArrayList<String> type(String emp){
+
+	public ArrayList<String> type(String emp) {
 		ArrayList<String> rr = new ArrayList<String>();
 		Connection con;
 		String query = "select Email,Type from login where emp_id=?";
@@ -744,7 +825,7 @@ public class dept_emp_create extends JFrame {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				rr.add(0, rs.getString(1));
-				rr.add(1,rs.getString(2));
+				rr.add(1, rs.getString(2));
 			}
 
 		} catch (Exception ee) {
@@ -752,5 +833,5 @@ public class dept_emp_create extends JFrame {
 		}
 		return rr;
 	}
-	
+
 }

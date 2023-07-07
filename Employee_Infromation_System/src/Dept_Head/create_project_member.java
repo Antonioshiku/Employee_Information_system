@@ -36,11 +36,10 @@ import javax.swing.JComboBox;
 import Main.pr_member;
 import Main.project;
 
-public class create_pj_member extends JFrame {
+public class create_project_member extends JFrame {
 	private JTextField txtPosition;
 	private JTextField txt_pj_id;
 	private JTextField txt_pj_mid;
-	private JComboBox combopj;
 
 	/**
 	 * Launch the application.
@@ -49,7 +48,7 @@ public class create_pj_member extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					create_pj_member frame = new create_pj_member(null,null,null,null);
+					create_project_member frame = new create_project_member(null,null,null,null,null,null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +61,7 @@ public class create_pj_member extends JFrame {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public create_pj_member(String emp,String dept_id,String email,String Type) throws SQLException {
+	public create_project_member(String emp,String dept_id,String email,String Type,String pj_emp_id,String pj_id) throws SQLException {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\HR Info Sys Pto\\icons8-old-vmware-logo-50 (3) (1).png"));
 		setTitle("Employee Information management System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -118,16 +117,12 @@ public class create_pj_member extends JFrame {
 		lblPosition.setBounds(37, 312, 167, 14);
 		panel_3.add(lblPosition);
 		
-		 combopj = new JComboBox(new ApplicationDAO().showEmpId().toArray());
-		combopj.setBounds(235, 182, 245, 24);
-		panel_3.add(combopj);
-		
 		txtPosition = new JTextField();
 		txtPosition.setColumns(10);
 		txtPosition.setBounds(235, 307, 245, 28);
 		panel_3.add(txtPosition);
 		
-		txt_pj_id = new JTextField();
+		txt_pj_id = new JTextField(pj_id);
 		txt_pj_id.setColumns(10);
 		txt_pj_id.setBounds(235, 117, 245, 28);
 		panel_3.add(txt_pj_id);
@@ -142,6 +137,11 @@ public class create_pj_member extends JFrame {
 		txt_pj_mid.setColumns(10);
 		txt_pj_mid.setBounds(235, 247, 245, 28);
 		panel_3.add(txt_pj_mid);
+		
+		JLabel lblNewLabel = new JLabel(pj_emp_id);
+		lblNewLabel.setFont(new Font("Monospaced", Font.BOLD, 15));
+		lblNewLabel.setBounds(235, 174, 246, 28);
+		panel_3.add(lblNewLabel);
 		
 		JButton button = new JButton("Back");
 		button.addActionListener(new ActionListener() {
@@ -172,7 +172,6 @@ public class create_pj_member extends JFrame {
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_pj_id.setText(" ");
-				combopj.setSelectedIndex(0);
 				txtPosition.setText(" ");
 				txt_pj_mid.setText(" ");
 			}
@@ -189,10 +188,9 @@ public class create_pj_member extends JFrame {
 					inputCheck();
 	              	Connection con=null;
 	              	String pj_member_id=txt_pj_mid.getText();
-	              	String emp_id=combopj.getSelectedItem().toString();
 	              	String position=txtPosition.getText();
 	              	String Project_id=txt_pj_id.getText();
-			   pr_member pjm=new pr_member(pj_member_id,position,emp_id);
+			   pr_member pjm=new pr_member(pj_member_id,position,pj_emp_id);
 			   pjm.setProject_Id(Project_id);
 				int choice = JOptionPane.showConfirmDialog(null, "Do you really want to save your data",
 						"Comfirm Message", JOptionPane.INFORMATION_MESSAGE);
@@ -221,7 +219,8 @@ public class create_pj_member extends JFrame {
 				         }
 				         
 						
-					  
+					  setVisible(false);
+					  new create_pj_member_table(emp,dept_id,email,Type,pj_emp_id).setVisible(true);
 
 					} catch (SQLException e1_) {
 						JOptionPane.showMessageDialog(null, "Database Connection Error", "Save Error",
@@ -241,9 +240,6 @@ public class create_pj_member extends JFrame {
 		 if(txt_pj_mid.getText().isEmpty()) {
 			 JOptionPane.showMessageDialog(null, "Project member Id is missing ", "missing check error",JOptionPane.ERROR_MESSAGE);
 		 }else {
-			  if(combopj.getSelectedIndex() == 0) {
-				  JOptionPane.showMessageDialog(null, "Emp  Id is missing ", "missing check error",JOptionPane.ERROR_MESSAGE);
-			  }else {
 				   if(txtPosition.getText().isEmpty()) {
 					   JOptionPane.showMessageDialog(null, "Project Position is missing ", "missing check error",JOptionPane.ERROR_MESSAGE);
 				   }else {
@@ -254,5 +250,4 @@ public class create_pj_member extends JFrame {
 			  }
 		 }
 	}
-}
 

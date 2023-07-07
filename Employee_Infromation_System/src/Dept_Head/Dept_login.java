@@ -65,7 +65,7 @@ public class Dept_login extends JFrame {
 	public Dept_login() {
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage("D:\\Java Project\\Employee_Infromation_System\\photo\\icons8-old-vmware-logo-100.png"));
-		setTitle("  ");
+		setTitle("Employee Information management System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 850, 500);
 		getContentPane().setLayout(null);

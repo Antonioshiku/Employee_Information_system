@@ -732,6 +732,87 @@ public class Create_emp_info extends JFrame {
 	public void inputCheck() {
 		if (txt_emp_id.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Emp _id is missing", "missing data error", JOptionPane.ERROR_MESSAGE);
+		} else {
+			if (txt_FName.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "F_Name is missing", "missing data error",
+						JOptionPane.ERROR_MESSAGE);
+			} else {
+				if (txt_LName.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "L_Name is missing", "missing data error",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					if (txt_age.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Age is missing", "missing data error",
+								JOptionPane.ERROR_MESSAGE);
+					} else {
+						if (txt_FatherN.getText().isEmpty()) {
+							JOptionPane.showMessageDialog(null, "Father Name is missing", "missing data error",
+									JOptionPane.ERROR_MESSAGE);
+						} else {
+							if (txt_Per_ph.getText().isEmpty()) {
+								JOptionPane.showMessageDialog(null, "Personal Phone Num is missing",
+										"missing data error", JOptionPane.ERROR_MESSAGE);
+							} else {
+								if (txt_Work_ph.getText().isEmpty()) {
+									JOptionPane.showMessageDialog(null, "Work Ph Num is missing", "missing data error",
+											JOptionPane.ERROR_MESSAGE);
+								} else {
+									if (txt_M_status.getText().isEmpty()) {
+										JOptionPane.showMessageDialog(null, "M Status is missing", "missing data error",
+												JOptionPane.ERROR_MESSAGE);
+
+									} else {
+										if (txt_address.getText().isEmpty()) {
+											JOptionPane.showMessageDialog(null, "Township is missing",
+													"missing data error", JOptionPane.ERROR_MESSAGE);
+										} else {
+											if (txt_city.getText().isEmpty()) {
+												JOptionPane.showMessageDialog(null, "City is missing",
+														"missing data error", JOptionPane.ERROR_MESSAGE);
+											} else {
+												if (txt_region.getText().isEmpty()) {
+													JOptionPane.showMessageDialog(null, "Region is missing",
+															"missing data error", JOptionPane.ERROR_MESSAGE);
+												} else {
+													if (txt_religion.getText().isEmpty()) {
+														JOptionPane.showMessageDialog(null, "religion is missing",
+																"missing data error", JOptionPane.ERROR_MESSAGE);
+													} else {
+														if (txt_Email.getText().isEmpty()) {
+															JOptionPane.showMessageDialog(null, "Email is missing",
+																	"missing data error", JOptionPane.ERROR_MESSAGE);
+														} else {
+															if (txt_nationality.getText().isEmpty()) {
+																JOptionPane.showMessageDialog(null,
+																		"Nationality is missing", "missing data error",
+																		JOptionPane.ERROR_MESSAGE);
+															} else {
+																if (txt_postal.getText().isEmpty()) {
+																	JOptionPane.showMessageDialog(null,
+																			"Postal is missing", "missing data error",
+																			JOptionPane.ERROR_MESSAGE);
+																} else {
+																	if (txt_addr_code.getText().isEmpty()) {
+																		JOptionPane.showMessageDialog(null,
+																				"address code is missing",
+																				"missing data error",
+																				JOptionPane.ERROR_MESSAGE);
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+
+								}
+							}
+						}
+					}
+				}
+			}
 		}
-	}
+}
 }

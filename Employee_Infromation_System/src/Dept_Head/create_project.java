@@ -204,7 +204,6 @@ public class create_project extends JFrame {
 						new ApplicationDAO().create_pj(p);
 						next_id = 1;
 						
-						txt_PId.setText(" ");
 					//	combopj.setSelectedIndex(0);
 						txt_pN.setText(" ");
 					//	txtPosition.setText(" ");
@@ -232,13 +231,13 @@ public class create_project extends JFrame {
 				if(next_id > 0) {
 					 setVisible(false);
 					 try {
-						new create_pj_member(emp,dept_id,email,Type).setVisible(true);
+						new create_pj_member_table(emp,dept_id,email,Type,txt_PId.getText()).setVisible(true);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}else {
-					 JOptionPane.showMessageDialog(null, "First You need to create project.","Error",JOptionPane.ERROR_MESSAGE);
+					 JOptionPane.showMessageDialog(null, "First You need to create project.","Error",JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
